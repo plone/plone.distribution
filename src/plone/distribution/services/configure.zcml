@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <include
+      package="plone.rest"
+      file="meta.zcml"
+      />
+
+  <include package="plone.rest" />
+  <include package="plone.restapi" />
+
+  <include package=".auth" />
+  <include package=".sites" />
+
+</configure>

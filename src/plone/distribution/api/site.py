@@ -1,0 +1,98 @@
+from AccessControl import getSecurityManager
+from AccessControl.Permissions import view as View
+from plone.base.interfaces import IPloneSiteRoot
+from plone.distribution.api import distribution as dist_api
+from plone.distribution.handler import default_handler
+from plone.registry.interfaces import IRegistry
+from Products.CMFPlone.events import SiteManagerCreatedEvent
+from Products.CMFPlone.Portal import PloneSite
+from Products.GenericSetup.tool import SetupTool
+from typing import List
+from ZODB.broken import Broken
+from zope.component import queryUtility
+from zope.component.hooks import setSite
+from zope.event import notify
+from zope.lifecycleevent import ObjectCreatedEvent
+
+
+_TOOL_ID = "portal_setup"
+_DEFAULT_PROFILE = "Products.CMFPlone:plone"
+
+
+def _required_str_value(answers: dict, key: str) -> str:
+    try:
+        return answers[key]
+    except KeyError:
+        raise KeyError(f"A value for {key} is required.")
+
+
+def get_sites(context=None) -> List[PloneSite]:
+    """Get all Plone sites."""
+    if not context:
+        raise ValueError("Need to provide application root")
+    result = []
+    secman = getSecurityManager()
+    candidates = (obj for obj in context.values() if not isinstance(obj, Broken))
+    for obj in candidates:
+        if obj.meta_type == "Folder":
+            result.extend(get_sites(context=obj))
+        elif IPloneSiteRoot.providedBy(obj):
+            if secman.checkPermission(View, obj):
+                result.append(obj)
+        elif obj.getId() in getattr(context, "_mount_points", {}):
+            result.extend(get_sites(context=obj))
+    return result
+
+
+def create(
+    context,
+    distribution_name: str,
+    answers: dict,
+    profile_id: str = _DEFAULT_PROFILE,
+) -> PloneSite:
+    """Create a new Plone site using one of the distributions."""
+    distribution = dist_api.get(distribution_name)
+    handler = distribution.handler if distribution.handler else default_handler
+    post_handler = distribution.post_handler
+    # Attributes used during site creation
+    site_id = _required_str_value(answers, "site_id")
+    title = _required_str_value(answers, "title")
+    description = answers.get("description", "")
+    default_language = answers.get("default_language", "en")
+    portal_timezone = answers.get("portal_timezone", "UTC")
+    # Create the Plone Site
+    site = PloneSite(site_id)
+    notify(ObjectCreatedEvent(site))
+    context[site_id] = site
+    site = context[site_id]
+    # Set site language
+    site.setLanguage(default_language)
+    # Register SetupTool (portal_setup)
+    site[_TOOL_ID] = SetupTool(_TOOL_ID)
+    setup_tool = site[_TOOL_ID]
+    notify(SiteManagerCreatedEvent(site))
+    setSite(site)
+    # Apply base profile
+    setup_tool.setBaselineContext(f"profile-{profile_id}")
+    setup_tool.runAllImportStepsFromProfile(f"profile-{profile_id}")
+    # Set default properties (title, description)
+    # Do this before applying extension profiles, so the settings from a
+    # properties.xml file are applied and not overwritten by this
+    props = dict(
+        title=title,
+        description=description,
+    )
+    site.manage_changeProperties(**props)
+    # Set initial registry values
+    reg = queryUtility(IRegistry, context=site)
+    reg["plone.portal_timezone"] = portal_timezone
+    reg["plone.available_timezones"] = [portal_timezone]
+    reg["plone.default_language"] = default_language
+    reg["plone.available_languages"] = [default_language]
+    reg["plone.site_title"] = title
+    # Run the Distribution handler
+    site = handler(distribution, site, answers)
+    # Run the Distribution post_handler
+    if post_handler:
+        site = post_handler(distribution, site, answers)
+    return site

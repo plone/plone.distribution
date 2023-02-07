@@ -1,0 +1,44 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
+
+  <include
+      package="Products.CMFPlone.browser"
+      file="configure.zcml"
+      />
+
+  <include
+      package="z3c.unconfigure"
+      file="meta.zcml"
+      />
+
+  <unconfigure>
+
+    <adapter factory="Products.CMFPlone.browser.admin.AppTraverser" />
+
+    <browser:page
+        name="plone-addsite"
+        for="OFS.interfaces.IApplication"
+        class="Products.CMFPlone.browser.admin.AddPloneSite"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="plone-addsite"
+        for="OFS.Folder.Folder"
+        class="Products.CMFPlone.browser.admin.AddPloneSite"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="plone-overview"
+        for="OFS.interfaces.IApplication"
+        class="Products.CMFPlone.browser.admin.Overview"
+        template="templates/plone-overview.pt"
+        permission="zope.Public"
+        />
+
+  </unconfigure>
+
+</configure>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      i18n:domain="plone">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Welcome to Plone!</title>
+  <link
+      rel="icon"
+      type="image/svg+xml"
+      href="${string:${context/absolute_url}/++resource++plone.distribution/plone.svg}" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="${string:${context/absolute_url}/++theme++barceloneta/css/barceloneta.min.css}" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="${string:${context/absolute_url}/++resource++plone-admin-ui.css}" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="${string:${context/absolute_url}/++resource++plone.distribution/plone-overview.min.css}" />
+  <script type="module" crossorigin
+    src="${string:${context/absolute_url}/++resource++plone.distribution/plone-overview.min.js}"></script>
+</head>
+
+
+<body>
+  <div id="root"></div>
+</body>
+</html>

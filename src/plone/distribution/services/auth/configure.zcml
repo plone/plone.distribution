@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <!-- @sites -->
+  <plone:service
+      method="POST"
+      accept="application/json"
+      factory=".login.LoginPost"
+      for="OFS.interfaces.IApplication"
+      permission="zope.Public"
+      name="@login"
+      />
+
+</configure>

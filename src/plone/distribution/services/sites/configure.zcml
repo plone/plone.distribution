@@ -1,0 +1,41 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <!-- @sites -->
+  <plone:service
+      method="GET"
+      accept="application/json"
+      factory=".get.SitesGet"
+      for="OFS.interfaces.IApplication"
+      permission="zope.Public"
+      name="@sites"
+      />
+
+  <plone:service
+      method="GET"
+      accept="application/json"
+      factory=".get.SitesGet"
+      for="OFS.Folder.Folder"
+      permission="zope.Public"
+      name="@sites"
+      />
+
+  <plone:service
+      method="POST"
+      factory=".add.SiteCreate"
+      for="OFS.interfaces.IApplication"
+      permission="zope2.ViewManagementScreens"
+      name="@sites"
+      />
+
+  <plone:service
+      method="POST"
+      factory=".add.SiteCreate"
+      for="OFS.Folder.Folder"
+      permission="zope2.ViewManagementScreens"
+      name="@sites"
+      />
+
+</configure>

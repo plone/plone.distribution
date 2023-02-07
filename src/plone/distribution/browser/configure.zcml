@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    >
+
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
+
+  <includeOverrides file="overrides.zcml" />
+
+  <browser:resourceDirectory
+      name="plone.distribution"
+      directory="static"
+      />
+
+
+  <adapter factory=".admin.RestTraverser" />
+
+  <browser:page
+      name="plone-overview"
+      for="OFS.interfaces.IApplication"
+      class=".admin.Overview"
+      template="templates/plone-overview.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      name="dist-image"
+      for="OFS.interfaces.IApplication"
+      class=".image.DistributionImageView"
+      permission="zope.Public"
+      />
+
+</configure>
