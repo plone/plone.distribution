@@ -1,6 +1,9 @@
-recursive-include plone *
+graft src
+graft tests
 include *
 global-exclude *.pyc
 include pyproject.toml
 recursive-exclude news *
-exclude news
+exclude pyvenv.cfg
+recursive-exclude frontend *
+recursive-exclude .vscode *
