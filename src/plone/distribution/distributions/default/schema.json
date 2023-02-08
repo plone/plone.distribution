@@ -29,9 +29,9 @@
       "portal_timezone": {"$ref": "#/definitions/timezones"},
       "setup_content": {
         "type": "boolean",
-        "title": "Create Content",
+        "title": "Create Example Content",
         "description": "Should example content be added during site creation?",
-        "default": false
+        "default": true
       }
     }
   },
