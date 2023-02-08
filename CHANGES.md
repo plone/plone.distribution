@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a3 (2023-02-08)
+
+
+### Bug fixes:
+
+- Fix Basic Authentication for Chrome [@ericof] #10
+
+
 ## 1.0.0a2 (2023-02-08)
 
 
