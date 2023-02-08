@@ -1,39 +1,6 @@
-<p align="center">
-    <img alt="Plone Logo" width="200px" src="https://raw.githubusercontent.com/plone/.github/main/plone-logo.png">
-</p>
+# Important files / folders
 
-<h1 align="center">
-  Plone Distributions
-</h1>
-
-Package supporting the (easy) implementation of a Plone Distribution.
-
-## What is a Plone Distribution
-
-A Plone distribution is a pre-packaged version of Plone that includes specific features, themes, modules, and configurations. It is a convenient way to get a specific type of website up and running quickly, as the distribution includes everything needed to run that type of site.
-
-Examples of Plone distributions include:
-
-* [SENAITE](https://www.senaite.com)
-* [Quaive](https://quaivecloud.com/)
-* [Portal Modelo](https://www.interlegis.leg.br/produtos-servicos/portal-modelo/)
-* [Portal Padrão](https://identidade-digital-de-governo-plone.readthedocs.io/en/latest/)
-
-### Similar Concept in Other CMS
-
-* Drupal: Drupal has distributions for blogs, e-commerce sites, and intranet portals.
-
-* WordPress: WordPress has a similar concept in the form of "WordPress Multisite," which allows users to run multiple websites from a single installation of WordPress.
-
-* Joomla: Joomla has a similar concept in the form of "Joomla Templates," which are pre-designed templates for Joomla websites.
-
-* TYPO3: TYPO3 has a similar concept in the form of "TYPO3 Distributions," which are pre-configured installations of TYPO3 for specific types of websites.
-
-## Creating a new Distribution
-
-First of all, a Plone Distribution is a Python Package that can be installed by `pip`.
-
-### `setup.py`
+## `setup.py`
 The package will follow some conventions, to make it "discoverable" by others.
 
 In `setup.py`, always add the correct Trove Classifiers:
@@ -54,7 +21,7 @@ and also require `plone.distribution` to be available:
     ],
 ```
 
-### `configure.zcml`
+## `configure.zcml`
 
 In your main `configure.zcml`, make sure to have the `plone` xml namespace declared:
 
@@ -86,7 +53,7 @@ Then declare the distributions included in your package:
 
 The registered distribution will configure a Personal Blog, with some default content.
 
-### distribution folder
+## `distributions` folder
 
 A convention is to use the `distributions/<distribution_name>`folder in the root of your package to organize your distribution configuration.
 
@@ -200,34 +167,3 @@ and portal_timezone:
 ```
 
 Both definitions are added in runtime by `plone.distribution` to provide a list of languages and timezones available on the installation.
-
-### `content` folder
-
-**WIP**: Folder containing json data exported by `collective.exportimport`
-
-## Advanced Usage
-
-### Hiding Distributions
-
-By default, `plone.distribution` ships with 2 ready-to-use distributions:
-
-* **default**: Plone Site (Volto frontend)
-* **classic**: Plone Site (Classic UI)
-
-If you want to limit your users option to select a distribution, it is possible to set the environment variable `ALLOWED_DISTRIBUTIONS` with fewer options:
-
-```shell
-ALLOWED_DISTRIBUTIONS=default
-```
-
-
-## This project is supported by
-
-<p align="left">
-    <a href="https://plone.org/foundation/">
-      <img alt="Plone Logo" width="200px" src="https://raw.githubusercontent.com/plone/.github/main/plone-foundation.png">
-    </a>
-</p>
-
-## License
-The project is licensed under the GPLv2.

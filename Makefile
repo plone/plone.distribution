@@ -18,6 +18,8 @@ YELLOW=`tput setaf 3`
 PLONE6=6.0-latest
 
 BACKEND_FOLDER=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+DOCS_DIR=${BACKEND_FOLDER}/docs
+
 
 CODE_QUALITY_VERSION=2.0.2
 ifndef LOG_LEVEL
@@ -129,3 +131,19 @@ i18n: bin/i18ndude ## Update locales
 .PHONY: test
 test: ## run tests
 	bin/pytest --disable-warnings
+
+
+# Docs
+bin/sphinx-build: bin/pip
+	bin/pip install -r requirements-docs.txt
+
+.PHONY: build-docs
+build-docs: bin/sphinx-build  ## Build the documentation
+	./bin/sphinx-build \
+		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
+
+.PHONY: livehtml
+livehtml: bin/sphinx-build  ## Rebuild Sphinx documentation on changes, with live-reload in the browser
+	./bin/sphinx-autobuild \
+		--ignore "*.swp" \
+		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"

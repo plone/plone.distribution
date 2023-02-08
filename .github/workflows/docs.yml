@@ -1,0 +1,30 @@
+name: Build docs
+on: [push]
+
+env:
+  python-version: "3.11"
+  plone-version: "6.0-latest"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # git checkout
+      - uses: actions/checkout@v3
+
+      # python setup
+      - name: Setup Plone ${{ env.plone-version }} with Python ${{ env.python-version }}
+        id: setup
+        uses: plone/setup-plone@v2.0.0
+        with:
+          python-version: ${{ env.python-version }}
+          plone-version: ${{ env.plone-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-docs.txt
+
+      - name: Build Documentation
+        run: |
+          sphinx-build -b html docs docs/_build/html
