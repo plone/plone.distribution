@@ -72,14 +72,28 @@ clean: ## Remove old virtualenv and creates a new one
 start: ## Start a Plone instance on localhost:8080
 	PYTHONWARNINGS=ignore ./bin/runwsgi etc/zope.ini
 
+.PHONY: format-frontend
+format-frontend: ## Format frontend codebase
+	@echo "$(GREEN)==> Format frontend codebase$(RESET)"
+	(cd frontend && pnpm lint:fix)
+	(cd frontend && pnpm prettier:fix)
+
 .PHONY: format
 format: ## Format the codebase according to our standards
 	@echo "$(GREEN)==> Format codebase$(RESET)"
 	$(FORMAT)
+	make format-frontend
+
+.PHONY: lint-frontend
+lint-frontend: ## Lint frontend codebase
+	@echo "$(GREEN)==> Lint frontend codebase$(RESET)"
+	(cd frontend && pnpm lint)
+	(cd frontend && pnpm prettier)
 
 .PHONY: lint
 lint: ## check code style
 	$(LINT)
+	make lint-frontend
 
 .PHONY: lint-black
 lint-black: ## validate black formating
