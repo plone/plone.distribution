@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
-import validator from '@rjsf/validator-ajv8';
+import { customizeValidator } from '@rjsf/validator-ajv8';
+import Ajv2019 from 'ajv/dist/2019';
 import Form from '@rjsf/bootstrap-4';
 import './form.css';
+
+const validator = customizeValidator({ AjvClass: Ajv2019 });
 
 export const DistributionsForm = ({
   schema,
