@@ -1,0 +1,1 @@
+Use [ajv8](https://rjsf-team.github.io/react-jsonschema-form/docs/usage/validation#ajvclass) with Ajv2019 class validator to fix `function nested too deeply` on Firefox [@ericof]
