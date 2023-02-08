@@ -11,14 +11,32 @@ const SitesInfo = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [cameFrom, setCameFrom] = useState('');
 
-  const handleClick = (can_manage: boolean, name: string) => {
+  const checkBasicAuth = async () => {
+    const response = await fetch('/@login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+    if (response.status === 401) {
+      setShowLoginModal(true);
+      return false;
+    }
+    setShowLoginModal(false);
+    return true;
+  };
+
+  const handleClick = async (can_manage: boolean, name: string) => {
     const href = `/?distribution=${name}`;
     if (can_manage) {
       // Redirect
       window.location.href = href;
     } else {
       setCameFrom(href);
-      setShowLoginModal(true);
+      if (await checkBasicAuth()) {
+        window.location.href = href;
+      }
     }
   };
 
@@ -72,7 +90,7 @@ const SitesInfo = () => {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => setShowLoginModal(true)}
+              onClick={() => checkBasicAuth()}
             >
               Login
             </button>,

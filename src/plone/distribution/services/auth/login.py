@@ -16,9 +16,9 @@ class LoginPost(Service):
         login = data.get("login")
         password = data.get("password")
         acl_users = self.context.acl_users
-        if acl_users.authenticate(login, password, self.request):
-            # sets cookie
-            cookie_pas = acl_users.credentials_cookie_auth
+        # credentials_cookie_auth only exists after initial Plone site is added to zope
+        cookie_pas = getattr(acl_users, "credentials_cookie_auth", None)
+        if cookie_pas and acl_users.authenticate(login, password, self.request):
             cookie_pas.updateCredentials(
                 self.request, self.request.response, login, password
             )
