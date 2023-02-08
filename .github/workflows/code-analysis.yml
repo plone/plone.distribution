@@ -80,12 +80,20 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
 
+      - name: Check
+        run: ls -lahs
+
+      - name: "Setup pnpm"
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: false
+
       - name: Use Node.js ${{ env.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node-version }}
           cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          cache-dependency-path: './frontend/pnpm-lock.yaml'
 
       - name: Install Frontend
         run: pnpm i  --frozen-lockfile
