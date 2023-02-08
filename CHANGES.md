@@ -9,6 +9,21 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a2 (2023-02-08)
+
+
+### New features:
+
+- Change overview page favicon to use Plone logo [@ericof] #7
+- Set content creation on `default` and `classic` distributions to be default. [@ericof] #9
+
+
+### Bug fixes:
+
+- Use [ajv8](https://rjsf-team.github.io/react-jsonschema-form/docs/usage/validation#ajvclass) with Ajv2019 class validator to fix `function nested too deeply` on Firefox [@ericof] #4
+- Handle authentication when /acl_users does not support cookie extraction [@ericof] #6
+
+
 ## 1.0.0a1 (2023-02-08)
 
 
