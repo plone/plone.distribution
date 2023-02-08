@@ -12,15 +12,10 @@ const SitesInfo = () => {
   const [cameFrom, setCameFrom] = useState('');
 
   const checkBasicAuth = async () => {
-    const response = await fetch('/@login', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({}),
+    const response = await fetch('/@@ploneAddSite', {
+      method: 'GET',
     });
     if (response.status === 401) {
-      setShowLoginModal(true);
       return false;
     }
     setShowLoginModal(false);
@@ -28,7 +23,7 @@ const SitesInfo = () => {
   };
 
   const handleClick = async (can_manage: boolean, name: string) => {
-    const href = `/?distribution=${name}`;
+    const href = `/@@ploneAddSite?distribution=${name}`;
     if (can_manage) {
       // Redirect
       window.location.href = href;
@@ -36,6 +31,8 @@ const SitesInfo = () => {
       setCameFrom(href);
       if (await checkBasicAuth()) {
         window.location.href = href;
+      } else {
+        setShowLoginModal(true);
       }
     }
   };

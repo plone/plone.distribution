@@ -13,6 +13,7 @@ export default defineConfig({
       '/@@plone-addsite': 'http://localhost:8080',
       '/@sites': 'http://localhost:8080',
       '/@login': 'http://localhost:8080',
+      '/@@ploneAddSite': 'http://localhost:8080',
     },
   },
   build: {
