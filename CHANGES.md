@@ -9,4 +9,12 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a1 (2023-02-08)
+
+
+### New features:
+
+- Initial implementation of plone.distribution [@ericof] #1
+
+
 ## 1.0.0 (Unreleased)
