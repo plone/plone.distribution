@@ -1,6 +1,10 @@
 name: Code Analysis
+
 on:
   push:
+
+env:
+  node-version: 16.x
 
 jobs:
   black:
@@ -65,3 +69,30 @@ jobs:
         uses: plone/code-analysis-action@v2
         with:
           check: 'zpretty'
+
+  frontend:
+    name: Check frontend code
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Install pnpm
+        run: npm i -g pnpm
+
+      - name: Install Frontend
+        run: pnpm i  --frozen-lockfile
+
+      - name: eslint-check
+        run: pnpm lint
+
+      - name: prettier
+        run: pnpm prettier
