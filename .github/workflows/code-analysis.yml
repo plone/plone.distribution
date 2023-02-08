@@ -87,6 +87,8 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'frontend/pnpm-lock.yaml'
 
+      - uses: pnpm/action-setup@v2
+
       - name: Install Frontend
         run: pnpm i
 
