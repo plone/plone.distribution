@@ -80,7 +80,8 @@ myst_enable_extensions = [
     #  instead of ```.
     "substitution",  # plone.restapi \
     # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html#substitutions-with-jinja2
-    "html_image",  # For inline images. See https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
+    "html_image",  # For inline images. \
+    # See https://myst-parser.readthedocs.io/en/latest/syntax/optional.html
 ]
 
 
