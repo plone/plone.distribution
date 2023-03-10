@@ -1,9 +1,9 @@
 ---
 myst:
   html_meta:
-    "description": "Overview of the API methods"
-    "property=og:description": "Overview of the API methods"
-    "property=og:title": "API methods and descriptions"
+    "description": "Overview of the Plone distribution API methods"
+    "property=og:description": "Overview of the Plone distribution API methods"
+    "property=og:title": "Plone distribution API methods and descriptions"
     "keywords": "Plone, API, methods, development"
 ---
 
@@ -30,7 +30,6 @@ site
     api.distribution.get
     api.distribution.get_distributions
     api.distribution.get_registry
-
 ```
 
 
@@ -41,5 +40,4 @@ site
 
     api.site.get_sites
     api.site.create
-
 ```

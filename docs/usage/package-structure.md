@@ -1,9 +1,12 @@
-# Important files / folders
+# Important files and folders
+
+This chapter describes important files and folders generated from the cookiecutter template.
 
 ## `setup.py`
-The package will follow some conventions, to make it "discoverable" by others.
 
-In `setup.py`, always add the correct Trove Classifiers:
+The package will follow some conventions, to make it discoverable by others.
+
+In `setup.py`, always add the correct [trove classifiers](https://pypi.org/classifiers/):
 
 ```python
         "Framework :: Plone",
@@ -11,7 +14,7 @@ In `setup.py`, always add the correct Trove Classifiers:
         "Framework :: Plone :: Distribution",
 ```
 
-and also require `plone.distribution` to be available:
+Require that `plone.distribution` is available.
 
 ```python
     install_requires=[
@@ -23,7 +26,7 @@ and also require `plone.distribution` to be available:
 
 ## `configure.zcml`
 
-In your main `configure.zcml`, make sure to have the `plone` xml namespace declared:
+In your main `configure.zcml`, make sure to have the `plone` XML namespace declared.
 
 ```xml
 <configure
@@ -32,48 +35,49 @@ In your main `configure.zcml`, make sure to have the `plone` xml namespace decla
     >
 ```
 
-And also include `plone.distribution`:
+Include `plone.distribution`.
 
 ```xml
   <include package="plone.distribution" />
 ```
 
-Then declare the distributions included in your package:
+Declare the distributions included in your package.
 
 ```xml
-
   <plone:distribution
       name="blog"
       title="Personal Blog"
       description="A Plone site already configured to host a personal Blog."
       directory="distributions/blog"
       />
-
 ```
 
-The registered distribution will configure a Personal Blog, with some default content.
+The registered distribution will configure a personal blog with some default content.
 
 ## `distributions` folder
 
-A convention is to use the `distributions/<distribution_name>`folder in the root of your package to organize your distribution configuration.
+By convention use the `distributions/<distribution_name>` folder in the root of your package to organize your distribution configuration.
 
-In that folder, you will need to provide:
+In that folder, you must provide the following.
 
 ### `image.png`
 
-A 1080x768 image of your distribution. It could be the default page of a new site, your logo, or any other way of representing this distribution.
+A 1080 pixels wide by 768 pixels tall image of your distribution.
+It could be the default page of a new site, your logo, or any other way to represent this distribution.
 
 ### `profiles.json`
 
-A `JSON` file with the GenericSetup profiles that are used by your distribution during installation.
+This is a `JSON` file with the GenericSetup profiles that are used by your distribution during installation.
 
 This file needs to contain two keys:
 
-* **base**: List of profiles installed in every new site using this distribution.
+`base`
+:   A list of profiles installed in every new site using this distribution.
 
-* **content**: List of profiles installed when the user decides to create a site with example content.
+`content`
+:   A list of profiles installed when the user decides to create a site with example content.
 
-The configuration for a new Volto site is:
+The configuration for a new Volto site is the following.
 
 ```json
 {
@@ -93,21 +97,23 @@ The configuration for a new Volto site is:
 
 In case you require additional input from the user during site creation, you can customize the form using the `schema.json` file.
 
-The file should contain two keys:
+The file should contain two keys.
 
-* **schema**: A JSON Schema definition.
-* **uischema**: A [react-jsonschema-form](https://rjsf-team.github.io/react-jsonschema-form/docs/) configuration to modify how the form is displayed.
+`schema`
+:   A JSON schema definition.
+`uischema`
+:   A [`react-jsonschema-form`](https://rjsf-team.github.io/react-jsonschema-form/docs/) configuration to modify how the form is displayed.
 
-The **schema** should have at least the following keys:
+The schema should have at least the following keys.
 
-* site_id
-* title
-* description
-* default_language
-* portal_timezone
-* setup_content
+* `site_id`
+* `title`
+* `description`
+* `default_language`
+* `portal_timezone`
+* `setup_content`
 
-The `schema.json` used for the default site creation is:
+The `schema.json` used for the default site creation is the following.
 
 ```json
 {
@@ -150,20 +156,20 @@ The `schema.json` used for the default site creation is:
   "uischema": {
   }
 }
-
 ```
 
-**Important**
-You probably noticed the entries for
-default_language:
+```{important}
+You probably noticed the entries for `default_language`.
 
 ```
 {"$ref": "#/definitions/languages"}
 ```
-and portal_timezone:
+
+and `portal_timezone`.
 
 ```
 {"$ref": "#/definitions/timezones"}
 ```
 
 Both definitions are added in runtime by `plone.distribution` to provide a list of languages and timezones available on the installation.
+```

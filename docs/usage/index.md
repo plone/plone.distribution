@@ -1,4 +1,4 @@
-# Using this package
+# Usage
 
 ```{toctree}
 :maxdepth: 1
@@ -8,17 +8,18 @@ package-structure
 code-examples
 ```
 
-First of all, a Plone Distribution is a Python Package that can be installed by `pip` and follows certain conventions.
+A Plone distribution is a Python package that can be installed by `pip` and follows certain conventions.
 
-## Create a new Plone Distribution
+## Create a new Plone distribution
 
-The Plone Community provides a `Cookiecutter` template to generate new Plone Distribution packages: [cookiecutter-plone-distribution](https://github.com/collective/cookiecutter-plone-distribution).
+The Plone community provides a [Cookiecutter](https://www.cookiecutter.io/) template to generate new Plone distribution packages: [`cookiecutter-plone-distribution`](https://github.com/collective/cookiecutter-plone-distribution).
 
-This template is active development and it will probably change its structure until a stable release of `plone.distribution` is made.
+This template is under active development.
+It will probably change its structure until a stable release of `plone.distribution` is made.
 
-### Basic Setup
+### Pre-requisites
 
-To use the template, first, install `Cookiecutter` via command line:
+To use the template, install `Cookiecutter` via the command line.
 
 ```shell
 pip install cookiecutter
@@ -26,14 +27,15 @@ pip install cookiecutter
 
 ### Generate the package
 
-Generate a new Plone Distribution package by running `Cookiecutter`:
+Generate a new Plone distribution package by running the cookiecutter.
 
 ```shell
 cookiecutter gh:collective/cookiecutter-plone-distribution
 ```
 
-And answer the questions:
-```
+Answer the questions, replacing the following with your desired options.
+
+```console
 distribution_title [Plone Distribution]: Blog
 description [Plone Distribution.]: A Blog using the Plone CMS
 github_organization [collective]:
@@ -42,26 +44,26 @@ author [Plone Foundation]: Plone Community
 email [collective@plone.org]: borg@plone.org
 ```
 
-After a while, the folder `collective.blog` will be created, containing the codebase of your Plone Distribution.
+After a while, the folder `collective.blog` (or your chosen name) will be created, containing the code base of your Plone distribution.
 
-### Install the package (local development)
+### Install the package for local development
 
-Enter the new folder, and install the codebase:
+Enter the new folder, and install the code base.
 
 ```shell
 cd collective.blog
 make build
 ```
 
-### Lint and Format the codebase
+### Lint and format the code base
 
-To lint the codebase, use:
+Lint the code base.
 
 ```shell
 make lint
 ```
 
-If errors occur, run:
+If errors occur, then run the following command.
 
 ```shell
 make format
@@ -69,9 +71,10 @@ make format
 
 ### Testing
 
-We recommend the usage of `pytest` and [pytest-plone](https://pypi.org/project/pytest-plone) to test the package.
+We recommend [`pytest`](https://pypi.org/project/pytest/) and [`pytest-plone`](https://pypi.org/project/pytest-plone) to test the package.
 
-The template generator creates a top level folder named `tests` with initial tests. Run them with:
+The template generator creates a top level folder named `tests` with initial tests.
+To run the tests, use the following command.
 
 ```shell
 make test

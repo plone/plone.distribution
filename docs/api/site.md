@@ -1,10 +1,10 @@
 ---
 myst:
   html_meta:
-    "description": "API methods of module 'site'"
-    "property=og:description": "API methods of module 'site'"
+    "description": "Plone distribution API methods of module 'site'"
+    "property=og:description": "Plone distribution API methods of module 'site'"
     "property=og:title": "plone.distribution.api.site"
-    "keywords": "Plone, content, development, API"
+    "keywords": "Plone, content, development, API, distribution"
 ---
 
 (plone-distribution-api-site)=

@@ -1,16 +1,19 @@
 
 (chapter-code-examples)=
 
-# Code Examples
+# Code examples
 
+This chapter provides code examples to use with `plone.distribution`.
 
 ## `api.distribution`
+
+This section describes how to interface with the `distribution` module.
 
 (api-distribution-get_registry-example)=
 
 ### Get distribution registry
 
-Getting the Distribution Registry, the utility holding all available distributions in an installation, is easy with {meth}`api.distribution.get_registry`.
+To get the distribution registry, the utility which holds all available distributions in an installation, use the method {meth}`api.distribution.get_registry`.
 
 ```python
 from plone.distribution.api import distribution as dist_api
@@ -21,7 +24,7 @@ registry = dist_api.get_registry()
 
 ### Get all registered distributions
 
-Return a list of all distributions using {meth}`api.distribution.get_distributions`.
+Return a list of all distributions using the method {meth}`api.distribution.get_distributions`.
 
 ```python
 from plone.distribution.api import distribution as dist_api
@@ -37,7 +40,7 @@ assert isinstance(distributions[0], Distribution)
 
 ### Get one Distribution
 
-Get one distribution, by name, with {meth}`api.distribution.get`.
+Get one distribution by its name with the method {meth}`api.distribution.get`.
 
 ```python
 from plone.distribution.api import distribution as dist_api
@@ -51,11 +54,13 @@ assert distribution.title == "Plone Site"
 
 ## `api.site`
 
+This section describes how to interface with the `site` module.
+
 (api-site-get_sites-example)=
 
-### Get list of all sites
+### Get the list of all sites
 
-Passing the Application root to the {meth}`api.site.get_sites`, you receive a list of all Plone Sites.
+To get a list of all Plone sites, pass the application root to the method {meth}`api.site.get_sites`.
 
 ```python
 from plone.distribution.api import site as site_api
@@ -68,7 +73,7 @@ sites = site_api.get_sites(app)
 
 ### Create a new site
 
-Create a new Plone Site using one of the available distributions using {meth}`api.site.create`:
+Create a new Plone site using one of the available distributions using the method {meth}`api.site.create`.
 
 ```python
 from plone.distribution.api import site as site_api

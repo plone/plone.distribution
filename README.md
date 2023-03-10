@@ -209,7 +209,7 @@ Both definitions are added in runtime by `plone.distribution` to provide a list 
 
 ### Hiding Distributions
 
-By default, `plone.distribution` ships with 2 ready-to-use distributions:
+By default, `plone.distribution` ships with two ready-to-use distributions:
 
 * **default**: Plone Site (Volto frontend)
 * **classic**: Plone Site (Classic UI)
