@@ -69,11 +69,10 @@ It could be the default page of a new site, your logo, or any other way to repre
 
 This is a `JSON` file with the GenericSetup profiles that are used by your distribution during installation.
 
-This file needs to contain two keys:
+This file needs to contain two keys.
 
 `base`
 :   A list of profiles installed in every new site using this distribution.
-
 `content`
 :   A list of profiles installed when the user decides to create a site with example content.
 
@@ -158,7 +157,7 @@ The `schema.json` used for the default site creation is the following.
 }
 ```
 
-```{important}
+````{important}
 You probably noticed the entries for `default_language`.
 
 ```
@@ -172,5 +171,4 @@ and `portal_timezone`.
 ```
 
 Both definitions are added in runtime by `plone.distribution` to provide a list of languages and timezones available on the installation.
-```
-```
+````

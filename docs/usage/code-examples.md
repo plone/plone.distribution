@@ -38,7 +38,7 @@ assert isinstance(distributions[0], Distribution)
 
 (api-distribution-get-example)=
 
-### Get one Distribution
+### Get one distribution
 
 Get one distribution by its name with the method {meth}`api.distribution.get`.
 
