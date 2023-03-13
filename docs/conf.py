@@ -18,13 +18,17 @@ source_suffix = {
 }
 
 extensions = [
-    "sphinx.ext.doctest",
-    "sphinx.ext.coverage",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.viewcode",
-    "sphinx.ext.autosummary",
     "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.coverage",
+    "sphinx.ext.doctest",
     "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
+    "sphinx_copybutton",
+    "sphinx_design",
+    "sphinxext.opengraph",
+    "sphinx.ext.graphviz",
 ]
 master_doc = "index"
 
@@ -93,7 +97,7 @@ myst_enable_extensions = [
 html_theme = "sphinx_book_theme"
 html_logo = "_static/logo.svg"
 html_favicon = "_static/favicon.ico"
-html_css_files = ["custom.css", ("print.css", {"media": "print"})]
+html_css_files = ["styles.css", ("print.css", {"media": "print"})]
 html_static_path = [
     "_static",  # Last path wins. See https://github.com/plone/documentation/pull/1442
 ]

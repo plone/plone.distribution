@@ -433,6 +433,7 @@ span.menuselection {
 
 /* definitions */
 dl.py.function {
+  display: block !important;
   margin-bottom: 5rem;
 }
 
