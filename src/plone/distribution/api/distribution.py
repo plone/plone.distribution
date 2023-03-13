@@ -19,12 +19,25 @@ def _allow_list() -> List[str]:
 
 
 def get_registry() -> DistributionRegistry:
-    """Return the Distribution Registry."""
+    """Return the Distribution Registry.
+
+    :returns: Distribution Registry instance.
+
+    :Example: :ref:`api-distribution-get_registry-example`
+    """
     return _distribution_registry
 
 
 def get_distributions(filter: bool = True) -> List[Distribution]:
-    """Get available Plone distributions."""
+    """Get available Plone distributions.
+
+    :param filter: Return only registered Distributions that
+                   are also listed on **ALLOWED_DISTRIBUTIONS**
+                   environment variable.
+    :returns: List of registered distributions.
+
+    :Example: :ref:`api-distribution-get_distributions-example`
+    """
     registry = get_registry()
     all_distributions = registry.enumerate_distributions()
     allowed_distributions = _allow_list()
@@ -34,7 +47,15 @@ def get_distributions(filter: bool = True) -> List[Distribution]:
 
 
 def get(name: str) -> Distribution:
-    """Get a distribution."""
+    """Get a distribution.
+
+    :param name: Distribution name.
+    :raises:
+        :class:`ValueError`,
+    :returns: A Plone Distribution
+
+    :Example: :ref:`api-distribution-get-example`
+    """
     registry = get_registry()
     distribution = registry.lookup(name)
     if not distribution:

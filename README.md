@@ -209,11 +209,10 @@ Both definitions are added in runtime by `plone.distribution` to provide a list 
 
 ### Hiding Distributions
 
-By default, `plone.distribution` ships with 3 ready-to-use distributions:
+By default, `plone.distribution` ships with two ready-to-use distributions:
 
 * **default**: Plone Site (Volto frontend)
 * **classic**: Plone Site (Classic UI)
-* **intranet**: Intranet
 
 If you want to limit your users option to select a distribution, it is possible to set the environment variable `ALLOWED_DISTRIBUTIONS` with fewer options:
 

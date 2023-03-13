@@ -27,7 +27,15 @@ def _required_str_value(answers: dict, key: str) -> str:
 
 
 def get_sites(context=None) -> List[PloneSite]:
-    """Get all Plone sites."""
+    """Get all Plone sites.
+
+    :param context: Base context to search for Plone Sites.
+    :raises:
+        :class:`ValueError`,
+    :returns: A list of Plone Sites
+
+    :Example: :ref:`api-site-get_sites-example`
+    """
     if not context:
         raise ValueError("Need to provide application root")
     result = []
@@ -50,7 +58,20 @@ def create(
     answers: dict,
     profile_id: str = _DEFAULT_PROFILE,
 ) -> PloneSite:
-    """Create a new Plone site using one of the distributions."""
+    """Create a new Plone site using one of the distributions.
+
+    :param context: Context where the site will be created.
+    :param distribution_name: Name of distribution to be used.
+    :param answers: Payload for site creation.
+    :param profile_id: Base profile to be used.
+                       default: `Products.CMFPlone:plone`
+    :raises:
+        :class:`ValueError`,
+        :class:`KeyError`,
+    :returns: Created Plone Site
+
+    :Example: :ref:`api-site-create-example`
+    """
     distribution = dist_api.get(distribution_name)
     handler = distribution.handler if distribution.handler else default_handler
     post_handler = distribution.post_handler

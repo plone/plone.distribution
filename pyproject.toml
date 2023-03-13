@@ -68,4 +68,4 @@ pyflakes = ["+*"]
 "flake8-*" = ["+*"]
 
 [tool.plone-code-analysis]
-paths = "setup.py src/ tests/"
+paths = "setup.py src/ tests/ docs/conf.py"
