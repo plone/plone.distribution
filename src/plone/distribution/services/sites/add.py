@@ -3,6 +3,7 @@ from plone.distribution.api import site as site_api
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
 from zExceptions import BadRequest
+from zExceptions import NotFound
 from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
@@ -38,6 +39,8 @@ class SiteCreate(Service):
                 distribution_name=distribution_name,
                 answers=data,
             )
+        except ValueError:
+            raise NotFound(f"No distribution named {distribution_name}.")
         except KeyError:
             raise BadRequest("Error creating the site.")
         else:
