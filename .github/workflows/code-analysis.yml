@@ -86,7 +86,9 @@ jobs:
           node-version: ${{ env.node-version }}
 
       - name: Install pnpm
-        run: npm i -g pnpm
+        run: |
+          npm i -g pnpm
+          pnpm --version
 
       - name: Install Frontend
         run: pnpm i  --frozen-lockfile
