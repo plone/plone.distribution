@@ -88,6 +88,7 @@ jobs:
       - name: Install pnpm
         run: |
           npm i -g pnpm
+          npm update -g pnpm
           pnpm --version
 
       - name: Install Frontend
