@@ -98,11 +98,11 @@ lint: ## check code style
 	make lint-frontend
 
 .PHONY: lint-black
-lint-black: ## validate black formating
+lint-black: ## validate black formatting
 	$(LINT) black
 
 .PHONY: lint-flake8
-lint-flake8: ## validate black formating
+lint-flake8: ## validate black formatting
 	$(LINT) flake8
 
 .PHONY: lint-isort

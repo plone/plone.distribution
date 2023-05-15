@@ -15,8 +15,8 @@ def _common_timezones():
     response = []
     for term in tz_vocab:
         value = term.value
-        splitted = value.split("/")
-        friendly = splitted[-1]
+        parts = value.split("/")
+        friendly = parts[-1]
         label = f"{friendly} ({value})"
         response.append({"label": label, "value": value})
 
