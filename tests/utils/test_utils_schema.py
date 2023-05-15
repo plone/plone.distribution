@@ -22,7 +22,6 @@ def invalid_schema(data_path):
 
 
 class TestUtilsSchemaValidateJsonSchema:
-
     @property
     def func(self):
         return utils_schema.validate_jsonschema
@@ -44,16 +43,13 @@ class TestUtilsSchemaValidateJsonSchema:
         result = self.func(schema, strict=True)
         assert result is False
 
-class TestUtilsSchemaEnrichJsonSchema:
 
+class TestUtilsSchemaEnrichJsonSchema:
     @property
     def func(self):
         return utils_schema.enrich_jsonschema
 
-    @pytest.mark.parametrize(
-        "key",
-        ["languages", "timezones"]
-    )
+    @pytest.mark.parametrize("key", ["languages", "timezones"])
     def test_enrich_jsonschema(self, app, key):
         schema = {}
         result = self.func(schema)
@@ -63,7 +59,6 @@ class TestUtilsSchemaEnrichJsonSchema:
 
 
 class TestUtilsSchemaEnrichUiSchema:
-
     @property
     def func(self):
         return utils_schema.enrich_uischema
@@ -79,7 +74,6 @@ class TestUtilsSchemaEnrichUiSchema:
 
 
 class TestUtilsSchemaProcessRawSchema:
-
     @property
     def func(self):
         return utils_schema.process_raw_schema

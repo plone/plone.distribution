@@ -20,10 +20,10 @@ class TestApiDistribution:
         dist = distributions[0]
         assert dist.name == "default"
 
-    @pytest.mark.parametrize("name, title", [
-        ("default", "Plone Site"),
-        ("classic", "Plone Site (Classic UI)")
-        ])
+    @pytest.mark.parametrize(
+        "name, title",
+        [("default", "Plone Site"), ("classic", "Plone Site (Classic UI)")],
+    )
     def test_get_success(self, integration, name, title):
         dist = dist_api.get(name=name)
         assert isinstance(dist, Distribution)
