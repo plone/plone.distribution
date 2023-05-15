@@ -1,3 +1,4 @@
+from pathlib import Path
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.core import Distribution
 
@@ -19,11 +20,19 @@ class TestApiDistribution:
         dist = distributions[0]
         assert dist.name == "default"
 
-    @pytest.mark.parametrize("name", ["default", "classic"])
-    def test_get_success(self, integration, name):
+    @pytest.mark.parametrize("name, title", [
+        ("default", "Plone Site"),
+        ("classic", "Plone Site (Classic UI)")
+        ])
+    def test_get_success(self, integration, name, title):
         dist = dist_api.get(name=name)
         assert isinstance(dist, Distribution)
+        assert repr(dist) == f"<Distribution name='{name}' title='{title}'>"
         assert dist.name == name
+        assert dist.title == title
+        assert isinstance(dist.schema, dict)
+        assert isinstance(dist.uischema, dict)
+        assert isinstance(dist.image, Path)
 
     @pytest.mark.parametrize("name", ["not_there", "fake"])
     def test_get_fail(self, integration, name):
