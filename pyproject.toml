@@ -1,5 +1,5 @@
 [tool.pytest.ini_options]
-addopts = "--cov-report term --cov=plone.distribution"
+addopts = "--cov-report term-missing --cov=plone.distribution"
 testpaths = [
     "tests",
 ]
