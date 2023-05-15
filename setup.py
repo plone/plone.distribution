@@ -55,6 +55,7 @@ setup(
         "test": [
             "zest.releaser[recommended]",
             "zestreleaser.towncrier",
+            "plone.volto",
             "plone.app.testing",
             "plone.restapi[test]",
             "pytest",
