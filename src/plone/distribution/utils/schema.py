@@ -117,11 +117,8 @@ def process_raw_schema(raw_schema: dict) -> dict:
 def validate_jsonschema(schema: dict, strict: bool = False) -> bool:
     """Validate if jsonschema has required information."""
     required_properties = ["site_id", "title", "setup_content"]
-    recommended_properties = ["default_language", "portal_timezone"]
+    if strict:
+        required_properties.extend(["default_language", "portal_timezone"])
     properties = [key for key in schema.get("properties")]
     missing = [key for key in required_properties if key not in properties]
-    if strict:
-        missing = missing.extend(
-            [key for key in recommended_properties if key not in properties]
-        )
     return False if missing else True

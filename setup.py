@@ -55,6 +55,7 @@ setup(
         "test": [
             "zest.releaser[recommended]",
             "zestreleaser.towncrier",
+            "plone.volto",
             "plone.app.testing",
             "plone.restapi[test]",
             "pytest",
@@ -62,8 +63,7 @@ setup(
             "pytest-plone>=0.2.0",
         ]
     },
-    entry_points="""
-    [z3c.autoinclude.plugin]
-    target = plone
-    """,
+    entry_points={
+        "z3c.autoinclude.plugin": ["target = plone"],
+    },
 )

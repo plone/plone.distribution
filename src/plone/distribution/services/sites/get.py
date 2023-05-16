@@ -18,9 +18,7 @@ DEFAULT_ID = "Plone"
 def _is_outdated(site) -> bool:
     """Check if site needs an upgrade."""
     mig = getattr(site, "portal_migration", None) or site.get("portal_migration", None)
-    if mig is not None:
-        return mig.needUpgrading()
-    return False
+    return mig.needUpgrading() if mig else False
 
 
 _no_content_marker = object()
