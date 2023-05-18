@@ -18,6 +18,10 @@ def default_handler(
     # Add default content if needed
     if setup_content:
         contents = distribution.contents
+        # First process any content profiles
+        content_profiles = contents["profiles"]
+        for profile_id in content_profiles:
+            setup_tool.runAllImportStepsFromProfile(f"profile-{profile_id}")
         # Process content import from json
         content_json_path = contents["json"]
         if content_json_path:

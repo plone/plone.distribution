@@ -50,7 +50,7 @@ setup(
         "Plone",
         "setuptools",
         "z3c.unconfigure",
-        "collective.exportimport",
+        "collective.exportimport>=1.9",
     ],
     extras_require={
         "test": [

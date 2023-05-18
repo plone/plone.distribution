@@ -1,0 +1,23 @@
+[
+    {
+        "@id": "http://localhost:8080/Plone/Members",
+        "blacklist_status": [
+            {
+                "category": "group",
+                "manager": "plone.rightcolumn",
+                "status": "block"
+            },
+            {
+                "category": "content_type",
+                "manager": "plone.rightcolumn",
+                "status": "block"
+            },
+            {
+                "category": "context",
+                "manager": "plone.rightcolumn",
+                "status": "block"
+            }
+        ],
+        "uuid": "54163be595184b4eb0a0b82a58b8def8"
+    }
+]
