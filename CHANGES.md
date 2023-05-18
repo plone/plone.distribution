@@ -9,6 +9,20 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a4 (2023-05-18)
+
+
+### New features:
+
+- Increase test coverage.
+  [ericof] #12
+- Implement JSON import of content [pbauer] #13
+- Use mxdev.
+  [ericof] #18
+- Implement default content for default and classic distributions as JSON.
+  [ericof] #20
+
+
 ## 1.0.0a3 (2023-02-08)
 
 

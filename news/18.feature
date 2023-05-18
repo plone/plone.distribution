@@ -1,2 +1,0 @@
-Use mxdev.
-[ericof]
