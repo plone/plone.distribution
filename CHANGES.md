@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a5 (2023-05-18)
+
+
+### Bug fixes:
+
+- Import did not import any steps except content and portal. [pbauer] #22
+
+
 ## 1.0.0a4 (2023-05-18)
 
 
