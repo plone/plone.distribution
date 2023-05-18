@@ -12,6 +12,7 @@ from zope.interface import implementer
 
 import logging
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -66,6 +67,6 @@ def export_blob(uid, fieldname, filename, data):
     if not target_directory.exists():
         target_directory.mkdir(parents=True)
     target_file = target_directory / filename
-    with open(target_file, 'wb') as f:
+    with open(target_file, "wb") as f:
         f.write(data)
     return f"blobs/{unique_dir_name_for_file}/{filename}"

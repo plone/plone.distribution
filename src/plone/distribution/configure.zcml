@@ -11,7 +11,9 @@
 
   <include package=".browser" />
   <include package=".services" />
-  <include zcml:condition="installed collective.exportimport"
-      package=".exportimport" />
+  <include
+      package=".exportimport"
+      zcml:condition="installed collective.exportimport"
+      />
 
 </configure>
