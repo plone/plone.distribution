@@ -3,5 +3,7 @@
     "plone.app.contenttypes:default",
     "plone.app.caching:default",
     "plonetheme.barceloneta:default"
+  ],
+  "content": [
   ]
 }

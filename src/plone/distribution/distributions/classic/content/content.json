@@ -1,0 +1,355 @@
+[{
+    "@id": "http://localhost:8080/Plone/Members",
+    "@type": "Folder",
+    "UID": "54163be595184b4eb0a0b82a58b8def8",
+    "allow_discussion": false,
+    "contributors": [],
+    "created": "2023-05-18T18:07:36+00:00",
+    "creators": [
+        "admin"
+    ],
+    "description": "Site Users",
+    "effective": null,
+    "exclude_from_nav": false,
+    "expires": null,
+    "id": "Members",
+    "is_folderish": true,
+    "language": "en-us",
+    "layout": "@@member-search",
+    "lock": {},
+    "modified": "2023-05-18T18:07:36+00:00",
+    "nextPreviousEnabled": false,
+    "parent": {
+        "@id": "http://localhost:8080/Plone",
+        "@type": "Plone Site",
+        "UID": "6de6fe58afb6479f870839b9bc71e9cc",
+        "description": "Congratulations! You have successfully installed Plone.",
+        "title": "Welcome to Plone"
+    },
+    "review_state": "private",
+    "rights": "",
+    "subjects": [],
+    "title": "Users",
+    "version": "current",
+    "workflow_history": {
+        "simple_publication_workflow": [
+            {
+                "action": null,
+                "actor": "admin",
+                "comments": "",
+                "review_state": "private",
+                "time": "2023-05-18T18:07:36+00:00"
+            }
+        ]
+    },
+    "working_copy": null,
+    "working_copy_of": null
+},{
+    "@id": "http://localhost:8080/Plone/events",
+    "@type": "Folder",
+    "UID": "ab584c1a6fae465da2283a0962f80114",
+    "allow_discussion": false,
+    "contributors": [],
+    "created": "2023-05-18T18:07:36+00:00",
+    "creators": [
+        "admin"
+    ],
+    "description": "Site Events",
+    "effective": null,
+    "exclude_from_nav": false,
+    "expires": null,
+    "exportimport.constrains": {
+        "immediately_addable_types": [
+            "Event"
+        ],
+        "locally_allowed_types": [
+            "Collection",
+            "Document",
+            "Folder",
+            "Link",
+            "File",
+            "Image",
+            "News Item",
+            "Event"
+        ]
+    },
+    "id": "events",
+    "is_folderish": true,
+    "language": "en-us",
+    "layout": "listing_view",
+    "lock": {},
+    "modified": "2023-05-18T18:07:36+00:00",
+    "nextPreviousEnabled": false,
+    "parent": {
+        "@id": "http://localhost:8080/Plone",
+        "@type": "Plone Site",
+        "UID": "6de6fe58afb6479f870839b9bc71e9cc",
+        "description": "Congratulations! You have successfully installed Plone.",
+        "title": "Welcome to Plone"
+    },
+    "review_state": "published",
+    "rights": "",
+    "subjects": [],
+    "title": "Events",
+    "version": "current",
+    "workflow_history": {
+        "simple_publication_workflow": [
+            {
+                "action": null,
+                "actor": "admin",
+                "comments": "",
+                "review_state": "private",
+                "time": "2023-05-18T18:07:36+00:00"
+            },
+            {
+                "action": "publish",
+                "actor": "admin",
+                "comments": "",
+                "review_state": "published",
+                "time": "2023-05-18T18:07:36+00:00"
+            }
+        ]
+    },
+    "working_copy": null,
+    "working_copy_of": null
+},{
+    "@id": "http://localhost:8080/Plone/events/aggregator",
+    "@type": "Collection",
+    "UID": "61f6d382910945ea95f2e78a14ebb170",
+    "allow_discussion": false,
+    "contributors": [],
+    "created": "2023-05-18T18:07:36+00:00",
+    "creators": [
+        "admin"
+    ],
+    "customViewFields": [
+        "Title",
+        "Creator",
+        "Type",
+        "ModificationDate"
+    ],
+    "description": "Site Events",
+    "effective": null,
+    "exclude_from_nav": false,
+    "expires": null,
+    "id": "aggregator",
+    "is_folderish": false,
+    "item_count": 30,
+    "items_total": 0,
+    "language": "",
+    "layout": "event_listing",
+    "limit": 1000,
+    "lock": {
+        "locked": false,
+        "stealable": true
+    },
+    "modified": "2023-05-18T18:07:36+00:00",
+    "parent": {
+        "@id": "http://localhost:8080/Plone/events",
+        "@type": "Folder",
+        "UID": "ab584c1a6fae465da2283a0962f80114",
+        "description": "Site Events",
+        "image_field": null,
+        "image_scales": null,
+        "review_state": "published",
+        "title": "Events"
+    },
+    "query": [
+        {
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": [
+                "Event"
+            ]
+        },
+        {
+            "i": "review_state",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": [
+                "published"
+            ]
+        }
+    ],
+    "review_state": "published",
+    "rights": "",
+    "sort_on": "start",
+    "sort_reversed": true,
+    "subjects": [],
+    "text": null,
+    "title": "Events",
+    "version": "current",
+    "workflow_history": {
+        "simple_publication_workflow": [
+            {
+                "action": null,
+                "actor": "admin",
+                "comments": "",
+                "review_state": "private",
+                "time": "2023-05-18T18:07:36+00:00"
+            },
+            {
+                "action": "publish",
+                "actor": "admin",
+                "comments": "",
+                "review_state": "published",
+                "time": "2023-05-18T18:07:36+00:00"
+            }
+        ]
+    },
+    "working_copy": null,
+    "working_copy_of": null
+},{
+    "@id": "http://localhost:8080/Plone/news",
+    "@type": "Folder",
+    "UID": "4053ffb6901342ac991afb54da15ab77",
+    "allow_discussion": false,
+    "contributors": [],
+    "created": "2023-05-18T18:07:36+00:00",
+    "creators": [
+        "admin"
+    ],
+    "description": "Site News",
+    "effective": null,
+    "exclude_from_nav": false,
+    "expires": null,
+    "exportimport.constrains": {
+        "immediately_addable_types": [
+            "News Item"
+        ],
+        "locally_allowed_types": [
+            "Collection",
+            "Document",
+            "Folder",
+            "Link",
+            "File",
+            "Image",
+            "News Item",
+            "Event"
+        ]
+    },
+    "id": "news",
+    "is_folderish": true,
+    "language": "en-us",
+    "layout": "listing_view",
+    "lock": {},
+    "modified": "2023-05-18T18:07:36+00:00",
+    "nextPreviousEnabled": false,
+    "parent": {
+        "@id": "http://localhost:8080/Plone",
+        "@type": "Plone Site",
+        "UID": "6de6fe58afb6479f870839b9bc71e9cc",
+        "description": "Congratulations! You have successfully installed Plone.",
+        "title": "Welcome to Plone"
+    },
+    "review_state": "published",
+    "rights": "",
+    "subjects": [],
+    "title": "News",
+    "version": "current",
+    "workflow_history": {
+        "simple_publication_workflow": [
+            {
+                "action": null,
+                "actor": "admin",
+                "comments": "",
+                "review_state": "private",
+                "time": "2023-05-18T18:07:36+00:00"
+            },
+            {
+                "action": "publish",
+                "actor": "admin",
+                "comments": "",
+                "review_state": "published",
+                "time": "2023-05-18T18:07:36+00:00"
+            }
+        ]
+    },
+    "working_copy": null,
+    "working_copy_of": null
+},{
+    "@id": "http://localhost:8080/Plone/news/aggregator",
+    "@type": "Collection",
+    "UID": "ee556c50736a4650839e2ada6dd65454",
+    "allow_discussion": false,
+    "contributors": [],
+    "created": "2023-05-18T18:07:36+00:00",
+    "creators": [
+        "admin"
+    ],
+    "customViewFields": [
+        "Title",
+        "Creator",
+        "Type",
+        "ModificationDate"
+    ],
+    "description": "Site News",
+    "effective": null,
+    "exclude_from_nav": false,
+    "expires": null,
+    "id": "aggregator",
+    "is_folderish": false,
+    "item_count": 30,
+    "items_total": 0,
+    "language": "",
+    "layout": "summary_view",
+    "limit": 1000,
+    "lock": {
+        "locked": false,
+        "stealable": true
+    },
+    "modified": "2023-05-18T18:07:36+00:00",
+    "parent": {
+        "@id": "http://localhost:8080/Plone/news",
+        "@type": "Folder",
+        "UID": "4053ffb6901342ac991afb54da15ab77",
+        "description": "Site News",
+        "image_field": null,
+        "image_scales": null,
+        "review_state": "published",
+        "title": "News"
+    },
+    "query": [
+        {
+            "i": "portal_type",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": [
+                "News Item"
+            ]
+        },
+        {
+            "i": "review_state",
+            "o": "plone.app.querystring.operation.selection.any",
+            "v": [
+                "published"
+            ]
+        }
+    ],
+    "review_state": "published",
+    "rights": "",
+    "sort_on": "effective",
+    "sort_reversed": true,
+    "subjects": [],
+    "text": null,
+    "title": "News",
+    "version": "current",
+    "workflow_history": {
+        "simple_publication_workflow": [
+            {
+                "action": null,
+                "actor": "admin",
+                "comments": "",
+                "review_state": "private",
+                "time": "2023-05-18T18:07:36+00:00"
+            },
+            {
+                "action": "publish",
+                "actor": "admin",
+                "comments": "",
+                "review_state": "published",
+                "time": "2023-05-18T18:07:36+00:00"
+            }
+        ]
+    },
+    "working_copy": null,
+    "working_copy_of": null
+}]

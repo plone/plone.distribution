@@ -124,7 +124,7 @@ clean: ## Remove old virtualenv and creates a new one
 
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi etc/zope.ini
+	PYTHONWARNINGS=ignore ./bin/runwsgi instance/etc/zope.ini
 
 .PHONY: format-frontend
 format-frontend: ## Format frontend codebase

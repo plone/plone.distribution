@@ -7,13 +7,14 @@
 
   <include file="meta.zcml" />
 
-  <include file="distributions.zcml" />
-
-  <include package=".browser" />
-  <include package=".services" />
   <include
       package=".exportimport"
       zcml:condition="installed collective.exportimport"
       />
+
+  <include file="distributions.zcml" />
+
+  <include package=".browser" />
+  <include package=".services" />
 
 </configure>
