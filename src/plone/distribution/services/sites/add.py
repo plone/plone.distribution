@@ -43,11 +43,10 @@ class SiteCreate(Service):
             raise NotFound(f"No distribution named {distribution_name}.")
         except KeyError:
             raise BadRequest("Error creating the site.")
-        else:
-            return {
-                "@id": site.absolute_url(),
-                "id": site.id,
-                "title": site.title,
-                "description": site.description,
-                "needs_upgrade": False,
-            }
+        site_info = {
+            "@id": site.absolute_url(),
+            "id": site.id,
+            "title": site.title,
+            "description": site.description,
+        }
+        return site_info

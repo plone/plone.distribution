@@ -76,7 +76,7 @@ class TestServicesSitesPOST(TestServicesSite):
         assert response.status_code == 200
         data = response.json()
         assert data["id"] == "PloneBrasil"
-        assert data["needs_upgrade"] is False
+        assert data["@type"] == "Plone Site"
 
     @pytest.mark.parametrize(
         "distribution_name",
