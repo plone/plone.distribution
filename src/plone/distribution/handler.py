@@ -1,5 +1,7 @@
 from plone.distribution.core import Distribution
 from Products.CMFPlone.Portal import PloneSite
+from zope.component import getMultiAdapter
+from zope.globalrequest import getRequest
 
 
 def default_handler(
@@ -16,13 +18,9 @@ def default_handler(
     # Add default content if needed
     if setup_content:
         contents = distribution.contents
-        # First process any content profiles
-        content_profiles = contents["profiles"]
-        for profile_id in content_profiles:
-            setup_tool.runAllImportStepsFromProfile(f"profile-{profile_id}")
         # Process content import from json
         content_json_path = contents["json"]
         if content_json_path:
-            # TODO: Import content
-            pass
+            import_all = getMultiAdapter((site, getRequest()), name="import_all")
+            import_all(content_json_path)
     return site
