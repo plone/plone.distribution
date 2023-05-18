@@ -35,6 +35,8 @@ report.html
 !src/plone
 _build/
 etc/
+instance/
+requirements-mxdev.txt
 inituser
 __pycache__
 .pytest_cache
