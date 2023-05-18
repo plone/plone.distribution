@@ -30,7 +30,10 @@ jobs:
     # Install plone.distribution with test extras
     - name: Install plone.distribution
       run: |
-        pip install ".[test]"
+        pip install mxdev
+        mxdev -c mx.ini
+        pip install -r requirements-mxdev.txt
+
 
     # test
     - name: Test Codebase
