@@ -51,7 +51,7 @@ class ImportAll(BrowserView):
         ]
         for name in other_imports:
             view = api.content.get_view(f"import_{name}", self.context, request)
-            importfile = path / f"export_{name}.json"
+            importfile = path / f"{name}.json"
             if importfile.exists():
                 results = view(jsonfile=importfile.read_text(), return_json=True)
                 logger.info(results)
