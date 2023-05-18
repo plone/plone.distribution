@@ -4,6 +4,10 @@ include *
 global-exclude *.pyc
 include pyproject.toml
 recursive-exclude news *
+exclude .coverage
+exclude requirements-mxdev.txt
 exclude pyvenv.cfg
 recursive-exclude frontend *
 recursive-exclude .vscode *
+recursive-exclude docs/_build *
+graft docs
