@@ -1,7 +1,9 @@
+from plone import api
 from plone.distribution.core import Distribution
 from Products.CMFPlone.Portal import PloneSite
-from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
+
+import transaction
 
 
 def default_handler(
@@ -25,6 +27,9 @@ def default_handler(
         # Process content import from json
         content_json_path = contents["json"]
         if content_json_path:
-            import_all = getMultiAdapter((site, getRequest()), name="import_all")
+            # If there is no savepoint most tests fail with a PosKeyError
+            transaction.savepoint(optimistic=True)
+            request = getRequest() or site.REQUEST
+            import_all = api.content.get_view("import_all", site, request)
             import_all(content_json_path)
     return site

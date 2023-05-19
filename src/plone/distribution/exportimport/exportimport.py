@@ -1,12 +1,14 @@
 from App.config import getConfiguration
 from collective.exportimport import config
 from collective.exportimport import import_content
+from collective.exportimport.import_content import ImportContent as BaseView
 from logging import getLogger
 from pathlib import Path
 from plone import api
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.exportimport.interfaces import IDistributionBlobsMarker
 from Products.Five import BrowserView
+from typing import List
 from zope.interface import alsoProvides
 
 
@@ -29,7 +31,6 @@ class ImportAll(BrowserView):
 
         view = api.content.get_view("import_content", self.context, request)
         request.form["form.submitted"] = True
-
         # Add content
         request.form["commit"] = 500
         view(server_file="content.json", return_json=True)
@@ -123,3 +124,34 @@ class ExportAll(BrowserView):
 
     def distributions(self):
         return dist_api.get_distributions()
+
+
+class ImportContent(BaseView):
+    languages: List[str]
+    default_language: str
+
+    def __call__(
+        self,
+        jsonfile=None,
+        return_json=False,
+        limit=None,
+        server_file=None,
+        iterator=None,
+    ):
+        self.default_language = api.portal.get_registry_record(
+            "plone.default_language", default="en"
+        )
+        self.languages = api.portal.get_registry_record(
+            "plone.available_languages",
+            default=[
+                "en",
+            ],
+        )
+        return super().__call__(jsonfile, return_json, limit, server_file, iterator)
+
+    def global_dict_hook(self, item):
+        # Fix Language
+        current = item.get("language")
+        if current not in self.languages:
+            item["language"] = self.default_language
+        return item
