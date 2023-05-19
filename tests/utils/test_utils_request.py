@@ -16,6 +16,7 @@ class TestUtilsRequest:
             ("en-US,en;q=0.5", "en-us"),
             ("pt-BR,pt;q=0.5", "pt-br"),
             ("pt-BO,pt;q=0.5", "pt"),
+            ("pt-PT,pt;q=0.5", "pt"),
             ("en;q=0.5", "en"),
             ("es;q=0.5", "es"),
             ("de;q=0.5", "de"),
