@@ -24,6 +24,13 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="import_content"
+      for="plone.base.interfaces.siteroot.IPloneSiteRoot"
+      class=".exportimport.ImportContent"
+      permission="cmf.ManagePortal"
+      />
+
   <adapter factory=".serializer.DistributionFileFieldSerializer" />
   <adapter factory=".serializer.DistributionImageFieldSerializer" />
 
