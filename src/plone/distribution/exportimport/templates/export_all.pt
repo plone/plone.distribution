@@ -1,47 +1,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone.z3cform"
-      metal:use-macro="context/main_template/macros/master">
+>
 
-<div metal:fill-slot="main">
+  <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main">
 
       <h1 class="documentFirstHeading">Export all</h1>
 
       <p class="documentDescription">Exports the site as json.</p>
 
-        <form action="@@export_all" tal:attributes="action request/URL" method="post" enctype="multipart/form-data">
+      <form action="@@export_all"
+            enctype="multipart/form-data"
+            method="post"
+            tal:attributes="
+              action request/URL;
+            "
+      >
 
-            <div class="field mb-3">
-              <div class="form-check" tal:repeat="dist python: view.distributions()">
-                <input class="form-check-input" type="radio" name="distribution" value="default" id="default"
-                      tal:attributes="value python: dist.name;
-                                      id python: dist.name;">
-                <label for="default" class="form-check-label" i18n:translate=""
-                      tal:content="python: dist.title"
-                      tal:attributes="for python: dist.name;">
+        <div class="field mb-3">
+          <div class="form-check"
+               tal:repeat="dist python: view.distributions()"
+          >
+            <input class="form-check-input"
+                   id="default"
+                   name="distribution"
+                   type="radio"
+                   value="default"
+                   tal:attributes="
+                     value python: dist.name;
+                     id python: dist.name;
+                   "
+            />
+            <label class="form-check-label"
+                   for="default"
+                   tal:content="python: dist.title"
+                   tal:attributes="
+                     for python: dist.name;
+                   "
+                   i18n:translate=""
+            >
                   Profile title
-                </label>
-              </div>
-            </div>
+            </label>
+          </div>
+        </div>
 
-            <div class="formControls" class="form-group">
-                <input type="hidden" name="form.submitted" value="1"/>
+        <div class="form-group">
+          <input name="form.submitted"
+                 type="hidden"
+                 value="1"
+          />
 
-                <button class="btn btn-primary submit-widget button-field context"
-                        type="submit" name="submit" value="export">Export all
-                </button>
-            </div>
+          <button class="btn btn-primary submit-widget button-field context"
+                  name="submit"
+                  type="submit"
+                  value="export"
+          >Export all
+          </button>
+        </div>
 
-            <div metal:use-macro="context/@@exportimport_links/links">
+        <div metal:use-macro="context/@@exportimport_links/links">
               Links to all exports and imports
-            </div>
+        </div>
 
-        </form>
+      </form>
 
     </tal:main-macro>
-</div>
+  </div>
 
 </html>
