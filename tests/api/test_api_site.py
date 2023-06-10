@@ -28,7 +28,7 @@ class TestApiSite:
                 "description": "A simple Plone Site",
                 "default_language": "pt-br",
                 "portal_timezone": "America/Sao_Paulo",
-                "setup_content": False,  # Avoid commiting a transaction
+                "setup_content": False,  # Avoid committing a transaction
             }
             new_site = site_api.create(app, distribution_name, answers)
         sites = site_api.get_sites(app)
