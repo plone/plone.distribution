@@ -8,3 +8,7 @@ commit-id = "55bda5c9"
 [pyproject]
 codespell_skip = "*.min.js"
 codespell_ignores = "vew"
+dependencies_ignores = "['plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'pytest', 'pytest-cov', 'pytest-plone']"
+dependencies_mappings = [
+    "Plone = ['Products.CMFPlone', 'Products.CMFCore', 'Products.GenericSetup']",
+    ]
