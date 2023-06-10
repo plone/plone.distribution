@@ -4,3 +4,7 @@
 [meta]
 template = "default"
 commit-id = "55bda5c9"
+
+[pyproject]
+codespell_skip = "*.min.js"
+codespell_ignores = "vew"

@@ -46,8 +46,8 @@ profile = "plone"
 target-version = ["py38"]
 
 [tool.codespell]
-ignore-words-list = "discreet,"
-skip = "*.po,"
+ignore-words-list = "discreet,vew"
+skip = "*.po,*.min.js"
 ##
 # Add extra configuration options in .meta.toml:
 #  [pyproject]
