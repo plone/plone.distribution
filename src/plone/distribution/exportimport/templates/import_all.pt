@@ -9,9 +9,13 @@
   <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main">
 
-      <h1 class="documentFirstHeading">Import all</h1>
+      <h1 class="documentFirstHeading"
+          i18n:translate=""
+      >Import all</h1>
 
-      <p class="documentDescription">Run all imports</p>
+      <p class="documentDescription"
+         i18n:translate=""
+      >Run all imports</p>
 
       <form action="@@import_all"
             enctype="multipart/form-data"
@@ -31,6 +35,7 @@
                   name="submit"
                   type="submit"
                   value="export"
+                  i18n:translate=""
           >Import all
           </button>
         </div>

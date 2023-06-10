@@ -9,9 +9,13 @@
   <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main">
 
-      <h1 class="documentFirstHeading">Export all</h1>
+      <h1 class="documentFirstHeading"
+          i18n:translate=""
+      >Export all</h1>
 
-      <p class="documentDescription">Exports the site as json.</p>
+      <p class="documentDescription"
+         i18n:translate=""
+      >Exports the site as json.</p>
 
       <form action="@@export_all"
             enctype="multipart/form-data"
@@ -58,11 +62,14 @@
                   name="submit"
                   type="submit"
                   value="export"
+                  i18n:translate=""
           >Export all
           </button>
         </div>
 
-        <div metal:use-macro="context/@@exportimport_links/links">
+        <div metal:use-macro="context/@@exportimport_links/links"
+             i18n:translate=""
+        >
               Links to all exports and imports
         </div>
 

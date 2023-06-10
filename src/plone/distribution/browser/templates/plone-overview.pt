@@ -14,7 +14,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1"
     />
-    <title>Welcome to Plone!</title>
+    <title i18n:translate="">Welcome to Plone!</title>
     <link href="${string:${context/absolute_url}/++resource++plone.distribution/plone.svg}"
           rel="icon"
           type="image/svg+xml"
