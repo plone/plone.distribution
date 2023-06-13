@@ -12,7 +12,6 @@ DEFAULT_IMAGE = BASE_DISTRIBUTIONS_PATH / "default" / "image.png"
 
 
 class Distribution:
-
     name: str
     title: str
     description: str

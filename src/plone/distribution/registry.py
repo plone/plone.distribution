@@ -102,7 +102,7 @@ class DistributionRegistry(Implicit):
         """Return all distributions registered in the Distribution Registry.
 
         This implementation returns the distributions sorted by name, but keep
-        the distribuion named default as the first item of the list.
+        the distribution named default as the first item of the list.
         """
         result = []
         distributions = sorted(self._registered.items())

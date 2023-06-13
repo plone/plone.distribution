@@ -17,7 +17,6 @@ CLASSIC_ANSWERS = {
 
 
 class BaseFixture(PloneDistributionFixture):
-
     SITES = (
         ("default", DEFAULT_ANSWERS),
         ("classic", CLASSIC_ANSWERS),
@@ -28,7 +27,6 @@ BASE_FIXTURE = BaseFixture()
 
 
 class Layer(PloneSandboxLayer):
-
     defaultBases = (BASE_FIXTURE,)
 
 

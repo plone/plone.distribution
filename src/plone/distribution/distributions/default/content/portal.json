@@ -348,7 +348,7 @@
         },
         "b4193840-3c95-4b28-a088-f679c11e2dcb": {
             "@type": "slate",
-            "plaintext": " Volto is the frontent for Plone written in React. It exposes all these features and communicates with Plone via its mature REST API . Volto can be easily themed and is highly customizable.",
+            "plaintext": " Volto is the frontend for Plone written in React. It exposes all these features and communicates with Plone via its mature REST API . Volto can be easily themed and is highly customizable.",
             "value": [
                 {
                     "children": [
@@ -367,7 +367,7 @@
                             "type": "link"
                         },
                         {
-                            "text": " is the frontent for Plone written in React. It exposes all these features and communicates with Plone via its mature "
+                            "text": " is the frontend for Plone written in React. It exposes all these features and communicates with Plone via its mature "
                         },
                         {
                             "children": [

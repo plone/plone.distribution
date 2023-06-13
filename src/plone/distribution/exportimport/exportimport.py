@@ -93,12 +93,12 @@ class ExportAll(BrowserView):
         ]
         request.form["filename"] = "content.json"
         view(portal_type=portal_types, include_blobs=2, download_to_server=True)
-        logger.info("Finished {}".format(export_name))
+        logger.info(f"Finished {export_name}")
 
         portal_types = ["Plone Site"]
         request.form["filename"] = "portal.json"
         view(portal_type=portal_types, include_blobs=2, download_to_server=True)
-        logger.info("Finished {}".format(export_name))
+        logger.info(f"Finished {export_name}")
 
         other_exports = [
             "relations",
