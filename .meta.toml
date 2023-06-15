@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "55bda5c9"
+commit-id = "d7e9e748"
 
 [pyproject]
 codespell_skip = "*.min.js"
@@ -12,3 +12,7 @@ dependencies_ignores = "['plone.volto', 'zestreleaser.towncrier', 'zest.releaser
 dependencies_mappings = [
     "Plone = ['Products.CMFPlone', 'Products.CMFCore', 'Products.GenericSetup']",
     ]
+
+[tox]
+test_runner = "pytest"
+test_path = "/tests"
