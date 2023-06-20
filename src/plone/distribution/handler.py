@@ -30,6 +30,6 @@ def default_handler(
             # If there is no savepoint most tests fail with a PosKeyError
             transaction.savepoint(optimistic=True)
             request = getRequest() or site.REQUEST
-            import_all = api.content.get_view("import_all", site, request)
+            import_all = api.content.get_view("dist_import_all", site, request)
             import_all(content_json_path)
     return site

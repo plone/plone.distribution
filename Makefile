@@ -33,14 +33,8 @@ ifeq ($(PYTHON_VERSION_OK),0)
   $(error "Need python $(PYTHON_VERSION) >= $(PYTHON_VERSION_MIN)")
 endif
 
-CODE_QUALITY_VERSION=2
-ifndef LOG_LEVEL
-	LOG_LEVEL=INFO
-endif
-CURRENT_USER=$$(whoami)
-USER_INFO=$$(id -u ${CURRENT_USER}):$$(getent group ${CURRENT_USER}|cut -d: -f3)
-LINT=docker run --rm -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} check
-FORMAT=docker run --rm --user="${USER_INFO}" -e LOG_LEVEL="${LOG_LEVEL}" -v "${BACKEND_FOLDER}":/github/workspace plone/code-quality:${CODE_QUALITY_VERSION} format
+# Set distributions still in development
+DISTRIBUTIONS="default,classic"
 
 all: build
 
@@ -63,7 +57,7 @@ clean-instance: ## remove existing instance
 
 .PHONY: clean-venv
 clean-venv: ## remove virtual environment
-	rm -fr bin include lib lib64
+	rm -fr bin include lib lib64 env pyvenv.cfg .tox .pytest_cache requirements-mxdev.txt
 
 .PHONY: clean-build
 clean-build: ## remove build artifacts
@@ -85,10 +79,10 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
-bin/pip:
+bin/pip bin/tox bin/mxdev:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter" "mxdev"
+	bin/pip install -U "pip" "wheel" "cookiecutter" "mxdev" "tox"
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
@@ -116,15 +110,9 @@ build-frontend:
 	(cd frontend && pnpm build)
 	(mv frontend/dist/* src/plone/distribution/browser/static/)
 
-.PHONY: clean
-clean: ## Remove old virtualenv and creates a new one
-	@echo "$(RED)==> Cleaning environment and build$(RESET)"
-	rm -rf bin lib lib64 include share etc var inituser pyvenv.cfg .installed.cfg
-	rm -rf frontend/dist frontend/node_modules
-
 .PHONY: start
 start: ## Start a Plone instance on localhost:8080
-	PYTHONWARNINGS=ignore ./bin/runwsgi instance/etc/zope.ini
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) PYTHONWARNINGS=ignore ./bin/runwsgi instance/etc/zope.ini
 
 .PHONY: format-frontend
 format-frontend: ## Format frontend codebase
@@ -133,9 +121,9 @@ format-frontend: ## Format frontend codebase
 	(cd frontend && pnpm prettier:fix)
 
 .PHONY: format
-format: ## Format the codebase according to our standards
+format: bin/tox ## Format the codebase according to our standards
 	@echo "$(GREEN)==> Format codebase$(RESET)"
-	$(FORMAT)
+	bin/tox -e format
 	make format-frontend
 
 .PHONY: lint-frontend
@@ -146,28 +134,8 @@ lint-frontend: ## Lint frontend codebase
 
 .PHONY: lint
 lint: ## check code style
-	$(LINT)
+	bin/tox -e lint
 	make lint-frontend
-
-.PHONY: lint-black
-lint-black: ## validate black formatting
-	$(LINT) black
-
-.PHONY: lint-flake8
-lint-flake8: ## validate black formatting
-	$(LINT) flake8
-
-.PHONY: lint-isort
-lint-isort: ## validate using isort
-	$(LINT) isort
-
-.PHONY: lint-pyroma
-lint-pyroma: ## validate using pyroma
-	$(LINT) pyroma
-
-.PHONY: lint-zpretty
-lint-zpretty: ## validate ZCML/XML using zpretty
-	$(LINT) zpretty
 
 # i18n
 bin/i18ndude:	bin/pip
@@ -182,8 +150,11 @@ i18n: bin/i18ndude ## Update locales
 # Tests
 .PHONY: test
 test: ## run tests
-	bin/pytest --disable-warnings
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) bin/tox -e test
 
+.PHONY: test-coverage
+test-coverage: ## run tests
+	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) bin/tox -e coverage
 
 # Docs
 bin/sphinx-build: bin/pip
