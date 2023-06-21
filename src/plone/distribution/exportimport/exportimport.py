@@ -6,16 +6,36 @@ from logging import getLogger
 from pathlib import Path
 from plone import api
 from plone.distribution.api import distribution as dist_api
+from plone.distribution.core import Distribution
 from plone.distribution.exportimport.interfaces import IDistributionBlobsMarker
 from Products.Five import BrowserView
 from typing import List
 from zope.interface import alsoProvides
 
+import os
+
 
 logger = getLogger(__name__)
 
 
+def _filter_devel_distributions(name: str = "") -> List[Distribution]:
+    """List of distributions still in development."""
+    distributions = []
+    devel_distributions = os.environ.get("DEVELOP_DISTRIBUTIONS", "")
+    for dist_name in devel_distributions.split(","):
+        if name and dist_name != name:
+            continue
+        distribution = dist_api.get(name=dist_name)
+        if distribution:
+            distributions.append(distribution)
+    return distributions
+
+
 class ImportAll(BrowserView):
+    """View to import distribution content."""
+
+    CONTENT_VIEW: str = "dist_import_content"
+
     def __call__(self, path=None):
         request = self.request
         if not path and not request.form.get("form.submitted", False):
@@ -29,7 +49,7 @@ class ImportAll(BrowserView):
             cfg = getConfiguration()
             path = Path(cfg.clienthome) / "import"
 
-        view = api.content.get_view("import_content", self.context, request)
+        view = api.content.get_view(self.CONTENT_VIEW, self.context, request)
         request.form["form.submitted"] = True
         # Add content
         request.form["commit"] = 500
@@ -64,17 +84,18 @@ class ImportAll(BrowserView):
 
 class ExportAll(BrowserView):
     def __call__(self):
+        distribution = None
         request = self.request
         if not request.form.get("form.submitted", False):
             return self.index()
 
-        dist_name = request.form.get("distribution", False)
-        if not dist_name:
-            api.portal.show_message("Please select a target")
+        dist_name = request.form.get("distribution", "")
+        distribution = _filter_devel_distributions(dist_name)
+        if not distribution:
+            api.portal.show_message("Please select a valid target")
             return self.index()
 
         alsoProvides(self.request, IDistributionBlobsMarker)
-        distribution = dist_api.get(dist_name)
         package_path = distribution.directory
         directory = package_path / "content"
         config.CENTRAL_DIRECTORY = str(directory)
@@ -122,8 +143,9 @@ class ExportAll(BrowserView):
         logger.info("Finished export_all")
         return self.request.response.redirect(self.context.absolute_url())
 
-    def distributions(self):
-        return dist_api.get_distributions()
+    def distributions(self) -> List[Distribution]:
+        """Return a list of distributions."""
+        return _filter_devel_distributions()
 
 
 class ImportContent(BaseView):
