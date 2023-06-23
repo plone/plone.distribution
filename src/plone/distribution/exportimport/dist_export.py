@@ -112,6 +112,9 @@ class ExportContent(BaseExportView):
     def global_dict_hook(self, item, obj):
         """Clean up data before export."""
         item = remove_site_root(item)
+        if item["@type"] == "Plone Site":
+            # To avoid a conflict between @id and id
+            item["@id"] = f"/{item['id']}"
         if "blocks" in item:
             blocks = item["blocks"]
             item["blocks"] = parse_blocks(blocks)
