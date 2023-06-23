@@ -1,0 +1,269 @@
+[{
+  "@id": "http://localhost:8080/Plone",
+  "@type": "Plone Site",
+  "UID": "6d306cbbef5c4899a77ea669b4da00ba",
+  "allow_discussion": null,
+  "blocks": {
+      "29a6a70d-321a-4747-99a0-a18267c79a87": {
+          "@type": "image",
+          "alt": "",
+          "url": "http://localhost:8080/Plone/images/plone-foundation-logo.png"
+      },
+      "a7c5bdd7-1317-42b1-94b3-edaa843e2650": {
+          "@type": "slate",
+          "plaintext": "",
+          "value": [
+              {
+                  "children": [
+                      {
+                          "text": ""
+                      }
+                  ],
+                  "type": "p"
+              }
+          ]
+      },
+      "b2da3173-7984-45ae-b00e-61801faf80a6": {
+          "@type": "__grid",
+          "columns": [
+              {
+                  "@type": "teaser",
+                  "description": "Latest news from our organization",
+                  "head_title": null,
+                  "href": [
+                      {
+                          "@id": "http://localhost:8080/Plone/news",
+                          "@type": "Document",
+                          "Description": "Latest news from our organization",
+                          "Title": "News",
+                          "hasPreviewImage": null,
+                          "head_title": null,
+                          "image_field": "",
+                          "image_scales": null,
+                          "title": "News"
+                      }
+                  ],
+                  "id": "60fde06b-a1d4-47dd-8d55-bcb64be4cf70",
+                  "preview_image": [
+                      {
+                          "@id": "http://localhost:8080/Plone/images/volto.png",
+                          "image_field": "image",
+                          "image_scales": {
+                              "image": [
+                                  {
+                                      "content-type": "image/png",
+                                      "download": "@@images/image-2048-4b3f8a97eb42b769ee35ed55a3e962b0.png",
+                                      "filename": "image.png",
+                                      "height": 1536,
+                                      "scales": {
+                                          "great": {
+                                              "download": "@@images/image-1200-bd0038e8561f6da7a065b2866232fee1.png",
+                                              "height": 900,
+                                              "width": 1200
+                                          },
+                                          "huge": {
+                                              "download": "@@images/image-1600-b6f947d12bb6440dbfd6fbeb4083b816.png",
+                                              "height": 1200,
+                                              "width": 1600
+                                          },
+                                          "icon": {
+                                              "download": "@@images/image-32-a1acb65f38b7c9354be8f0c3467db933.png",
+                                              "height": 24,
+                                              "width": 32
+                                          },
+                                          "large": {
+                                              "download": "@@images/image-800-d0b633a61273d18c91bd492d2c544720.png",
+                                              "height": 600,
+                                              "width": 800
+                                          },
+                                          "larger": {
+                                              "download": "@@images/image-1000-c0a1084872872ccc8b56d135d3bf9f18.png",
+                                              "height": 750,
+                                              "width": 1000
+                                          },
+                                          "mini": {
+                                              "download": "@@images/image-200-213fc244091f19838f66a4afd70e71d5.png",
+                                              "height": 150,
+                                              "width": 200
+                                          },
+                                          "preview": {
+                                              "download": "@@images/image-400-4aee849ae24b92172b7ef3b60c229bb8.png",
+                                              "height": 300,
+                                              "width": 400
+                                          },
+                                          "teaser": {
+                                              "download": "@@images/image-600-fbf5add4aa657f62af6b6d14a9c8a414.png",
+                                              "height": 450,
+                                              "width": 600
+                                          },
+                                          "thumb": {
+                                              "download": "@@images/image-128-a2113c3086befcb98ad9b9b2f3d8801c.png",
+                                              "height": 96,
+                                              "width": 128
+                                          },
+                                          "tile": {
+                                              "download": "@@images/image-64-64267a6f46ad1f8e65d26a3387549462.png",
+                                              "height": 48,
+                                              "width": 64
+                                          }
+                                      },
+                                      "size": 218233,
+                                      "width": 2048
+                                  }
+                              ]
+                          },
+                          "title": "Plone 6 with Volto"
+                      }
+                  ],
+                  "styles": {
+                      "align": "left"
+                  },
+                  "title": "News"
+              },
+              {
+                  "@type": "teaser",
+                  "description": "Terms used in the Intranet",
+                  "head_title": null,
+                  "href": [
+                      {
+                          "@id": "http://localhost:8080/Plone/glossary",
+                          "@type": "Glossary",
+                          "Description": "Terms used in the Intranet",
+                          "Title": "Glossary",
+                          "hasPreviewImage": null,
+                          "head_title": null,
+                          "image_field": "",
+                          "image_scales": null,
+                          "title": "Glossary"
+                      }
+                  ],
+                  "id": "f88cb205-af2c-4b04-81b7-53fd0e4f8225",
+                  "preview_image": [
+                      {
+                          "@id": "http://localhost:8080/Plone/images/2022-ploneconf.jpg",
+                          "image_field": "image",
+                          "image_scales": {
+                              "image": [
+                                  {
+                                      "content-type": "image/jpeg",
+                                      "download": "@@images/image-5697-7530ee89079269fd7d98abb8363ceb89.jpeg",
+                                      "filename": "2022-ploneconf.jpg",
+                                      "height": 3158,
+                                      "scales": {
+                                          "great": {
+                                              "download": "@@images/image-1200-c3cb64ff0748c5760968dc3a7a582514.jpeg",
+                                              "height": 665,
+                                              "width": 1200
+                                          },
+                                          "huge": {
+                                              "download": "@@images/image-1600-155e56d1fee551aeeb6232a39ac1154c.jpeg",
+                                              "height": 886,
+                                              "width": 1600
+                                          },
+                                          "icon": {
+                                              "download": "@@images/image-32-5e4df7ae6d938b21076ecbf81dd6678f.jpeg",
+                                              "height": 17,
+                                              "width": 32
+                                          },
+                                          "large": {
+                                              "download": "@@images/image-800-1925795d23c6e58dac7d3bf6b906ef5c.jpeg",
+                                              "height": 443,
+                                              "width": 800
+                                          },
+                                          "larger": {
+                                              "download": "@@images/image-1000-4b9d6c05908d67ab8ece476a2cec2afa.jpeg",
+                                              "height": 554,
+                                              "width": 1000
+                                          },
+                                          "mini": {
+                                              "download": "@@images/image-200-d860d7fe4b48a5bb46be51fe56db38e8.jpeg",
+                                              "height": 110,
+                                              "width": 200
+                                          },
+                                          "preview": {
+                                              "download": "@@images/image-400-ef5d20523a2ff1f66017d0530ebcd09b.jpeg",
+                                              "height": 221,
+                                              "width": 400
+                                          },
+                                          "teaser": {
+                                              "download": "@@images/image-600-0808f9b6618f39eaa6d692489078aa1b.jpeg",
+                                              "height": 332,
+                                              "width": 600
+                                          },
+                                          "thumb": {
+                                              "download": "@@images/image-128-0e0887510dbb9aecd309c0480570e4bc.jpeg",
+                                              "height": 70,
+                                              "width": 128
+                                          },
+                                          "tile": {
+                                              "download": "@@images/image-64-3735451149251792d30123cd129fdeef.jpeg",
+                                              "height": 35,
+                                              "width": 64
+                                          }
+                                      },
+                                      "size": 5922495,
+                                      "width": 5697
+                                  }
+                              ]
+                          },
+                          "title": "2022-ploneconf.jpg"
+                      }
+                  ],
+                  "styles": {
+                      "align": "left"
+                  },
+                  "title": "Glossary"
+              }
+          ]
+      },
+      "eab787b8-a407-4037-b904-57658f303600": {
+          "@type": "slate",
+          "plaintext": "This is the default content for your newly created intranet.",
+          "value": [
+              {
+                  "children": [
+                      {
+                          "text": "This is the default content for your newly created intranet."
+                      }
+                  ],
+                  "type": "p"
+              }
+          ]
+      },
+      "ee5f9d88-c59e-457e-bab5-7b3e46f954b1": {
+          "@type": "title"
+      }
+  },
+  "blocks_layout": {
+      "items": [
+          "ee5f9d88-c59e-457e-bab5-7b3e46f954b1",
+          "eab787b8-a407-4037-b904-57658f303600",
+          "29a6a70d-321a-4747-99a0-a18267c79a87",
+          "b2da3173-7984-45ae-b00e-61801faf80a6",
+          "a7c5bdd7-1317-42b1-94b3-edaa843e2650"
+      ]
+  },
+  "contributors": [],
+  "creators": [
+      "admin"
+  ],
+  "description": "A Plone Intranet",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "Plone",
+  "is_folderish": true,
+  "items_total": 3,
+  "language": "en-us",
+  "lock": {
+      "locked": false,
+      "stealable": true
+  },
+  "parent": {},
+  "review_state": "internal",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "title": "Plone Intranet",
+  "type_title": "Plone Site"
+}]
