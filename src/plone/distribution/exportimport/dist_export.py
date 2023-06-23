@@ -78,9 +78,9 @@ class ExportAll(BrowserView):
         logger.info("Finished export_all")
         return self.request.response.redirect(self.context.absolute_url())
 
-    def distributions(self, name: str) -> List[Distribution]:
+    def distributions(self, name: str = "") -> List[Distribution]:
         """Return a list of distributions."""
-        return filter_devel_distributions(name - name)
+        return filter_devel_distributions(name=name)
 
 
 class ExportContent(BaseExportView):
