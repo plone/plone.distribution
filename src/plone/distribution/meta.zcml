@@ -7,8 +7,8 @@
 
     <meta:directive
         name="distribution"
-        handler=".zcml.register_distribution"
-        schema=".zcml.IRegisterDistributionDirective"
+        handler=".metaconfigure.register_distribution"
+        schema=".metaconfigure.IRegisterDistributionDirective"
         />
 
   </meta:directives>

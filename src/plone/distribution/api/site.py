@@ -1,14 +1,19 @@
 from AccessControl import getSecurityManager
 from AccessControl.Permissions import view as View
+from datetime import datetime
+from datetime import timezone
 from plone.base.interfaces import IPloneSiteRoot
 from plone.distribution.api import distribution as dist_api
+from plone.distribution.core import SiteCreationReport
 from plone.distribution.handler import default_handler
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.Portal import PloneSite
 from Products.GenericSetup.tool import SetupTool
 from typing import List
+from typing import Union
 from ZODB.broken import Broken
+from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
 from zope.component.hooks import setSite
 from zope.event import notify
@@ -17,6 +22,9 @@ from zope.lifecycleevent import ObjectCreatedEvent
 
 _TOOL_ID = "portal_setup"
 _DEFAULT_PROFILE = "Products.CMFPlone:plone"
+
+
+SITE_REPORT_ANNO = "__plone_distribution_report__"
 
 
 def _required_str_value(answers: dict, key: str) -> str:
@@ -50,6 +58,19 @@ def get_sites(context=None) -> List[PloneSite]:
         elif obj.getId() in getattr(context, "_mount_points", {}):
             result.extend(get_sites(context=obj))
     return result
+
+
+def get_creation_report(site: PloneSite) -> Union[SiteCreationReport, None]:
+    """Return a site creation report for a Plone site.
+
+    :param site: Plone Site.
+    :returns: SiteCreationReport with distribution name, creation date and
+              answers used to create the site.
+
+    :Example: :ref:`api-site-get_creation_report-example`
+    """
+    annotations = IAnnotations(site)
+    return annotations.get(SITE_REPORT_ANNO, None)
 
 
 def create(
@@ -116,4 +137,10 @@ def create(
     # Run the Distribution post_handler
     if post_handler:
         site = post_handler(distribution, site, answers)
+    # Create a report of a site creation
+    annotations = IAnnotations(site)
+    report = SiteCreationReport(
+        distribution_name, datetime.now(tz=timezone.utc), answers
+    )
+    annotations[SITE_REPORT_ANNO] = report
     return site
