@@ -1,4 +1,6 @@
+from datetime import datetime
 from pathlib import Path
+from Persistence import Persistent
 from plone.distribution import BASE_DISTRIBUTIONS_PATH
 from plone.distribution.utils import schema as schema_utils
 from typing import Callable
@@ -97,3 +99,20 @@ class Distribution:
             "profiles": content_profiles,
             "json": content_folder if content_folder.exists() else None,
         }
+
+
+class SiteCreationReport(Persistent):
+    name: str
+    date: datetime
+    _answers: str
+
+    def __init__(self, name: str, date: datetime, answers: dict):
+        """Initialize the report."""
+        self.name = name
+        self.date = date
+        self._answers = tuple([(k, v) for k, v in answers.items()])
+
+    @property
+    def answers(self) -> dict:
+        """Return original answers."""
+        return dict(self._answers)

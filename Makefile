@@ -82,7 +82,8 @@ clean-test: ## remove test and coverage artifacts
 bin/pip bin/tox bin/mxdev:
 	@echo "$(GREEN)==> Setup Virtual Env$(RESET)"
 	$(PYTHON) -m venv .
-	bin/pip install -U "pip" "wheel" "cookiecutter" "mxdev" "tox"
+	bin/pip install -U "pip" "wheel" "cookiecutter" "mxdev" "tox" "pre-commit"
+	bin/pre-commit install
 
 .PHONY: config
 config: bin/pip  ## Create instance configuration
@@ -149,11 +150,11 @@ i18n: bin/i18ndude ## Update locales
 
 # Tests
 .PHONY: test
-test: ## run tests
+test: bin/tox ## run tests
 	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) bin/tox -e test
 
 .PHONY: test-coverage
-test-coverage: ## run tests
+test-coverage: bin/tox ## run tests with coverage
 	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) bin/tox -e coverage
 
 # Docs

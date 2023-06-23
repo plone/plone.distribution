@@ -69,6 +69,20 @@ from plone.distribution.api import site as site_api
 sites = site_api.get_sites(app)
 ```
 
+
+(api-site-get_creation_report-example)=
+
+### Get creation report for a site
+
+To get a report of the creation of the site use the method {meth}`api.site.get_creation_report`.
+
+```python
+from plone.distribution.api import site as site_api
+
+site = app.Plone
+report = site_api.get_creation_report(site)
+```
+
 (api-site-create-example)=
 
 ### Create a new site
