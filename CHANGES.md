@@ -9,6 +9,28 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a6 (2023-06-23)
+
+
+### New features:
+
+- Improve support for testing distributions [@ericof] #24
+- Allow export only for distributions still in development [@ericof] #28
+- Create a report for Plone sites created from a distribution [@ericof] #30
+- Clean up exported content to remove references to portal.absolute_url() [@ericof] #32
+
+
+### Bug fixes:
+
+- Content language should be allowed in portal configuration [@ericof] #23
+
+
+### Internal:
+
+- Update configuration files.
+  [plone devs] 047ec50d, 55bda5c9, d7e9e748
+
+
 ## 1.0.0a5 (2023-05-18)
 
 
