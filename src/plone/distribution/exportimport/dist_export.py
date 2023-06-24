@@ -111,7 +111,7 @@ class ExportContent(BaseExportView):
 
     def global_dict_hook(self, item, obj):
         """Clean up data before export."""
-        item = remove_site_root(item)
+        item = remove_site_root(item, self.PORTAL_URL)
         if item["@type"] == "Plone Site":
             # To avoid a conflict between @id and id
             item["@id"] = f"/{item['id']}"
