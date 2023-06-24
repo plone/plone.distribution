@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a7 (2023-06-24)
+
+
+### Bug fixes:
+
+- Fix content export to json [@ericof] #33
+
+
 ## 1.0.0a6 (2023-06-23)
 
 
