@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a8 (2023-06-25)
+
+
+### New features:
+
+- Bump @rjsf/core to version 5.8.2 [@ericof] #35
+
+
 ## 1.0.0a7 (2023-06-24)
 
 
