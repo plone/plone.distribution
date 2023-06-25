@@ -2,35 +2,35 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@popperjs/core':
-    specifier: ^2.11.6
-    version: 2.11.6
+    specifier: ^2.11.7
+    version: 2.11.7
   '@rjsf/bootstrap-4':
-    specifier: ^5.0.1
-    version: 5.0.1(@rjsf/core@5.0.1)(@rjsf/utils@5.0.1)(react-bootstrap@1.6.6)(react@18.2.0)
+    specifier: ^5.8.2
+    version: 5.8.2(@rjsf/core@5.8.2)(@rjsf/utils@5.8.2)(react-bootstrap@1.6.5)(react@18.2.0)
   '@rjsf/core':
-    specifier: ^5.0.1
-    version: 5.0.1(@rjsf/utils@5.0.1)(react@18.2.0)
+    specifier: ^5.8.2
+    version: 5.8.2(@rjsf/utils@5.8.2)(react@18.2.0)
   '@rjsf/utils':
-    specifier: ^5.0.1
-    version: 5.0.1(react@18.2.0)
+    specifier: ^5.8.2
+    version: 5.8.2(react@18.2.0)
   '@rjsf/validator-ajv8':
-    specifier: ^5.0.1
-    version: 5.0.1(@rjsf/utils@5.0.1)
+    specifier: ^5.8.2
+    version: 5.8.2(@rjsf/utils@5.8.2)
   '@tanstack/react-query':
     specifier: ^4.24.4
     version: 4.24.4(react-dom@18.2.0)(react@18.2.0)
   ajv:
-    specifier: ^8.12.0
+    specifier: 8.12.0
     version: 8.12.0
   bootstrap:
-    specifier: ^5.2.3
-    version: 5.2.3(@popperjs/core@2.11.6)
+    specifier: 5.3.0
+    version: 5.3.0(@popperjs/core@2.11.7)
   react:
     specifier: ^18.2.0
     version: 18.2.0
   react-bootstrap:
-    specifier: ^1.6.6
-    version: 1.6.6(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^1.6.5
+    version: 1.6.5(react-dom@18.2.0)(react@18.2.0)
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
@@ -269,8 +269,8 @@ packages:
       '@babel/helper-plugin-utils': 7.20.2
     dev: true
 
-  /@babel/runtime@7.20.13:
-    resolution: {integrity: sha512-gt3PKXs0DBoL9xCvOIIZ2NEqAGZqHjAnmVbfQtB620V0uReIQutpel14KcneZuer7UioY8ALKZ7iocavvzTNFA==}
+  /@babel/runtime@7.22.5:
+    resolution: {integrity: sha512-ecjvYlnAaZ/KVneE/OdKYBYfgXV3Ptu6zQWmgEF7vwKhQnvVS6bjMD2XYgj+SNvQ1GfK/pjgokfPkC/2CO8CuA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
@@ -606,8 +606,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@popperjs/core@2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core@2.11.7:
+    resolution: {integrity: sha512-Cr4OjIkipTtcXKjAsm8agyleBuDHvxzeBoa1v543lbv1YaIwQjESsVcmjiWiPEbC1FIeHOG/Op9kdCmAmiS3Kw==}
     dev: false
 
   /@react-icons/all-files@4.1.0(react@18.2.0):
@@ -626,8 +626,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@restart/hooks@0.4.8(react@18.2.0):
-    resolution: {integrity: sha512-Ivvp1FZ0Lja80iUTYAhbzy+stxwO7FbPHP95ypCtIh0wyOLiayQywXhVJ2ZYP5S1AjW2GmKHeRU4UglMwTG2sA==}
+  /@restart/hooks@0.4.9(react@18.2.0):
+    resolution: {integrity: sha512-3BekqcwB6Umeya+16XPooARn4qEPW6vNvwYnlofIYe6h9qG1/VeD7UvShCWx11eFz5ELYmwIEshz+MkPX3wjcQ==}
     peerDependencies:
       react: '>=16.8.0'
     dependencies:
@@ -635,39 +635,40 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@rjsf/bootstrap-4@5.0.1(@rjsf/core@5.0.1)(@rjsf/utils@5.0.1)(react-bootstrap@1.6.6)(react@18.2.0):
-    resolution: {integrity: sha512-mb1Mw//VjWDLWAtypmwcw/4zwBTAgNVXa/C3Kds5DfSsyFHjbFLWIUl17zbbIFlpbDymEVhXj+ITV05HxCGtSg==}
+  /@rjsf/bootstrap-4@5.8.2(@rjsf/core@5.8.2)(@rjsf/utils@5.8.2)(react-bootstrap@1.6.5)(react@18.2.0):
+    resolution: {integrity: sha512-nsidffi7QtMGDeRaCDlbdcPc7C+030GGYjTu0aULp5P/W7qAmCFbOO0maHNbHQkUbLiWmsK0/NuvkslRSs6zlA==}
     engines: {node: '>=14'}
     peerDependencies:
-      '@rjsf/core': ^5.0.0
-      '@rjsf/utils': ^5.0.0
+      '@rjsf/core': ^5.8.x
+      '@rjsf/utils': ^5.8.x
       react: ^16.14.0 || >=17
       react-bootstrap: ^1.6.5
     dependencies:
       '@react-icons/all-files': 4.1.0(react@18.2.0)
-      '@rjsf/core': 5.0.1(@rjsf/utils@5.0.1)(react@18.2.0)
-      '@rjsf/utils': 5.0.1(react@18.2.0)
+      '@rjsf/core': 5.8.2(@rjsf/utils@5.8.2)(react@18.2.0)
+      '@rjsf/utils': 5.8.2(react@18.2.0)
       react: 18.2.0
-      react-bootstrap: 1.6.6(react-dom@18.2.0)(react@18.2.0)
+      react-bootstrap: 1.6.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@rjsf/core@5.0.1(@rjsf/utils@5.0.1)(react@18.2.0):
-    resolution: {integrity: sha512-OlRK/KRlwsIfYcrxx90lgGA6iCqb9W3hPDDHJRcHtbl+cMT1z3Fz+vS1NseNngv1tIogkDOhsaCrMy6SxZiBWw==}
+  /@rjsf/core@5.8.2(@rjsf/utils@5.8.2)(react@18.2.0):
+    resolution: {integrity: sha512-DwFPYHFGRR3xzmFa5EpffcmDoW/tKcLaDRU8t15Uv8mbr7OBhLavwTceGGgO/TYCTjNUDwofcnwquPzKRw39Cg==}
     engines: {node: '>=14'}
     peerDependencies:
-      '@rjsf/utils': ^5.0.0
+      '@rjsf/utils': ^5.8.x
       react: ^16.14.0 || >=17
     dependencies:
-      '@rjsf/utils': 5.0.1(react@18.2.0)
+      '@rjsf/utils': 5.8.2(react@18.2.0)
       lodash: 4.17.21
       lodash-es: 4.17.21
-      nanoid: 3.3.4
+      markdown-to-jsx: 7.2.1(react@18.2.0)
+      nanoid: 3.3.6
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
 
-  /@rjsf/utils@5.0.1(react@18.2.0):
-    resolution: {integrity: sha512-pRVl7NIR5NvxdXo6Aj3K0E8HKSDROBjcXvm0jiaVmD6k+lkwVo9mXiv+t5AhsCMmYDxRnRiOQMh2bWfd6yZj/Q==}
+  /@rjsf/utils@5.8.2(react@18.2.0):
+    resolution: {integrity: sha512-vSnXHuUAg2dUmkGn9HNoEkuykno4vTb8hef+YoMDU3+oi3z5Bb8yZw/UC02Lo40Uo5XxvQeBfLb3RN0vfeSpMg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^16.14.0 || >=17
@@ -680,13 +681,13 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /@rjsf/validator-ajv8@5.0.1(@rjsf/utils@5.0.1):
-    resolution: {integrity: sha512-lou9/rWDJHkUsNXwrc3d4AMUNxLnL1z/YImMsM3bODljys5mOQmrzsvFSgZSsT7KZiaKM4X6xlE/aAoMDrDXqQ==}
+  /@rjsf/validator-ajv8@5.8.2(@rjsf/utils@5.8.2):
+    resolution: {integrity: sha512-Rahn2D0iXVPkadpgQ12HmEocnTNg6QVy2sqmBfpXV8jYQHKZMpk4llEHw0FTjuBN8jMusKcdWYN4Dp/fLPHESQ==}
     engines: {node: '>=14'}
     peerDependencies:
-      '@rjsf/utils': ^5.0.0
+      '@rjsf/utils': ^5.8.x
     dependencies:
-      '@rjsf/utils': 5.0.1(react@18.2.0)
+      '@rjsf/utils': 5.8.2(react@18.2.0)
       ajv: 8.12.0
       ajv-formats: 2.1.1(ajv@8.12.0)
       lodash: 4.17.21
@@ -1013,12 +1014,12 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
-  /bootstrap@5.2.3(@popperjs/core@2.11.6):
-    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+  /bootstrap@5.3.0(@popperjs/core@2.11.7):
+    resolution: {integrity: sha512-UnBV3E3v4STVNQdms6jSGO2CvOkjUMdDAVR2V5N4uCMdaIkaQjbcEAMqRimDHIs4uqBYzDAKCQwCB+97tJgHQw==}
     peerDependencies:
-      '@popperjs/core': ^2.11.6
+      '@popperjs/core': ^2.11.7
     dependencies:
-      '@popperjs/core': 2.11.6
+      '@popperjs/core': 2.11.7
     dev: false
 
   /brace-expansion@1.1.11:
@@ -1194,7 +1195,7 @@ packages:
   /dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.5
       csstype: 3.1.1
     dev: false
 
@@ -2001,6 +2002,15 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /markdown-to-jsx@7.2.1(react@18.2.0):
+    resolution: {integrity: sha512-9HrdzBAo0+sFz9ZYAGT5fB8ilzTW+q6lPocRxrIesMO+aB40V9MgFfbfMXxlGjf22OpRy+IXlvVaQenicdpgbg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      react: '>= 0.14.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -2028,6 +2038,13 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: true
+
+  /nanoid@3.3.6:
+    resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -2222,15 +2239,15 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
 
-  /react-bootstrap@1.6.6(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-pSzYyJT5u4rc8+5myM8Vid2JG52L8AmYSkpznReH/GM4+FhLqEnxUa0+6HRTaGwjdEixQNGchwY+b3xCdYWrDA==}
+  /react-bootstrap@1.6.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-l2rm5LtDI7JMtdGrzaxNl4OJwH0fMIJDlvwQ2TMvs9h9d0E4ELLpG3J45Pox6xUkpuFfXdWUiGazZXyIuv/OKA==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.5
       '@restart/context': 2.1.4(react@18.2.0)
-      '@restart/hooks': 0.4.8(react@18.2.0)
+      '@restart/hooks': 0.4.9(react@18.2.0)
       '@types/invariant': 2.2.35
       '@types/prop-types': 15.7.5
       '@types/react': 18.0.27
@@ -2276,9 +2293,9 @@ packages:
       react: '>=16.3.0'
       react-dom: '>=16.3.0'
     dependencies:
-      '@babel/runtime': 7.20.13
-      '@popperjs/core': 2.11.6
-      '@restart/hooks': 0.4.8(react@18.2.0)
+      '@babel/runtime': 7.22.5
+      '@popperjs/core': 2.11.7
+      '@restart/hooks': 0.4.9(react@18.2.0)
       '@types/warning': 3.0.0
       dom-helpers: 5.2.1
       prop-types: 15.8.1
@@ -2310,7 +2327,7 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.5
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -2584,7 +2601,7 @@ packages:
     peerDependencies:
       react: '>=15.0.0'
     dependencies:
-      '@babel/runtime': 7.20.13
+      '@babel/runtime': 7.22.5
       '@types/react': 18.0.27
       invariant: 2.2.4
       react: 18.2.0
