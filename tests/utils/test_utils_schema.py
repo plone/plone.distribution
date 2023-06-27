@@ -12,6 +12,11 @@ def data_path() -> Path:
 
 
 @pytest.fixture
+def language_schema(data_path):
+    return json.loads((data_path / "with_default_language.json").read_text())
+
+
+@pytest.fixture
 def valid_schema(data_path):
     return json.loads((data_path / "valid.json").read_text())
 
@@ -84,3 +89,23 @@ class TestUtilsSchemaProcessRawSchema:
         assert "uischema" in result
         uischema = result["uischema"]
         assert "ui:order" in uischema
+
+
+class TestUtilsSchemaDefaultLanguage:
+    def process_schema(self, raw_schema):
+        schema = utils_schema.process_raw_schema(raw_schema)
+        return schema["uischema"], schema["schema"]
+
+    @property
+    def func(self):
+        return utils_schema.should_provide_default_language_default
+
+    def test_should_provide_default_language_default_true(self, app, valid_schema):
+        uischema, jsonschema = self.process_schema(valid_schema)
+        result = self.func(uischema, jsonschema)
+        assert result is True
+
+    def test_should_provide_default_language_default_false(self, app, language_schema):
+        uischema, jsonschema = self.process_schema(language_schema)
+        result = self.func(uischema, jsonschema)
+        assert result is False
