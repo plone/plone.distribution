@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0a9 (2023-06-27)
+
+
+### Bug fixes:
+
+- Allow setting default_language "default" value [@ericof] #36
+
+
 ## 1.0.0a8 (2023-06-25)
 
 
