@@ -98,6 +98,20 @@ def enrich_jsonschema(schema: dict) -> dict:
     return schema
 
 
+def should_provide_default_language_default(uischema: dict, jsonschema: dict) -> bool:
+    """Decide if we should add a server value for the default_language property."""
+    server_default = True
+    if "default_language" not in uischema.get("ui:order", []):
+        # Field will not be displayed in the form, so do not provide
+        # a server default
+        server_default = False
+    else:
+        language_property = jsonschema.get("properties", {}).get("default_language", {})
+        # If default_language has a 'default' attribute, do not provide a server default
+        server_default = "default" not in language_property
+    return server_default
+
+
 def enrich_uischema(uischema: dict, jsonschema: dict) -> dict:
     """Process a uischema and set default ordering (if not present)."""
     if "ui:order" not in uischema:

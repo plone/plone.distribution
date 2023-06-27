@@ -1,7 +1,9 @@
 from AccessControl import getSecurityManager
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.api import site as site_api
+from plone.distribution.core import Distribution
 from plone.distribution.utils.request import extract_browser_language
+from plone.distribution.utils.schema import should_provide_default_language_default
 from plone.restapi.services import Service
 from Products.CMFCore.permissions import ManagePortal
 from typing import List
@@ -79,18 +81,21 @@ class SitesGet(Service):
             )
         return response
 
-    def _populate_server_defaults(self) -> dict:
+    def _populate_server_defaults(self, distribution: Distribution) -> dict:
         """Provide default values for new Plone sites."""
+        server_defaults = {}
         request = self.request
         # Sites with default id
         all_sites = self.get_sites()
         sites = [site for site in all_sites if site["id"].startswith(DEFAULT_ID)]
-        site_id = f"{DEFAULT_ID}{len(sites)}" if sites else DEFAULT_ID
-        language = extract_browser_language(request)
-        return {
-            "site_id": site_id,
-            "default_language": language,
-        }
+        server_defaults["site_id"] = (
+            f"{DEFAULT_ID}{len(sites)}" if sites else DEFAULT_ID
+        )
+        jsonschema = distribution.schema
+        uischema = distribution.uischema
+        if should_provide_default_language_default(uischema, jsonschema):
+            server_defaults["default_language"] = extract_browser_language(request)
+        return server_defaults
 
     def can_manage(self) -> bool:
         secman = getSecurityManager()
@@ -118,5 +123,5 @@ class SitesGet(Service):
                 "image": f"{base_url}/@@dist-image/{dist.name}",
                 "schema": dist.schema,
                 "uischema": dist.uischema,
-                "default_values": self._populate_server_defaults(),
+                "default_values": self._populate_server_defaults(dist),
             }
