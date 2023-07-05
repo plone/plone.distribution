@@ -21,8 +21,10 @@ def answers() -> dict:
 @pytest.fixture
 def site(app, answers) -> PloneSite:
     """Create a new Plone site via a distribution."""
+    site_id = answers["site_id"]
     distribution_name = "default"
-    return site_api.create(app, distribution_name, answers)
+    yield site_api.create(app, distribution_name, answers)
+    app.manage_delObjects([site_id])
 
 
 class TestApiSite:
@@ -41,10 +43,13 @@ class TestApiSite:
         ],
     )
     def test_create(self, app, integration, answers, distribution_name):
+        sites = site_api.get_sites(app)
+        total_sites = len(sites)
         with api.env.adopt_roles(["Manager"]):
+            answers["site_id"] = f"{distribution_name}_01"
             new_site = site_api.create(app, distribution_name, answers)
         sites = site_api.get_sites(app)
-        assert len(sites) == 4
+        assert len(sites) == total_sites + 1
         site = sites[-1]
         assert isinstance(site, PloneSite)
         assert site.title == new_site.title

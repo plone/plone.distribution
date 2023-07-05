@@ -6,6 +6,7 @@ from plone.base.interfaces import IPloneSiteRoot
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.core import SiteCreationReport
 from plone.distribution.handler import default_handler
+from plone.distribution.utils.validation import validate_answers
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.Portal import PloneSite
@@ -19,6 +20,8 @@ from zope.component.hooks import setSite
 from zope.event import notify
 from zope.lifecycleevent import ObjectCreatedEvent
 
+import transaction
+
 
 _TOOL_ID = "portal_setup"
 _DEFAULT_PROFILE = "Products.CMFPlone:plone"
@@ -27,11 +30,75 @@ _DEFAULT_PROFILE = "Products.CMFPlone:plone"
 SITE_REPORT_ANNO = "__plone_distribution_report__"
 
 
-def _required_str_value(answers: dict, key: str) -> str:
-    try:
-        return answers[key]
-    except KeyError:
-        raise KeyError(f"A value for {key} is required.")
+def _create_bare_site(context, answers: dict, profile_id: str) -> PloneSite:
+    """Create a Plone site."""
+    site_id = answers.get("site_id")
+    title = answers.get("title")
+    description = answers.get("description", "")
+    default_language = answers.get("default_language", "en")
+    portal_timezone = answers.get("portal_timezone", "UTC")
+    # Create the Plone Site
+    site = PloneSite(site_id)
+    notify(ObjectCreatedEvent(site))
+    context[site_id] = site
+    site = context[site_id]
+    # Set site language
+    site.setLanguage(default_language)
+    # Register SetupTool (portal_setup)
+    site[_TOOL_ID] = SetupTool(_TOOL_ID)
+    setup_tool = site[_TOOL_ID]
+    notify(SiteManagerCreatedEvent(site))
+    setSite(site)
+    # Apply base profile
+    setup_tool.setBaselineContext(f"profile-{profile_id}")
+    setup_tool.runAllImportStepsFromProfile(f"profile-{profile_id}")
+    # Set default properties (title, description)
+    # Do this before applying extension profiles, so the settings from a
+    # properties.xml file are applied and not overwritten by this
+    props = {
+        "title": title,
+        "description": description,
+    }
+    site.manage_changeProperties(**props)
+    # Set initial registry values
+    reg = queryUtility(IRegistry, context=site)
+    reg["plone.portal_timezone"] = portal_timezone
+    reg["plone.available_timezones"] = [portal_timezone]
+    reg["plone.default_language"] = default_language
+    reg["plone.available_languages"] = [default_language]
+    reg["plone.site_title"] = title
+    return site
+
+
+def _add_report_to_site(site: PloneSite, distribution_name: str, answers: dict) -> None:
+    """Add a report to the newly created site."""
+    # Create a report of a site creation
+    annotations = IAnnotations(site)
+    report = SiteCreationReport(
+        distribution_name, datetime.now(tz=timezone.utc), answers
+    )
+    annotations[SITE_REPORT_ANNO] = report
+
+
+def _create_site(
+    context,
+    distribution_name: str,
+    answers: dict,
+    profile_id: str = _DEFAULT_PROFILE,
+) -> PloneSite:
+    """Create site"""
+    distribution = dist_api.get(distribution_name)
+    handler = distribution.handler if distribution.handler else default_handler
+    post_handler = distribution.post_handler
+    site = _create_bare_site(context, answers, profile_id)
+    # Run the Distribution handler
+    site = handler(distribution, site, answers)
+    # Run the Distribution post_handler
+    if post_handler:
+        site = post_handler(distribution, site, answers)
+    # Create a report of a site creation
+    _add_report_to_site(site, distribution_name, answers)
+    return site
 
 
 def get_sites(context=None) -> List[PloneSite]:
@@ -94,53 +161,11 @@ def create(
     :Example: :ref:`api-site-create-example`
     """
     distribution = dist_api.get(distribution_name)
-    handler = distribution.handler if distribution.handler else default_handler
-    post_handler = distribution.post_handler
-    # Attributes used during site creation
-    site_id = _required_str_value(answers, "site_id")
-    title = _required_str_value(answers, "title")
-    description = answers.get("description", "")
-    default_language = answers.get("default_language", "en")
-    portal_timezone = answers.get("portal_timezone", "UTC")
-    # Create the Plone Site
-    site = PloneSite(site_id)
-    notify(ObjectCreatedEvent(site))
-    context[site_id] = site
-    site = context[site_id]
-    # Set site language
-    site.setLanguage(default_language)
-    # Register SetupTool (portal_setup)
-    site[_TOOL_ID] = SetupTool(_TOOL_ID)
-    setup_tool = site[_TOOL_ID]
-    notify(SiteManagerCreatedEvent(site))
-    setSite(site)
-    # Apply base profile
-    setup_tool.setBaselineContext(f"profile-{profile_id}")
-    setup_tool.runAllImportStepsFromProfile(f"profile-{profile_id}")
-    # Set default properties (title, description)
-    # Do this before applying extension profiles, so the settings from a
-    # properties.xml file are applied and not overwritten by this
-    props = dict(
-        title=title,
-        description=description,
-    )
-    site.manage_changeProperties(**props)
-    # Set initial registry values
-    reg = queryUtility(IRegistry, context=site)
-    reg["plone.portal_timezone"] = portal_timezone
-    reg["plone.available_timezones"] = [portal_timezone]
-    reg["plone.default_language"] = default_language
-    reg["plone.available_languages"] = [default_language]
-    reg["plone.site_title"] = title
-    # Run the Distribution handler
-    site = handler(distribution, site, answers)
-    # Run the Distribution post_handler
-    if post_handler:
-        site = post_handler(distribution, site, answers)
-    # Create a report of a site creation
-    annotations = IAnnotations(site)
-    report = SiteCreationReport(
-        distribution_name, datetime.now(tz=timezone.utc), answers
-    )
-    annotations[SITE_REPORT_ANNO] = report
+    # Validate answers
+    schema = distribution.schema
+    if not validate_answers(answers=answers, schema=schema):
+        raise ValueError("Provided answers are not valid")
+    with transaction.manager as tm:
+        site = _create_site(context, distribution_name, answers, profile_id)
+        tm.note(f"Plone site {site.getId()} created with {distribution_name}")
     return site

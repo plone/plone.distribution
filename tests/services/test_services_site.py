@@ -1,3 +1,4 @@
+from copy import deepcopy
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
 from plone.restapi.testing import RelativeSession
@@ -93,3 +94,43 @@ class TestServicesSitesPOST(TestServicesSite):
         assert response.status_code == 404
         data = response.json()
         assert data["message"].startswith("Resource not found:")
+
+    def test_sites_create_empty_site_id(self, app):
+        distribution_name = "default"
+        # Empty site_id
+        answers = {"site_id": "", "title": "Site"}
+
+        response = self.api_session.post(f"@sites/{distribution_name}", json=answers)
+        assert response.status_code == 400
+        data = response.json()
+        assert data["message"].startswith("Invalid data for site creation")
+
+    def test_sites_create_empty_title(self, app):
+        distribution_name = "default"
+        # Empty title
+        answers = {"site_id": "Site", "title": ""}
+
+        response = self.api_session.post(f"@sites/{distribution_name}", json=answers)
+        assert response.status_code == 400
+        data = response.json()
+        assert data["message"].startswith("Invalid data for site creation")
+
+    def test_sites_create_invalid_language(self, app):
+        distribution_name = "default"
+        answers = deepcopy(self.answers)
+        answers["default_language"] = "klingon"
+
+        response = self.api_session.post(f"@sites/{distribution_name}", json=answers)
+        assert response.status_code == 400
+        data = response.json()
+        assert data["message"].startswith("Invalid data for site creation")
+
+    def test_sites_create_invalid_timezone(self, app):
+        distribution_name = "default"
+        answers = deepcopy(self.answers)
+        answers["portal_timezone"] = "something"
+
+        response = self.api_session.post(f"@sites/{distribution_name}", json=answers)
+        assert response.status_code == 400
+        data = response.json()
+        assert data["message"].startswith("Invalid data for site creation")
