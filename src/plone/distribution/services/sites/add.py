@@ -1,5 +1,7 @@
 """Service to create a Plone Site."""
+from plone.distribution.api import distribution as dist_api
 from plone.distribution.api import site as site_api
+from plone.distribution.utils.validation import validate_answers
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
 from zExceptions import BadRequest
@@ -31,16 +33,22 @@ class SiteCreate(Service):
             self.params[0] if self.params else data.get("distribution", "default")
         )
         self.errors = []
-        # self.validate_input_data(portal, data)
-        # Create site
+        # Get distribution
+        try:
+            distribution = dist_api.get(distribution_name)
+        except ValueError:
+            raise NotFound(f"No distribution named {distribution_name}.")
+
+        # Validate answers
+        if not validate_answers(answers=data, schema=distribution.schema):
+            raise BadRequest("Invalid data for site creation.")
+
         try:
             site = site_api.create(
                 self.context,
                 distribution_name=distribution_name,
                 answers=data,
             )
-        except ValueError:
-            raise NotFound(f"No distribution named {distribution_name}.")
         except KeyError:
             raise BadRequest("Error creating the site.")
         site_info = {

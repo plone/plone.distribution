@@ -50,6 +50,7 @@ setup(
         "Plone",
         "setuptools",
         "z3c.unconfigure",
+        "jsonschema",
         "collective.exportimport>=1.9",
     ],
     extras_require={

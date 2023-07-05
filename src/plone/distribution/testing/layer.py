@@ -71,7 +71,7 @@ class PloneDistributionFixture(PloneFixture):
         for distribution_name, answers in sites:
             site_id = answers["site_id"]
             # Create Plone site
-            site_api.create(
+            site_api._create_site(
                 context=app, distribution_name=distribution_name, answers=answers
             )
 
