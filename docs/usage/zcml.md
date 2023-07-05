@@ -26,13 +26,13 @@ Then declare the distributions included in your package using the `plone:distrib
 
 | attribute | description | default value | required |
 |--|--|--|--|
-| name | Identifier of the distribution |  | ✅ |
-| title | Friendly name of the distribution |  | ✅ |
-| description | An explanation of the distribution |  |  |
-| directory | Distribution directory | distributions/`<name>` |  |
-| pre_handler | Callable function to process answers before site creation |  |  |
-| handler | Callable function used by `plone.distribution` to handle site creation |  |  |
-| post_handler | Callable function used to make adjustments after site is created  |  |  |
+| `name` | Identifier of the distribution |  | yes |
+| `title` | Friendly name of the distribution |  | yes |
+| `description` | An explanation of the distribution |  | no |
+| `directory` | Distribution directory | distributions/`<name>` | no |
+| `pre_handler` | Callable function to process answers before site creation |  | no |
+| `handler` | Callable function used by `plone.distribution` to handle site creation |  | no |
+| `post_handler` | Callable function used to make adjustments after site is created  |  | no |
 
 ## Examples
 
