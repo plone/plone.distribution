@@ -38,9 +38,17 @@ class IRegisterDistributionDirective(Interface):
         required=False,
     )
 
+    pre_handler = GlobalObject(
+        title="Pre Handler",
+        description=(
+            "Function called before initial site creation, used to process answers payload."
+        ),
+        required=False,
+    )
+
     handler = GlobalObject(
         title="Handler",
-        description=("Function called after initial site creation. "),
+        description=("Function called after initial site creation."),
         required=False,
     )
 
@@ -75,6 +83,7 @@ def register_distribution(
     title,
     description="",
     directory=None,
+    pre_handler=None,
     handler=None,
     post_handler=None,
 ):
@@ -89,11 +98,12 @@ def register_distribution(
         description = ""
 
     # Validate handler and post_handler functions
+    pre_handler = _check_function("pre_handler", product, pre_handler)
     handler = _check_function("handler", product, handler)
     post_handler = _check_function("post_handler", product, post_handler)
 
     distribution = Distribution(
-        name, title, description, directory, handler, post_handler
+        name, title, description, directory, pre_handler, handler, post_handler
     )
 
     _context.action(

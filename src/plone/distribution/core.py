@@ -5,6 +5,7 @@ from plone.distribution import BASE_DISTRIBUTIONS_PATH
 from plone.distribution.utils import schema as schema_utils
 from typing import Callable
 from typing import List
+from typing import Optional
 
 import json
 
@@ -18,8 +19,9 @@ class Distribution:
     title: str
     description: str
     directory: Path
-    handler: Callable
-    post_handler: Callable
+    pre_handler: Optional[Callable]
+    handler: Optional[Callable]
+    post_handler: Optional[Callable]
     _schema: dict
     _profiles: dict
 
@@ -29,14 +31,16 @@ class Distribution:
         title: str,
         description: str,
         directory: Path,
-        handler: Callable = None,
-        post_handler: Callable = None,
+        pre_handler: Optional[Callable] = None,
+        handler: Optional[Callable] = None,
+        post_handler: Optional[Callable] = None,
     ):
         """Initialize a Plone Distribution."""
         self.name = name
         self.title = title
         self.description = description
         self.directory = directory
+        self.pre_handler = pre_handler
         self.handler = handler
         self.post_handler = post_handler
         schema_file = self.directory / "schema.json"
