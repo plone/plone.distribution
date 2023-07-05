@@ -41,7 +41,8 @@ Include `plone.distribution`.
   <include package="plone.distribution" />
 ```
 
-Declare the distributions included in your package. ([read more about configuration options](./zcml))
+Declare the distributions included in your package.
+Read more about {ref}`configuration options <zcml-options-label>`.
 
 ```xml
   <plone:distribution

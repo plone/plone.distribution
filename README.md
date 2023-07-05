@@ -203,7 +203,7 @@ Both definitions are added in runtime by `plone.distribution` to provide a list 
 
 ### `content` folder
 
-Folder containing json data exported using the `@@dist_export_all` browser view of this package.
+Folder containing JSON data exported using the `@@dist_export_all` browser view of this package.
 
 ## Advanced Usage
 

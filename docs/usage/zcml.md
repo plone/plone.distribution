@@ -1,14 +1,14 @@
 # Registration
 
-The common way to register a new distribution is via zcml.
+The common way to register a new distribution is via ZCML.
 
-First, you need to include `plone.distribution` as dependency of your package by adding the following snippet to your `configure.zcml`:
+First, you need to include `plone.distribution` as a dependency of your package by adding the following snippet to your {file}`configure.zcml` as shown below.
 
 ```xml
   <include package="plone.distribution" />
 ```
 
-Then declare the distributions included in your package using the `plone:distribution` configuration:
+Then declare the distributions included in your package using the `plone:distribution` configuration as shown below.
 
 ```xml
   <plone:distribution
@@ -19,6 +19,9 @@ Then declare the distributions included in your package using the `plone:distrib
       />
 ```
 
+
+(zcml-options-label)=
+
 ## Options
 
 | attribute | description | default value | required |
@@ -28,14 +31,17 @@ Then declare the distributions included in your package using the `plone:distrib
 | description | An explanation of the distribution |  |  |
 | directory | Distribution directory | distributions/`<name>` |  |
 | pre_handler | Callable function to process answers before site creation |  |  |
-| handler | Callable function used by `plone.distribution` to handle site creation. |  |  |
+| handler | Callable function used by `plone.distribution` to handle site creation |  |  |
 | post_handler | Callable function used to make adjustments after site is created  |  |  |
 
 ## Examples
 
+This section provides examples of this package being used in production.
+They may serve as useful references for developing your own distribution.
+
 ### [`collective.ploneintranet`](https://github.com/collective/collective.ploneintranet/blob/main/src/collective/ploneintranet/distributions.zcml)
 
-Distribution with a specific post_handler used to configure authentication in the newly created site:
+This example is a distribution with a specific `post_handler` that is used to configure authentication in the newly created site.
 
 ```xml
   <plone:distribution
@@ -49,10 +55,10 @@ Distribution with a specific post_handler used to configure authentication in th
 
 ### [`plonegovbr.portal_leg`](https://github.com/plonegovbr/plonegovbr.portal_leg/blob/main/src/plonegovbr/portal_leg/distributions.zcml)
 
-Distribution with:
+This is an example distribution with the following.
 
-* pre_handler used to process answers and populate `title`, `description`, `default_language`
-* post_handler used to configure registry options in the newly created site
+* `pre_handler` used to process answers and populate `title`, `description`, and `default_language`
+* `post_handler` used to configure registry options in the newly created site
 
 ```xml
   <plone:distribution
