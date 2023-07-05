@@ -4,8 +4,10 @@ from datetime import datetime
 from datetime import timezone
 from plone.base.interfaces import IPloneSiteRoot
 from plone.distribution.api import distribution as dist_api
+from plone.distribution.core import Distribution
 from plone.distribution.core import SiteCreationReport
 from plone.distribution.handler import default_handler
+from plone.distribution.handler import default_pre_handler
 from plone.distribution.utils.validation import validate_answers
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.events import SiteManagerCreatedEvent
@@ -28,6 +30,15 @@ _DEFAULT_PROFILE = "Products.CMFPlone:plone"
 
 
 SITE_REPORT_ANNO = "__plone_distribution_report__"
+
+
+def _handlers_for_distribution(distribution: Distribution):
+    """Return pre_handler, handler and post_handler for a distribution."""
+    pre_handler = (
+        distribution.pre_handler if distribution.pre_handler else default_pre_handler
+    )
+    handler = distribution.handler if distribution.handler else default_handler
+    return pre_handler, handler, distribution.post_handler
 
 
 def _create_bare_site(context, answers: dict, profile_id: str) -> PloneSite:
@@ -88,8 +99,10 @@ def _create_site(
 ) -> PloneSite:
     """Create site"""
     distribution = dist_api.get(distribution_name)
-    handler = distribution.handler if distribution.handler else default_handler
-    post_handler = distribution.post_handler
+    pre_handler, handler, post_handler = _handlers_for_distribution(distribution)
+    # Process answers
+    answers = pre_handler(answers)
+    # Create base site
     site = _create_bare_site(context, answers, profile_id)
     # Run the Distribution handler
     site = handler(distribution, site, answers)

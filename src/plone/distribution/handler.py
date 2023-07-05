@@ -6,6 +6,11 @@ from zope.globalrequest import getRequest
 import transaction
 
 
+def default_pre_handler(answers: dict) -> dict:
+    """Process answers before creating a new site."""
+    return answers
+
+
 def default_handler(
     distribution: Distribution, site: PloneSite, answers: dict
 ) -> PloneSite:
