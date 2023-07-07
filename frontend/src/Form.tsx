@@ -27,7 +27,7 @@ const FormGenerator = ({
         schema={schema}
         uiSchema={uiSchema}
         validator={validator}
-        showErrorList={false}
+        showErrorList={'top'}
         // @ts-ignore
         onChange={onChange}
         formData={formData}
