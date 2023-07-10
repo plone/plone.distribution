@@ -11,7 +11,10 @@
   <include package="plone.rest" />
   <include package="plone.restapi" />
 
+  <includeOverrides file="overrides.zcml" />
+
   <include package=".auth" />
   <include package=".sites" />
+  <include package=".system" />
 
 </configure>

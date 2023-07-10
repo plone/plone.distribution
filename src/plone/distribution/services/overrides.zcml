@@ -1,0 +1,29 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    >
+
+  <include
+      package="plone.restapi.services.system"
+      file="configure.zcml"
+      />
+
+  <include
+      package="z3c.unconfigure"
+      file="meta.zcml"
+      />
+
+  <unconfigure>
+
+    <plone:service
+        method="GET"
+        factory="plone.restapi.services.system.get.SystemGet"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="plone.app.controlpanel.Overview"
+        name="@system"
+        />
+
+
+  </unconfigure>
+
+</configure>
