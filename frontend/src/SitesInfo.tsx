@@ -56,15 +56,19 @@ const SitesInfo = () => {
             />
           </Portal>
         )}
-        {sites ? (
+        {sites?.length > 0 ? (
           <div className={'sites'}>
             <h2>Sites</h2>
+            <hr />
+            <h3>Existing Sites</h3>
             <Sites sites={sites} />
           </div>
         ) : null}
-        {distributions ? (
+        {distributions?.length > 0 ? (
           <div className={'distributions'}>
-            <h2>Create a new site using a distribution</h2>
+            <h2>Create a new site</h2>
+            <hr />
+            <h3>Available distributions</h3>
             <Distributions
               distributions={distributions}
               can_manage={can_manage}
