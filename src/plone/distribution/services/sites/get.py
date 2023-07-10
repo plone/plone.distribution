@@ -69,6 +69,8 @@ class SitesGet(Service):
         response = []
         sites = site_api.get_sites(self.context)
         for site in sites:
+            dist_report = site_api.get_creation_report(site)
+            distribution_name = dist_report.name if dist_report else ""
             response.append(
                 {
                     "@id": site.absolute_url(),
@@ -77,6 +79,7 @@ class SitesGet(Service):
                     "description": site.description,
                     "creation_date": site.CreationDate(),
                     "needs_upgrade": _is_outdated(site),
+                    "distribution": distribution_name,
                 }
             )
         return response

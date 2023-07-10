@@ -1,0 +1,103 @@
+.container-fluid.logo {
+  padding: 2rem;
+}
+
+.distributions {
+  padding: 1rem 0 1rem 0;
+}
+
+.distributionsList {
+  padding: 1rem 0 1rem 0;
+}
+
+.card {
+  border-radius: 10px;
+  width: 100%;
+  margin: 3px;
+}
+
+.card .image-box {
+  overflow: hidden;
+}
+
+.distributionName {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 99;
+}
+
+.card .card-img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 0.8;
+  -webkit-transition:all .9s ease;
+  -moz-transition:all .9s ease;
+  -o-transition:all .9s ease;
+  -ms-transition:all .9s ease;
+  transition:all .9s ease;
+  width: 100%;
+}
+
+.card:hover {
+  background: #fff;
+  box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.50);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  margin-bottom: 5px;
+}
+
+.distributionsList .card:hover .card-img {
+  opacity: 0.7;
+  -webkit-transform:scale(1.15);
+  -moz-transform:scale(1.15);
+  -ms-transform:scale(1.15);
+  -o-transform:scale(1.15);
+  transform:scale(1.15);
+}
+
+.card .card-body {
+  text-align: center;
+}
+
+.card .card-body .card-title {
+  color: #005b85;
+}
+
+#add-site-form.loading form.rjsf, #add-site-form.error form.rjsf {
+  opacity: 0.3;
+}
+
+#add-site-form.loading .spinner-border.text-primary {
+  position: absolute;
+  top: 40%;
+  left: 47%;
+  width: 3.5rem;
+  height: 3.5rem;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+#add-site-form.active .spinner-border, #add-site-form.error .spinner-border {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+#add-site-form .fade.toast.show {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  visibility: visible;
+  height: 100px;
+  z-index: 99;
+  opacity: 1;
+}

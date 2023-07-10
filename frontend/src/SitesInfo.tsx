@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { getDistributionsQuery } from './queries';
+import Distributions from './Distributions';
 import Sites from './Sites';
 import LoginModal from './LoginModal';
 import { Portal } from 'react-portal';
@@ -23,7 +24,9 @@ const SitesInfo = () => {
   };
 
   const handleClick = async (can_manage: boolean, name: string) => {
-    const href = `/@@ploneAddSite?distribution=${name}`;
+    const href = import.meta.env.PROD
+      ? `/@@ploneAddSite?distribution=${name}`
+      : `/?distribution=${name}`;
     if (can_manage) {
       // Redirect
       window.location.href = href;
@@ -42,7 +45,7 @@ const SitesInfo = () => {
   if (isError) return <>{'An error has occurred: ' + error}</>;
 
   if (data) {
-    const { sites, can_manage } = data;
+    const { sites, distributions, can_manage } = data;
     return (
       <>
         {showLoginModal && (
@@ -53,33 +56,20 @@ const SitesInfo = () => {
             />
           </Portal>
         )}
-        <h1>Plone is up and running.</h1>
-        <Sites sites={sites} />
-        <h2 className="my-4">Create a new site using a distribution:</h2>
-        {data?.distributions ? (
-          <div className="row">
-            {data.distributions.map((distribution) => (
-              <div className="col-sm-4" key={distribution.name}>
-                <div className="card">
-                  <img
-                    src={distribution.image}
-                    className="card-img-top"
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{distribution.title}</h5>
-                    <p className="card-text">{distribution.description}</p>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() => handleClick(can_manage, distribution.name)}
-                    >
-                      Create
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
+        {sites ? (
+          <div className={'sites'}>
+            <h2>Sites</h2>
+            <Sites sites={sites} />
+          </div>
+        ) : null}
+        {distributions ? (
+          <div className={'distributions'}>
+            <h2>Create a new site using a distribution</h2>
+            <Distributions
+              distributions={distributions}
+              can_manage={can_manage}
+              handler={handleClick}
+            />
           </div>
         ) : null}
         {!can_manage &&

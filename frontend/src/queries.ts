@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { RJSFSchema, UiSchema } from '@rjsf/utils';
+
+axios.defaults.headers.common['Accept'] = 'application/json';
 
 export type Distribution = {
   '@id': string;
@@ -14,6 +17,7 @@ export type Site = {
   description: string;
   title: string;
   needs_upgrade: string;
+  distribution: string;
 };
 
 type SitesEndpoint = {
@@ -38,15 +42,9 @@ export type SitesEndpointDistributionDetail = {
 };
 
 const getDistributions = async (): Promise<SitesEndpoint> => {
-  const response = await fetch('/@sites', {
-    headers: {
-      Accept: 'application/json',
-    },
-  });
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
+  const response = await axios.get('/@sites');
+  const data = await response.data;
+  return data;
 };
 
 export const getDistributionsQuery = () => ({
@@ -57,15 +55,9 @@ export const getDistributionsQuery = () => ({
 const getDistribution = async (
   name: string,
 ): Promise<SitesEndpointDistributionDetail> => {
-  const response = await fetch('/@sites/' + name, {
-    headers: {
-      Accept: 'application/json',
-    },
-  });
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
+  const response = await axios.get(`/@sites/${name}`);
+  const data = await response.data;
+  return data;
 };
 
 export const getDistributionQuery = (name: string) => ({
@@ -106,3 +98,9 @@ export const getDistributionQuery = (name: string) => ({
     return newData;
   },
 });
+
+export const addSite = async (body: string): Promise<Site> => {
+  const response = await axios.post(`/@sites/`, body);
+  const data = await response.data;
+  return data;
+};
