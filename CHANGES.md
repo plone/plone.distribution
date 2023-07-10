@@ -9,6 +9,16 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0b1 (2023-07-10)
+
+
+### New features:
+
+- Validate answers payload against jsonschema [@ericof] #38
+- Allow distribution to pre process answers before site creation [@ericof] #39
+- Override @system from plone.restapi to display distribution information [@ericof] #45
+
+
 ## 1.0.0a9 (2023-06-27)
 
 
