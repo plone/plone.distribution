@@ -2,14 +2,13 @@ from App.config import getConfiguration
 from collective.exportimport import config
 from collective.exportimport import import_content
 from collective.exportimport.import_content import ImportContent as BaseImportView
-from logging import getLogger
 from pathlib import Path
 from plone import api
+from plone.distribution import logger
+from plone.distribution.exportimport import helpers
+from plone.distribution.exportimport.interfaces import ExportFormat
 from Products.Five import BrowserView
 from typing import List
-
-
-logger = getLogger(__name__)
 
 
 class ImportAll(BrowserView):
@@ -24,7 +23,7 @@ class ImportAll(BrowserView):
         elif path:
             # path the config that is usually set via env-variables
             config.CENTRAL_DIRECTORY = str(path)
-            import_content.BLOB_HOME = str(path)
+            import_content.BLOB_HOME = config.CENTRAL_DIRECTORY
         else:
             # Fallback to default (e.g. var/instance/import)
             cfg = getConfiguration()
@@ -32,25 +31,25 @@ class ImportAll(BrowserView):
 
         view = api.content.get_view(self.CONTENT_VIEW, self.context, request)
         request.form["form.submitted"] = True
-        # Add content
-        request.form["commit"] = 500
-        view(server_file="content.json", return_json=True)
-
-        # Update the existing portal obj using the update-strategy
+        # Update the existing content using the update-strategy
         request.form["handle_existing_content"] = 2
-        view(server_file="portal.json", return_json=True)
+        # Commit every 500 items
+        request.form["commit"] = 500
+        is_one_file = helpers.sniff_export_format(path) == ExportFormat.ONE_FILE
+        if is_one_file:
+            file_names = [
+                "content.json",
+                "portal.json",
+            ]
+            for file_name in file_names:
+                view(server_file=file_name, return_json=True)
+                logger.info(f"Imported {file_name[:-4]}")
+        else:
+            directory = path / "items"
+            view(server_directory=directory, return_json=True)
+            logger.info(f"Imported content from {directory}")
 
-        other_imports = [
-            "relations",
-            "members",
-            "translations",
-            "localroles",
-            "ordering",
-            "defaultpages",
-            "discussion",
-            "portlets",
-            "redirects",
-        ]
+        other_imports = [step[0] for step in helpers.ALL_EXPORT_STEPS]
         for name in other_imports:
             view = api.content.get_view(f"import_{name}", self.context, request)
             importfile = path / f"{name}.json"
@@ -66,6 +65,7 @@ class ImportAll(BrowserView):
 class ImportContent(BaseImportView):
     languages: List[str]
     default_language: str
+    portal_id: str
 
     def __call__(
         self,
@@ -74,7 +74,9 @@ class ImportContent(BaseImportView):
         limit=None,
         server_file=None,
         iterator=None,
+        server_directory=False,
     ):
+        self.portal_uid = api.content.get_uuid(api.portal.get())
         self.default_language = api.portal.get_registry_record(
             "plone.default_language", default="en"
         )
@@ -84,9 +86,13 @@ class ImportContent(BaseImportView):
                 "en",
             ],
         )
-        return super().__call__(jsonfile, return_json, limit, server_file, iterator)
+        return super().__call__(
+            jsonfile, return_json, limit, server_file, iterator, server_directory
+        )
 
-    def global_dict_hook(self, item):
+    def global_dict_hook(self, item: dict) -> dict:
+        if item["@type"] == "Plone Site":
+            item["UID"] = self.portal_uid
         # Fix Language
         current = item.get("language")
         if current not in self.languages:

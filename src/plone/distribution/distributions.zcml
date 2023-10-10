@@ -16,6 +16,7 @@
       name="classic"
       title="Plone Site (Classic UI)"
       description="A Plone Site with Classic UI."
+      headless="false"
       />
 
 </configure>

@@ -33,6 +33,7 @@ Then declare the distributions included in your package using the `plone:distrib
 | `pre_handler` | Callable function to process answers before site creation |  | no |
 | `handler` | Callable function used by `plone.distribution` to handle site creation |  | no |
 | `post_handler` | Callable function used to make adjustments after site is created  |  | no |
+| `headless` | Flag indicating if this is a headless distribution of Plone  | true | no |
 
 ## Examples
 
