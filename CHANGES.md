@@ -9,6 +9,15 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0b2 (2023-10-11)
+
+
+### New features:
+
+- Remove old blobs before exporting content [@ericof] #34
+- Support to new export/import format with one content item per json file [@ericof] #47
+
+
 ## 1.0.0b1 (2023-07-10)
 
 
