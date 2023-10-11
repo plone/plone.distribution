@@ -18,3 +18,12 @@ test_runner = "pytest"
 test_path = "/tests"
 use_mxdev = true
 test_deps_additional = ""
+
+[github]
+jobs = [
+    "qa",
+    "test",
+    "coverage",
+    "dependencies",
+    "release_ready",
+    ]
