@@ -75,7 +75,7 @@ This file needs to contain two keys.
 `base`
 :   A list of profiles installed in every new site using this distribution.
 `content`
-:   A list of profiles installed when the user decides to create a site with example content.
+:  **Deprecated** A list of profiles installed when the user decides to create a site with example content.
 
 The configuration for a new Volto site is the following.
 
@@ -86,9 +86,6 @@ The configuration for a new Volto site is the following.
     "plone.app.caching:default",
     "plonetheme.barceloneta:default",
     "plone.volto:default"
-  ],
-  "content": [
-    "plone.volto:default-homepage"
   ]
 }
 ```
@@ -173,3 +170,54 @@ and `portal_timezone`.
 
 Both definitions are added in runtime by `plone.distribution` to provide a list of languages and timezones available on the installation.
 ````
+
+### `content`
+
+Folder containing content and settings to be imported if the user selects `setup_content` during site creation.
+
+#### `content/items`
+
+Sub-folder with JSON files representing the content to be imported during site creation. Each JSON file represent one content item, including the site root.
+
+References to image and file blobs in each file would point to `content/blobs`.
+
+#### `content/blobs`
+
+Sub-folder with blob files used during content creation.
+
+#### `content/discussion.json`
+
+Contains comments on content items.
+
+#### `content/ordering.json`
+
+Contains ordering information, in folderish items, of content items.
+
+#### `content/redirects.json`
+
+Contains information about redirects to be created.
+
+
+#### `content/relations.json`
+
+Information about relations between contents.
+
+#### `content/translations.json`
+
+Information about translations of contents.
+
+#### `content/members.json`
+
+Contains information about users to be created during content creation.
+
+#### `content/localroles.json`
+
+Contains information about local roles to be set during content creation.
+
+#### `content/defaultpages.json`
+
+Contains information about default pages on folderish content. **Only available for non-headless distributions**
+
+#### `content/portlets.json`
+
+Contains information about portlets. **Only available for non-headless distributions**

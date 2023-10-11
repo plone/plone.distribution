@@ -66,6 +66,12 @@ class IRegisterDistributionDirective(Interface):
         required=False,
     )
 
+    headless = zope.schema.Bool(
+        title="Headless",
+        description="Check if distribution is headless (no server side templates)",
+        default=True,
+    )
+
 
 def _check_function(name: str, product: str, func: FunctionType = None) -> FunctionType:
     if func and not isinstance(func, FunctionType):
@@ -86,6 +92,7 @@ def register_distribution(
     pre_handler=None,
     handler=None,
     post_handler=None,
+    headless=True,
 ):
     """Add a new distribution to the registry."""
     product = _context.package.__name__
@@ -103,7 +110,14 @@ def register_distribution(
     post_handler = _check_function("post_handler", product, post_handler)
 
     distribution = Distribution(
-        name, title, description, directory, pre_handler, handler, post_handler
+        name,
+        title,
+        description,
+        directory,
+        pre_handler,
+        handler,
+        post_handler,
+        headless,
     )
 
     _context.action(

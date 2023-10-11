@@ -11,71 +11,106 @@
 
       <h1 class="documentFirstHeading"
           i18n:translate=""
-      >Export current site to a distribution</h1>
+      >Export current site contents to
+        <span tal:content="view/distribution/title"
+              i18n:name="distribution_title"
+        ></span></h1>
 
-      <p class="documentDescription"
-         i18n:translate=""
-      >Exports the site as json.</p>
+      <p class="documentDescription">
+        <span i18n:translate="">Content will be exported to</span>
+        <span tal:content="view/directory">/foo/bar</span>
 
-      <form action="@@export_dist_all"
-            enctype="multipart/form-data"
-            method="post"
-            tal:attributes="
-              action request/URL;
-            "
-      >
-
-        <div class="field mb-3">
-          <div class="form-check"
-               tal:repeat="dist python: view.distributions()"
-          >
-            <input class="form-check-input"
-                   id="default"
-                   name="distribution"
-                   type="radio"
-                   value="default"
-                   tal:attributes="
-                     value python: dist.name;
-                     id python: dist.name;
-                   "
-            />
-            <label class="form-check-label"
-                   for="default"
-                   tal:content="python: dist.title"
-                   tal:attributes="
-                     for python: dist.name;
-                   "
-                   i18n:translate=""
-            >
-                  Profile title
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <input name="form.submitted"
-                 type="hidden"
-                 value="1"
-          />
-
-          <button class="btn btn-primary submit-widget button-field context"
-                  name="submit"
-                  type="submit"
-                  value="export"
-                  i18n:translate=""
-          >Export all
-          </button>
-        </div>
-
-        <div metal:use-macro="context/@@exportimport_links/links"
-             i18n:translate=""
+        <form action="@@export_dist_all"
+              enctype="multipart/form-data"
+              method="post"
+              tal:attributes="
+                action request/URL;
+              "
         >
-              Links to all exports and imports
-        </div>
 
-      </form>
+          <div class="field mb-3">
+            <label for="exports"
+                   i18n:translate=""
+            >Export steps</label>
+            <div class="form-check">
+              <input class="form-check-input"
+                     id="contents"
+                     checked="true"
+                     name="exports:list"
+                     onclick="return false;"
+                     type="checkbox"
+                     value="contents"
+              />
+              <label class="form-check-label"
+                     for="contents"
+                     i18n:translate=""
+              >
+                  Contents
+              </label>
+            </div>
+            <div class="form-check"
+                 tal:repeat="step view/other_exports"
+            >
+              <input class="form-check-input"
+                     id="default"
+                     name="exports:list"
+                     type="checkbox"
+                     value="default"
+                     tal:attributes="
+                       value step/name;
+                       id step/name;
+                       checked step/selected;
+                     "
+              />
+              <label class="form-check-label"
+                     for="default"
+                     tal:content="python: step.name"
+                     tal:attributes="
+                       for python: step.name;
+                     "
+              >
+                  Export Step Name
+              </label>
+            </div>
+          </div>
 
-    </tal:main-macro>
+          <div class="form-group">
+            <div class="field mb-3">
+              <label for="download_to_server"
+                     i18n:translate=""
+              >Export format</label>
+              <div class="widget">
+                <select class=""
+                        name="download_to_server:int"
+                >
+                  <option value="2"
+                          i18n:translate=""
+                  >Save each item as a separate file in the distribution</option>
+                  <option value="1"
+                          i18n:translate=""
+                  >Save all items to a single file in the distribution</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input name="form.submitted"
+                   type="hidden"
+                   value="1"
+            />
+
+            <button class="btn btn-primary submit-widget button-field context"
+                    name="submit"
+                    type="submit"
+                    value="export"
+                    i18n:translate=""
+            >Export all
+            </button>
+          </div>
+
+        </form>
+
+      </p></tal:main-macro>
   </div>
 
 </html>

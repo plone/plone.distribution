@@ -22,6 +22,7 @@ class Distribution:
     pre_handler: Optional[Callable]
     handler: Optional[Callable]
     post_handler: Optional[Callable]
+    headless: bool
     _schema: dict
     _profiles: dict
 
@@ -34,6 +35,7 @@ class Distribution:
         pre_handler: Optional[Callable] = None,
         handler: Optional[Callable] = None,
         post_handler: Optional[Callable] = None,
+        headless: bool = True,
     ):
         """Initialize a Plone Distribution."""
         self.name = name
@@ -43,6 +45,7 @@ class Distribution:
         self.pre_handler = pre_handler
         self.handler = handler
         self.post_handler = post_handler
+        self.headless = headless
         schema_file = self.directory / "schema.json"
         raw_schema = DEFAULT_SCHEMA
         if schema_file.exists():

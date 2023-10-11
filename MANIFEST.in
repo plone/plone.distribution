@@ -5,6 +5,7 @@ global-exclude *.pyc
 include pyproject.toml
 recursive-exclude news *
 exclude .coverage
+exclude constraints-mxdev.txt
 exclude requirements-mxdev.txt
 exclude pyvenv.cfg
 recursive-exclude frontend *
