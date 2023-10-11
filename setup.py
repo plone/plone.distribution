@@ -51,7 +51,7 @@ setup(
         "setuptools",
         "z3c.unconfigure",
         "jsonschema",
-        "collective.exportimport>=1.9",
+        "collective.exportimport>=1.10",
     ],
     extras_require={
         "test": [
