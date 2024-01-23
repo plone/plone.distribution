@@ -86,6 +86,43 @@ Then declare the distributions included in your package:
 
 The registered distribution will configure a Personal Blog, with some default content.
 
+#### distribution handlers
+
+When registering a distribution, you can provide a `pre_handler`, a `handler` and a `post_handler` which must be
+functions with the following signatures.
+
+```python
+def pre_handler(answers: dict) -> dict:
+    return answers
+
+def handler(distribution: Distribution, site, answers: dict):
+    return site
+
+def post_handler(distribution: Distribution, site, answers: dict):
+    return site
+```
+
+Each of those handlers will be called in this way:
+
+- `pre_handler`: it will process the answers to do modifications on them before creating the site
+- `handler`: it will be run after the bare Plone site will be created but instead of the default handler that installs the required GenericSetup profiles and creates the content.
+- `post_handler`: it will be run after the site is setup.
+
+So if you have added some extra fields in the Plone site creation form and want to do some extra configuration in the
+Plone site, you can add your own handler and register as follows:
+
+```xml
+
+  <plone:distribution
+      name="blog"
+      title="Personal Blog"
+      description="A Plone site already configured to host a personal Blog."
+      directory="distributions/blog"
+      post_handler=".handlers.blog.post_handler"
+      />
+
+```
+
 ### distribution folder
 
 A convention is to use the `distributions/<distribution_name>`folder in the root of your package to organize your distribution configuration.
