@@ -175,7 +175,7 @@ Add your add-on, such as `collective.person`, to your `setup.py`:
     ],
 ```
 
-Add it to your dependencies.zcml:
+Add it to your `dependencies.zcml`:
 
 ```xml
   <!-- List all packages you depend here -->
