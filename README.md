@@ -177,7 +177,7 @@ Add your add-on, such as `collective.person`, to your `setup.py`:
 
 Add it to your dependencies.zcml:
 
-```
+```xml
   <!-- List all packages you depend here -->
   <include package="plone.volto" />
   <include package="plone.restapi" />
