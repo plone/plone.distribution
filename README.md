@@ -189,7 +189,7 @@ Add it to your `dependencies.zcml`:
 
 Add it to your `profiles.json`:
 
-```
+```json
   "base": [
     "plone.app.contenttypes:default",
     "plone.app.caching:default",
