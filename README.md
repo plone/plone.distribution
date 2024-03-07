@@ -165,7 +165,7 @@ If you want to add a Plone backend add-on to your Plone distribution, then you m
 
 Add your add-on, such as `collective.person`, to your `setup.py`:
 
-```
+```python
     install_requires=[
         "setuptools",
         "Plone",
