@@ -4,11 +4,14 @@ from collective.exportimport import import_content
 from collective.exportimport.import_content import ImportContent as BaseImportView
 from pathlib import Path
 from plone import api
+from plone.dexterity.content import DexterityContent
+from plone.dexterity.interfaces import IDexterityFTI
 from plone.distribution import logger
 from plone.distribution.exportimport import helpers
 from plone.distribution.exportimport.interfaces import ExportFormat
 from Products.Five import BrowserView
 from typing import List
+from zope.component import queryUtility
 
 
 class ImportAll(BrowserView):
@@ -76,7 +79,7 @@ class ImportContent(BaseImportView):
         iterator=None,
         server_directory=False,
     ):
-        self.portal_uid = api.content.get_uuid(api.portal.get())
+        self.portal = api.portal.get()
         self.default_language = api.portal.get_registry_record(
             "plone.default_language", default="en"
         )
@@ -91,10 +94,31 @@ class ImportContent(BaseImportView):
         )
 
     def global_dict_hook(self, item: dict) -> dict:
-        if item["@type"] == "Plone Site":
-            item["UID"] = self.portal_uid
         # Fix Language
         current = item.get("language")
         if current not in self.languages:
             item["language"] = self.default_language
         return item
+
+    def dict_hook_plonesite(self, item: dict) -> dict:
+        """The Plone Site object exists already so it is updated.
+        We keep id and UID of the existing object."""
+        item["UID"] = api.content.get_uuid(obj=self.portal)
+        item["@id"] = f"/{self.portal.id}"
+        item["id"] = self.portal.id
+        return item
+
+    def obj_hook_plonesite(self, obj: DexterityContent, item: dict) -> None:
+        """IBlocks(obj) does not work yet at this point, so we have to
+        force the blocks onto the object if Plone Site has the behavior.
+        """
+        fti = queryUtility(IDexterityFTI, name="Plone Site")
+        if (
+            fti
+            and "volto.blocks" in fti.behaviors
+            and "blocks" in item
+            and "blocks_layout" in item
+        ):
+            obj.blocks = item["blocks"]
+            obj.blocks_layout = item["blocks_layout"]
+        return

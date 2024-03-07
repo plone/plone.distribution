@@ -132,7 +132,4 @@ class ExportContent(BaseExportView):
         if item["@type"] == "Plone Site":
             # To avoid a conflict between @id and id
             item["@id"] = f"/{item['id']}"
-        if "blocks" in item:
-            blocks = item["blocks"]
-            item["blocks"] = helpers.parse_blocks(blocks)
         return item
