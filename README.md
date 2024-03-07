@@ -161,7 +161,7 @@ The configuration for a new Volto site is:
 
 #### How to add an add-on
 
-If you want to add a Plone backend add-on to your Plone distribution you have to:
+If you want to add a Plone backend add-on to your Plone distribution, then you must perform the following steps.
 
 Add your add on (e.g. collective.person) to your setup.py:
 
