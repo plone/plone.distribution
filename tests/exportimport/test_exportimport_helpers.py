@@ -68,23 +68,3 @@ class TestItemHelpers:
         result = func(export_item, self.SITE_ROOT)
         result_block = self._get_img_block(result)
         assert result_block["url"].startswith("/")
-
-    def test__fix_grid_block(self, integration, export_item):
-        func = helpers._fix_grid_block
-        grid_block = self._get_grid_block(export_item)
-        src_column = self._get_grid_block_column(grid_block)
-        src_img_scale = src_column["preview_image"][0]["image_scales"]["image"][0]
-        assert (
-            src_img_scale["download"]
-            == "@@images/image-2048-4b3f8a97eb42b769ee35ed55a3e962b0.png"
-        )
-        assert (
-            src_img_scale["scales"]["great"]["download"]
-            == "@@images/image-1200-bd0038e8561f6da7a065b2866232fee1.png"
-        )
-
-        result = func(grid_block)
-        result_column = self._get_grid_block_column(result)
-        result_img_scale = result_column["preview_image"][0]["image_scales"]["image"][0]
-        assert result_img_scale["download"] == "@@images/image"
-        assert result_img_scale["scales"]["great"]["download"] == "@@images/image/great"

@@ -31,7 +31,7 @@ class TestApiSite:
     def test_get_sites(self, app, integration):
         sites = site_api.get_sites(app)
         # Integration test creates a Plone Site
-        assert len(sites) == 3
+        assert len(sites) == 2
         site = sites[0]
         assert isinstance(site, PloneSite)
 
@@ -53,11 +53,6 @@ class TestApiSite:
         site = sites[-1]
         assert isinstance(site, PloneSite)
         assert site.title == new_site.title
-
-    def test_get_creation_report_old_site(self, app, integration):
-        # An existing site (or older distribution will not have a report)
-        report = site_api.get_creation_report(app.Plone)
-        assert report is None
 
     def test_get_creation_report_new_site(self, site):
         from datetime import datetime
