@@ -159,6 +159,47 @@ The configuration for a new Volto site is:
 }
 ```
 
+#### How to add an add-on
+
+If you want to add a Plone backend add-on to your Plone distribution you have to:
+
+Add your add on (e.g. collective.person) to your setup.py:
+
+```
+    install_requires=[
+        "setuptools",
+        "Plone",
+        "plone.distribution>=1.0.0b2",
+        "plone.api",
+        "collective.person",
+    ],
+```
+
+Add it to your dependencies.zcml:
+
+```
+  <!-- List all packages you depend here -->
+  <include package="plone.volto" />
+  <include package="plone.restapi" />
+  <include package="collective.person" />
+  <include package="plone.distribution" />
+
+</configure>
+```
+
+Add it to your profiles.json:
+
+```
+  "base": [
+    "plone.app.contenttypes:default",
+    "plone.app.caching:default",
+    "plone.restapi:default",
+    "plone.volto:default",
+    "collective.person:default",
+    "plonetheme.barceloneta:default"
+  ],
+```
+
 ### `schema.json`
 
 In case you require additional input from the user during site creation, you can customize the form using the `schema.json` file.
