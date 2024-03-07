@@ -106,6 +106,8 @@ class ImportContent(BaseImportView):
         item["UID"] = api.content.get_uuid(obj=self.portal)
         item["@id"] = f"/{self.portal.id}"
         item["id"] = self.portal.id
+        item["title"] = self.portal.title
+        item["description"] = self.portal.description
         return item
 
     def obj_hook_plonesite(self, obj: DexterityContent, item: dict) -> None:
