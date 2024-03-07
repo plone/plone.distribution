@@ -46,7 +46,7 @@ class TestServicesSitesGET(TestServicesSite):
         data = response.json()
         sites = data["sites"]
         assert isinstance(sites, list)
-        assert len(sites) == 3
+        assert len(sites) == 2
         assert sites[0]["id"] == "plone"
         assert sites[0]["needs_upgrade"] is False
 
