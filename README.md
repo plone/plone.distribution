@@ -187,7 +187,7 @@ Add it to your `dependencies.zcml`:
 </configure>
 ```
 
-Add it to your profiles.json:
+Add it to your `profiles.json`:
 
 ```
   "base": [
