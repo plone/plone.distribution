@@ -9,6 +9,20 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0b3 (2024-03-08)
+
+
+### Bug fixes:
+
+- Fix importing blocks on the site-root.
+  [pbauer] #56
+
+
+### Internal:
+
+- Update configuration files.
+  [plone devs] 6e36bcc4
+
 ## 1.0.0b2 (2023-10-11)
 
 
