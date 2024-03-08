@@ -50,7 +50,7 @@ setup(
         "Plone",
         "Zope",
         "setuptools",
-        "collective.exportimport>=1.10",
+        "collective.exportimport>=1.12",
         "jsonschema",
         "plone.api",
         "plone.app.contentrules",
