@@ -1,6 +1,8 @@
 from pathlib import Path
 from plone.dexterity.interfaces import IDexterityContent
 from plone.distribution.exportimport.interfaces import IDistributionBlobsMarker
+from plone.namedfile.interfaces import INamedBlobFileField
+from plone.namedfile.interfaces import INamedBlobImageField
 from plone.namedfile.interfaces import INamedFileField
 from plone.namedfile.interfaces import INamedImageField
 from plone.restapi.interfaces import IFieldSerializer
@@ -16,7 +18,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-@adapter(INamedFileField, IDexterityContent, IDistributionBlobsMarker)
+@adapter(INamedBlobFileField, IDexterityContent, IDistributionBlobsMarker)
 @implementer(IFieldSerializer)
 class DistributionFileFieldSerializer(DefaultFieldSerializer):
     def __call__(self):
@@ -35,7 +37,13 @@ class DistributionFileFieldSerializer(DefaultFieldSerializer):
         return json_compatible(result)
 
 
-@adapter(INamedImageField, IDexterityContent, IDistributionBlobsMarker)
+@adapter(INamedFileField, IDexterityContent, IDistributionBlobsMarker)
+@implementer(IFieldSerializer)
+class DistributionSimpleFileFieldSerializer(DistributionFileFieldSerializer):
+    """Same as above but less specific field interface"""
+
+
+@adapter(INamedBlobImageField, IDexterityContent, IDistributionBlobsMarker)
 @implementer(IFieldSerializer)
 class DistributionImageFieldSerializer(DefaultFieldSerializer):
     def __call__(self):
@@ -55,6 +63,12 @@ class DistributionImageFieldSerializer(DefaultFieldSerializer):
             "blob_path": blob_path,
         }
         return json_compatible(result)
+
+
+@adapter(INamedImageField, IDexterityContent, IDistributionBlobsMarker)
+@implementer(IFieldSerializer)
+class DistributionSimpleImageFieldSerializer(DistributionImageFieldSerializer):
+    """Same as above but less specific field interface"""
 
 
 def export_blob(uid, fieldname, filename, data):

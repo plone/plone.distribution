@@ -43,5 +43,7 @@
   <!-- Serializers -->
   <adapter factory=".serializer.DistributionFileFieldSerializer" />
   <adapter factory=".serializer.DistributionImageFieldSerializer" />
+  <adapter factory=".serializer.DistributionSimpleFileFieldSerializer" />
+  <adapter factory=".serializer.DistributionSimpleImageFieldSerializer" />
 
 </configure>
