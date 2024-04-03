@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.0b4 (2024-04-03)
+
+
+### Bug fixes:
+
+- Fix exporting files.
+  [pbauer] #58
+
 ## 1.0.0b3 (2024-03-08)
 
 
