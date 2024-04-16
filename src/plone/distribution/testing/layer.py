@@ -33,7 +33,6 @@ class PloneDistributionFixture(PloneFixture):
     _distribution_products = (
         ("plone.app.contenttypes", {"loadZCML": True}),
         ("plone.restapi", {"loadZCML": True}),
-        ("collective.exportimport", {"loadZCML": True}),
         ("plone.volto", {"loadZCML": True, "silent": True}),
         ("plone.distribution", {"loadZCML": True}),
     )

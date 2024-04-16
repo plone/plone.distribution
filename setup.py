@@ -50,12 +50,12 @@ setup(
         "Plone",
         "Zope",
         "setuptools",
-        "collective.exportimport>=1.12",
         "jsonschema",
         "plone.api",
         "plone.app.contentrules",
         "plone.base",
         "plone.dexterity",
+        "plone.exportimport",
         "plone.i18n",
         "plone.namedfile",
         "plone.protect",
@@ -78,5 +78,8 @@ setup(
     },
     entry_points={
         "z3c.autoinclude.plugin": ["target = plone"],
+        "console_scripts": [
+            "export-distribution = plone.distribution.cli:export",
+        ],
     },
 )

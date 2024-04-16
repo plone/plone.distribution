@@ -1,7 +1,6 @@
-from plone import api
 from plone.distribution.core import Distribution
+from plone.exportimport.importers import get_importer
 from Products.CMFPlone.Portal import PloneSite
-from zope.globalrequest import getRequest
 
 import transaction
 
@@ -34,7 +33,6 @@ def default_handler(
         if content_json_path:
             # If there is no savepoint most tests fail with a PosKeyError
             transaction.savepoint(optimistic=True)
-            request = getRequest() or site.REQUEST
-            import_all = api.content.get_view("dist_import_all", site, request)
-            import_all(content_json_path)
+            importer = get_importer(site)
+            importer.import_site(content_json_path)
     return site

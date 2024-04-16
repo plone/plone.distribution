@@ -1,5 +1,4 @@
 from plone.distribution.api import distribution as dist_api
-from plone.distribution.api import site as site_api
 from plone.restapi.services.system.get import SystemGet as BaseService
 
 import pkg_resources
@@ -13,7 +12,7 @@ class SystemGet(BaseService):
         """Get distribution information if site was created with a distribution."""
         info = ""
         portal = self.context
-        report = site_api.get_creation_report(portal)
+        report = dist_api.get_creation_report(portal)
         if report:
             dist_name = report.name
             try:

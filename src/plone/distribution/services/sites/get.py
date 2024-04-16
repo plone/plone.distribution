@@ -69,7 +69,7 @@ class SitesGet(Service):
         response = []
         sites = site_api.get_sites(self.context)
         for site in sites:
-            dist_report = site_api.get_creation_report(site)
+            dist_report = dist_api.get_creation_report(site)
             distribution_name = dist_report.name if dist_report else ""
             response.append(
                 {

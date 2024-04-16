@@ -53,14 +53,3 @@ class TestApiSite:
         site = sites[-1]
         assert isinstance(site, PloneSite)
         assert site.title == new_site.title
-
-    def test_get_creation_report_new_site(self, site):
-        from datetime import datetime
-        from plone.distribution.core import SiteCreationReport
-
-        report = site_api.get_creation_report(site)
-        assert isinstance(report, SiteCreationReport)
-        assert report.name == "default"
-        assert isinstance(report.date, datetime)
-        assert isinstance(report.answers, dict)
-        assert report.answers["title"] == site.title
