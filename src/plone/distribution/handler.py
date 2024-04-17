@@ -1,3 +1,4 @@
+from plone.dexterity.schema import SCHEMA_CACHE
 from plone.distribution.core import Distribution
 from plone.exportimport.importers import get_importer
 from Products.CMFPlone.Portal import PloneSite
@@ -33,6 +34,9 @@ def default_handler(
         if content_json_path:
             # If there is no savepoint most tests fail with a PosKeyError
             transaction.savepoint(optimistic=True)
+            # Invalidate the schema cache to make sure we get up to date behaviors.
+            # Normally this happens on commit, but we didn't commit yet.
+            SCHEMA_CACHE.clear()
             importer = get_importer(site)
             importer.import_site(content_json_path)
     return site
