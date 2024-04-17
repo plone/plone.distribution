@@ -1,14 +1,13 @@
 from pathlib import Path
 from plone import api
-from plone.distribution.api import site as site_api
 from plone.distribution.core import Distribution
 from plone.distribution.core import SiteCreationReport
 from plone.distribution.registry import _distribution_registry
 from plone.distribution.registry import DistributionRegistry
 from Products.CMFPlone.Portal import PloneSite
-from zope.annotation.interfaces import IAnnotations
 from typing import List
 from typing import Union
+from zope.annotation.interfaces import IAnnotations
 
 import os
 

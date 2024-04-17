@@ -28,8 +28,6 @@ _TOOL_ID = "portal_setup"
 _DEFAULT_PROFILE = "Products.CMFPlone:plone"
 
 
-
-
 def _handlers_for_distribution(distribution: Distribution):
     """Return pre_handler, handler and post_handler for a distribution."""
     pre_handler = (

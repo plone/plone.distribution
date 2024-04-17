@@ -40,7 +40,6 @@ class TestApiDistribution:
             dist_api.get(name=name)
         assert f"No distribution named {name}" in str(exc)
 
-
     def test_get_creation_report_new_site(self, site):
         from datetime import datetime
         from plone.distribution.core import SiteCreationReport
