@@ -1,6 +1,6 @@
 from plone.app.testing import SITE_OWNER_NAME
 from plone.app.testing import SITE_OWNER_PASSWORD
-from plone.distribution.api.site import SITE_REPORT_ANNO
+from plone.distribution.api.distribution import SITE_REPORT_ANNO
 from plone.restapi.testing import RelativeSession
 from zope.annotation.interfaces import IAnnotations
 
