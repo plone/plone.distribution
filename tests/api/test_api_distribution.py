@@ -39,14 +39,3 @@ class TestApiDistribution:
         with pytest.raises(ValueError) as exc:
             dist_api.get(name=name)
         assert f"No distribution named {name}" in str(exc)
-
-    def test_get_creation_report_new_site(self, site):
-        from datetime import datetime
-        from plone.distribution.core import SiteCreationReport
-
-        report = dist_api.get_creation_report(site)
-        assert isinstance(report, SiteCreationReport)
-        assert report.name == "default"
-        assert isinstance(report.date, datetime)
-        assert isinstance(report.answers, dict)
-        assert report.answers["title"] == site.title

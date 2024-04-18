@@ -39,4 +39,5 @@ def default_handler(
             SCHEMA_CACHE.clear()
             importer = get_importer(site)
             importer.import_site(content_json_path)
+            transaction.commit()
     return site
