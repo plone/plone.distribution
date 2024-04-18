@@ -53,6 +53,7 @@ class SiteCreate(Service):
             raise BadRequest("Error creating the site.")
         site_info = {
             "@id": site.absolute_url(),
+            "@type": site.portal_type,
             "id": site.id,
             "title": site.title,
             "description": site.description,

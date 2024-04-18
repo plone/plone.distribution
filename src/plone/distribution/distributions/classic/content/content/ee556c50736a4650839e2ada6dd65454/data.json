@@ -1,0 +1,104 @@
+{
+  "@id": "/news/aggregator",
+  "@type": "Collection",
+  "UID": "ee556c50736a4650839e2ada6dd65454",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2023-05-18T18:07:36+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    {
+      "title": "Title",
+      "token": "Title"
+    },
+    {
+      "title": "Creator",
+      "token": "Creator"
+    },
+    {
+      "title": "Type",
+      "token": "Type"
+    },
+    {
+      "title": "Last modified",
+      "token": "ModificationDate"
+    }
+  ],
+  "description": "Site News",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "aggregator",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "summary_view",
+  "limit": 1000,
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2023-05-18T18:07:36+00:00",
+  "parent": {
+    "@id": "/news",
+    "@type": "Folder",
+    "UID": "4053ffb6901342ac991afb54da15ab77",
+    "description": "Site News",
+    "image_field": null,
+    "image_scales": null,
+    "review_state": "published",
+    "title": "News",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "News Item"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "published"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "effective",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "News",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "simple_publication_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2023-05-18T18:07:36+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2023-05-18T18:07:36+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}
