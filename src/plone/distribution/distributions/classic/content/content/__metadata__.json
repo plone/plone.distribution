@@ -1,0 +1,74 @@
+{
+  "__version__": "1.0.0",
+  "_blob_files_": [],
+  "_data_files_": [
+    "plone_site_root/data.json",
+    "54163be595184b4eb0a0b82a58b8def8/data.json",
+    "ab584c1a6fae465da2283a0962f80114/data.json",
+    "61f6d382910945ea95f2e78a14ebb170/data.json",
+    "4053ffb6901342ac991afb54da15ab77/data.json",
+    "ee556c50736a4650839e2ada6dd65454/data.json"
+  ],
+  "default_page": {
+    "4053ffb6901342ac991afb54da15ab77": {
+      "default_page": "aggregator",
+      "default_page_uuid": "ee556c50736a4650839e2ada6dd65454"
+    },
+    "ab584c1a6fae465da2283a0962f80114": {
+      "default_page": "aggregator",
+      "default_page_uuid": "61f6d382910945ea95f2e78a14ebb170"
+    }
+  },
+  "local_roles": {
+    "4053ffb6901342ac991afb54da15ab77": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "54163be595184b4eb0a0b82a58b8def8": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "61f6d382910945ea95f2e78a14ebb170": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "ab584c1a6fae465da2283a0962f80114": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "ee556c50736a4650839e2ada6dd65454": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    },
+    "plone_site_root": {
+      "local_roles": {
+        "admin": [
+          "Owner"
+        ]
+      }
+    }
+  },
+  "ordering": {
+    "4053ffb6901342ac991afb54da15ab77": 42,
+    "54163be595184b4eb0a0b82a58b8def8": 44,
+    "61f6d382910945ea95f2e78a14ebb170": 0,
+    "ab584c1a6fae465da2283a0962f80114": 43,
+    "ee556c50736a4650839e2ada6dd65454": 0
+  },
+  "relations": []
+}

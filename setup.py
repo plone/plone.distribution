@@ -10,7 +10,7 @@ long_description = f"""
 
 setup(
     name="plone.distribution",
-    version="1.0.0b5.dev0",
+    version="2.0.0a1.dev0",
     description="Plone distribution support",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -50,14 +50,12 @@ setup(
         "Plone",
         "Zope",
         "setuptools",
-        "collective.exportimport>=1.12",
         "jsonschema",
         "plone.api",
-        "plone.app.contentrules",
         "plone.base",
         "plone.dexterity",
+        "plone.exportimport",
         "plone.i18n",
-        "plone.namedfile",
         "plone.protect",
         "plone.rest",
         "plone.restapi",
@@ -78,5 +76,8 @@ setup(
     },
     entry_points={
         "z3c.autoinclude.plugin": ["target = plone"],
+        "console_scripts": [
+            "export-distribution = plone.distribution.cli:export",
+        ],
     },
 )

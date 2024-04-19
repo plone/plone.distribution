@@ -52,6 +52,20 @@ assert isinstance(distribution, Distribution)
 assert distribution.title == "Plone Site"
 ```
 
+(api-distribution-get_creation_report-example)=
+
+### Get creation report for a site
+
+To get a report of the creation of the site use the method {meth}`api.distribution.get_creation_report`.
+
+```python
+from plone.distribution.api import distribution as dist_api
+
+site = app.Plone
+report = dist_api.get_creation_report(site)
+```
+
+
 ## `api.site`
 
 This section describes how to interface with the `site` module.
@@ -67,20 +81,6 @@ from plone.distribution.api import site as site_api
 
 
 sites = site_api.get_sites(app)
-```
-
-
-(api-site-get_creation_report-example)=
-
-### Get creation report for a site
-
-To get a report of the creation of the site use the method {meth}`api.site.get_creation_report`.
-
-```python
-from plone.distribution.api import site as site_api
-
-site = app.Plone
-report = site_api.get_creation_report(site)
 ```
 
 (api-site-create-example)=

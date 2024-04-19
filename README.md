@@ -281,7 +281,15 @@ Both definitions are added in runtime by `plone.distribution` to provide a list 
 
 ### `content` folder
 
-Folder containing JSON data exported using the `@@dist_export_all` browser view of this package.
+Folder containing JSON data representing this distribution's content.
+
+To export content from a site into this folder, use the `bin/export-distribution` script.
+
+```shell
+bin/export-distribution path/to/zope.conf Plone
+```
+
+(where Plone is the id of the Plone site to export)
 
 ## Advanced Usage
 

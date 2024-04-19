@@ -1,0 +1,104 @@
+{
+  "@id": "/events/aggregator",
+  "@type": "Collection",
+  "UID": "61f6d382910945ea95f2e78a14ebb170",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2023-05-18T18:07:36+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    {
+      "title": "Title",
+      "token": "Title"
+    },
+    {
+      "title": "Creator",
+      "token": "Creator"
+    },
+    {
+      "title": "Type",
+      "token": "Type"
+    },
+    {
+      "title": "Last modified",
+      "token": "ModificationDate"
+    }
+  ],
+  "description": "Site Events",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "exportimport.versions": {},
+  "id": "aggregator",
+  "is_folderish": false,
+  "item_count": 30,
+  "items_total": 0,
+  "language": "##DEFAULT##",
+  "layout": "event_listing",
+  "limit": 1000,
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "modified": "2023-05-18T18:07:36+00:00",
+  "parent": {
+    "@id": "/events",
+    "@type": "Folder",
+    "UID": "ab584c1a6fae465da2283a0962f80114",
+    "description": "Site Events",
+    "image_field": null,
+    "image_scales": null,
+    "review_state": "published",
+    "title": "Events",
+    "type_title": "Folder"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "Event"
+      ]
+    },
+    {
+      "i": "review_state",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "published"
+      ]
+    }
+  ],
+  "review_state": "published",
+  "rights": "",
+  "sort_on": "start",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": null,
+  "title": "Events",
+  "type_title": "Collection",
+  "version": "current",
+  "workflow_history": {
+    "simple_publication_workflow": [
+      {
+        "action": null,
+        "actor": "admin",
+        "comments": "",
+        "review_state": "private",
+        "time": "2023-05-18T18:07:36+00:00"
+      },
+      {
+        "action": "publish",
+        "actor": "admin",
+        "comments": "",
+        "review_state": "published",
+        "time": "2023-05-18T18:07:36+00:00"
+      }
+    ]
+  },
+  "working_copy": null,
+  "working_copy_of": null
+}

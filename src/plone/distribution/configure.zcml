@@ -5,13 +5,8 @@
     i18n_domain="plone"
     >
 
+  <include package="plone.exportimport" />
   <include file="meta.zcml" />
-
-  <include
-      package=".exportimport"
-      zcml:condition="installed collective.exportimport"
-      />
-
   <include file="distributions.zcml" />
 
   <include package=".browser" />

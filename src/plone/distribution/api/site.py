@@ -14,7 +14,6 @@ from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.Portal import PloneSite
 from Products.GenericSetup.tool import SetupTool
 from typing import List
-from typing import Union
 from ZODB.broken import Broken
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
@@ -27,9 +26,6 @@ import transaction
 
 _TOOL_ID = "portal_setup"
 _DEFAULT_PROFILE = "Products.CMFPlone:plone"
-
-
-SITE_REPORT_ANNO = "__plone_distribution_report__"
 
 
 def _handlers_for_distribution(distribution: Distribution):
@@ -88,7 +84,7 @@ def _add_report_to_site(site: PloneSite, distribution_name: str, answers: dict) 
     report = SiteCreationReport(
         distribution_name, datetime.now(tz=timezone.utc), answers
     )
-    annotations[SITE_REPORT_ANNO] = report
+    annotations[dist_api.SITE_REPORT_ANNO] = report
 
 
 def _create_site(
@@ -138,19 +134,6 @@ def get_sites(context=None) -> List[PloneSite]:
         elif obj.getId() in getattr(context, "_mount_points", {}):
             result.extend(get_sites(context=obj))
     return result
-
-
-def get_creation_report(site: PloneSite) -> Union[SiteCreationReport, None]:
-    """Return a site creation report for a Plone site.
-
-    :param site: Plone Site.
-    :returns: SiteCreationReport with distribution name, creation date and
-              answers used to create the site.
-
-    :Example: :ref:`api-site-get_creation_report-example`
-    """
-    annotations = IAnnotations(site)
-    return annotations.get(SITE_REPORT_ANNO, None)
 
 
 def create(
