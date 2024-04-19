@@ -175,28 +175,17 @@ Both definitions are added in runtime by `plone.distribution` to provide a list 
 
 Folder containing content and settings to be imported if the user selects `setup_content` during site creation.
 
-#### `content/items`
+#### `content/content`
 
-Sub-folder with JSON files representing the content to be imported during site creation. Each JSON file represent one content item, including the site root.
-
-References to image and file blobs in each file would point to `content/blobs`.
-
-#### `content/blobs`
-
-Sub-folder with blob files used during content creation.
+Contains data representing each content item to be imported during site creation. For each content item, there is a subfolder named with the item's UID, containing data.json as well as any blobs used by the item.
 
 #### `content/discussion.json`
 
 Contains comments on content items.
 
-#### `content/ordering.json`
-
-Contains ordering information, in folderish items, of content items.
-
 #### `content/redirects.json`
 
 Contains information about redirects to be created.
-
 
 #### `content/relations.json`
 
@@ -206,17 +195,9 @@ Information about relations between contents.
 
 Information about translations of contents.
 
-#### `content/members.json`
+#### `content/principals.json`
 
-Contains information about users to be created during content creation.
-
-#### `content/localroles.json`
-
-Contains information about local roles to be set during content creation.
-
-#### `content/defaultpages.json`
-
-Contains information about default pages on folderish content. **Only available for non-headless distributions**
+Contains information about users and groups to be created during content creation.
 
 #### `content/portlets.json`
 
