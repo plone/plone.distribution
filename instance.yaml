@@ -2,7 +2,6 @@ default_context:
     initial_user_name: 'admin'
     initial_user_password: 'admin'
 
-    load_zcml:
-        package_includes: ['plone.distribution']
+    zcml_package_includes: ['plone.distribution']
 
     db_storage: direct

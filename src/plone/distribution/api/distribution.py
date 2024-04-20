@@ -6,6 +6,7 @@ from plone.distribution.registry import _distribution_registry
 from plone.distribution.registry import DistributionRegistry
 from Products.CMFPlone.Portal import PloneSite
 from typing import List
+from typing import Optional
 from typing import Union
 from zope.annotation.interfaces import IAnnotations
 
@@ -82,13 +83,13 @@ def get_creation_report(site: PloneSite) -> Union[SiteCreationReport, None]:
     return annotations.get(SITE_REPORT_ANNO, None)
 
 
-def get_current_distribution(site: PloneSite = None) -> Distribution:
+def get_current_distribution(site: PloneSite = None) -> Optional[Distribution]:
     """Get the distribution used to create the current site."""
     if site is None:
         site = api.portal.get()
     creation_report = get_creation_report(site)
     dist = None
     if creation_report:
-        name = creation_report.answers.get("distribution", "")
+        name = creation_report.name or creation_report.answers.get("distribution", "")
         dist = get(name=name)
     return dist
