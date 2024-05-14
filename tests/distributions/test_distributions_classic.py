@@ -59,3 +59,7 @@ class TestDistributionDefault:
             with pytest.raises(WorkflowException) as exc:
                 api.content.get_state(content)
             assert "No workflow provides" in str(exc)
+
+    def test_plone_logo_applied(self, portal):
+        expected_result = b"filenameb64:dGVzdGU7ZGF0YTppbWFnZS9wbmc=;datab64:iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="  # noQA
+        assert api.portal.get_registry_record("plone.site_logo") == expected_result

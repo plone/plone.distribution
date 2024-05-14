@@ -10,6 +10,7 @@ CLASSIC_ANSWERS = {
     "site_id": "classic",
     "title": "Plone Site",
     "description": "A Plone Site with Classic UI",
+    "site_logo": "name=teste;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",  # noQA
     "default_language": "en",
     "portal_timezone": "America/Sao_Paulo",
     "setup_content": True,
