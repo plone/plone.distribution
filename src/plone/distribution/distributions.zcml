@@ -18,6 +18,7 @@
       title="Plone Site (Classic UI)"
       description="A Plone Site with Classic UI."
       headless="false"
+      post_handler=".handler.post_handler"
       />
 
 </configure>
