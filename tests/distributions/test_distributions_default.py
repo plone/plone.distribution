@@ -36,6 +36,10 @@ class TestDistributionDefault:
     def test_dependencies_installed(self, installer, package, expected):
         assert installer.is_product_installed(package) is expected
 
+    def test_plone_logo_applied(self, portal):
+        expected_result = b"filenameb64:dGVzdGU7ZGF0YTppbWFnZS9wbmc=;datab64:iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="  # noQA
+        assert api.portal.get_registry_record("plone.site_logo") == expected_result
+
     @pytest.mark.parametrize(
         "path,title,portal_type,review_state",
         [

@@ -1,5 +1,8 @@
+from plone import api
 from plone.dexterity.schema import SCHEMA_CACHE
+from plone.distribution import logger
 from plone.distribution.core import Distribution
+from plone.distribution.utils.data import convert_data_uri_to_b64
 from plone.exportimport.importers import get_importer
 from Products.CMFPlone.Portal import PloneSite
 
@@ -40,4 +43,17 @@ def default_handler(
             importer = get_importer(site)
             importer.import_site(content_json_path)
             transaction.commit()
+    return site
+
+
+def post_handler(
+    distribution: Distribution, site: PloneSite, answers: dict
+) -> PloneSite:
+    """After site creation, run last steps."""
+    name = distribution.name
+    raw_logo = answers.get("site_logo")
+    if raw_logo:
+        logo = convert_data_uri_to_b64(raw_logo)
+        logger.info(f"{name}: Set logo")
+        api.portal.set_registry_record("plone.site_logo", logo)
     return site

@@ -25,6 +25,11 @@
         "title": "Site Description",
         "default": "A Plone Site"
       },
+      "site_logo": {
+        "type": "string",
+        "format": "data-url",
+        "title": "Site logo"
+      },
       "default_language": {"$ref": "#/definitions/languages"},
       "portal_timezone": {"$ref": "#/definitions/timezones"},
       "setup_content": {
