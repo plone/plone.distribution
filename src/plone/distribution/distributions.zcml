@@ -10,6 +10,7 @@
       title="Plone Site"
       description="Plone Site."
       directory="distributions/default"
+      post_handler=".handler.post_handler"
       />
 
   <plone:distribution
