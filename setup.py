@@ -47,7 +47,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "Plone",
+        "Products.CMFPlone",
+        "Products.GenericSetup",
         "Zope",
         "setuptools",
         "jsonschema",
