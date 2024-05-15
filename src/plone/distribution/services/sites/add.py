@@ -1,5 +1,6 @@
 """Service to create a Plone Site."""
 
+from plone.distribution import logger
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.api import site as site_api
 from plone.distribution.utils.validation import validate_answers
@@ -51,6 +52,7 @@ class SiteCreate(Service):
                 answers=data,
             )
         except KeyError:
+            logger.error("Error creating the site.", exc_info=True)
             raise BadRequest("Error creating the site.")
         site_info = {
             "@id": site.absolute_url(),
