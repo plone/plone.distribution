@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "6e36bcc4"
+commit-id = "5d669ee9"
 
 [pyproject]
 codespell_skip = "*.min.js"
@@ -20,6 +20,7 @@ use_mxdev = true
 test_deps_additional = ""
 
 [github]
+py_versions = "[\"3.11\", \"3.10\"]"
 jobs = [
     "qa",
     "test",
