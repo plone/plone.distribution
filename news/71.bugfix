@@ -1,1 +1,0 @@
-Fix issue with payload for new site creation breaking with certain plone.rest versions [@ericof]
