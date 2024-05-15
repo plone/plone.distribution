@@ -1,5 +1,6 @@
 """Service to create a Plone Site."""
 
+from plone.distribution import logger
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.api import site as site_api
 from plone.distribution.utils.validation import validate_answers
@@ -11,11 +12,7 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
-import logging
 import plone.protect.interfaces
-
-
-logger = logging.getLogger(__name__)
 
 
 @implementer(IPublishTraverse)
