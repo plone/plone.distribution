@@ -55,7 +55,7 @@ setup(
         "plone.api",
         "plone.base",
         "plone.dexterity",
-        "plone.exportimport",
+        "plone.exportimport>=1.0.0a5",
         "plone.i18n",
         "plone.protect",
         "plone.rest",
