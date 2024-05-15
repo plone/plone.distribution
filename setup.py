@@ -64,15 +64,17 @@ setup(
     ],
     extras_require={
         "test": [
+            "plone.app.iterate",
+            "plone.app.testing",
+            "plone.app.upgrade",
+            "plone.restapi[test]",
+            "plone.volto[test]",
+            "plone.testing",
+            "pytest-cov",
+            "pytest-plone>=0.5.0",
+            "pytest",
             "zest.releaser[recommended]",
             "zestreleaser.towncrier",
-            "plone.volto",
-            "plone.app.testing",
-            "plone.restapi[test]",
-            "plone.testing",
-            "pytest",
-            "pytest-cov",
-            "pytest-plone>=0.2.0",
         ]
     },
     entry_points={

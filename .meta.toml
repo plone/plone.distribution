@@ -3,12 +3,12 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "a58656d9"
+commit-id = "71d0218b"
 
 [pyproject]
 codespell_skip = "*.min.js"
 codespell_ignores = "vew"
-dependencies_ignores = "['plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'pytest', 'pytest-cov', 'pytest-plone', 'plone.testing', 'plone.app.testing']"
+dependencies_ignores = "['plone.app.iterate', 'plone.app.upgrade', 'plone.volto', 'zestreleaser.towncrier', 'zest.releaser', 'pytest', 'pytest-cov', 'pytest-plone', 'plone.testing', 'plone.app.testing']"
 
 [tox]
 test_runner = "pytest"
