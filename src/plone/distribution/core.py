@@ -61,7 +61,8 @@ class Distribution:
         profiles = {"base": [], "content": []}
         data_file = self.directory / "profiles.json"
         if data_file.exists():
-            profiles = json.load(open(data_file))
+            with open(data_file) as data_file:
+                profiles = json.load(data_file)
         self._profiles = profiles
 
     def __repr__(self) -> str:

@@ -16,6 +16,8 @@
 
 - Fix exporting files.
   [pbauer] #58
+- Fix unclosed file.
+  [folix-01]
 
 ## 1.0.0b3 (2024-03-08)
 
