@@ -1,1 +1,1 @@
-Use context manager to open the profile.json file [@folix-01]
+Read profile.json by the pathlib.Path.read_text method to avoid the unclosed file exception [@folix-01]
