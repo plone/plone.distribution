@@ -1,4 +1,5 @@
 """Authenticate a user in Zope root."""
+
 from plone.restapi.deserializer import json_body
 from plone.restapi.services import Service
 from zope.interface import alsoProvides
