@@ -11,7 +11,10 @@ from zope.interface import alsoProvides
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
+import logging
 import plone.protect.interfaces
+
+logger = logging.getLogger(__name__)
 
 
 @implementer(IPublishTraverse)
@@ -51,6 +54,7 @@ class SiteCreate(Service):
                 answers=data,
             )
         except KeyError:
+            logger.error("Error creating the site.", exc_info=True)
             raise BadRequest("Error creating the site.")
         site_info = {
             "@id": site.absolute_url(),
