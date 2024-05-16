@@ -54,7 +54,7 @@ export const DistributionsForm = ({
   };
 
   async function onSubmit(value: any) {
-    const body = JSON.stringify({ ...value.formData, distribution });
+    const body = { ...value.formData, distribution };
     mutation.mutate(body);
   }
 

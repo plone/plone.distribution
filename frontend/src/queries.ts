@@ -99,7 +99,7 @@ export const getDistributionQuery = (name: string) => ({
   },
 });
 
-export const addSite = async (body: string): Promise<Site> => {
+export const addSite = async (body: object): Promise<Site> => {
   const response = await axios.post(`/@sites/`, body);
   const data = await response.data;
   return data;

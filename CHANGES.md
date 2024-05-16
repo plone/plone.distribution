@@ -9,6 +9,43 @@
 
 <!-- towncrier release notes start -->
 
+## 2.0.0a1 (2024-05-16)
+
+
+### Breaking changes:
+
+- plone.distribution is now based on plone.exportimport instead of collective.exportimport.
+
+  There are some backwards-incompatible changes in the export format.
+  To convert an existing distribution to the new format, use the following steps:
+  1. Create a site from the distribution using plone.distribution 1.0.x
+  2. Install plone.distribution 2.0.x
+  3. Delete the distribution's `contents/items` folder.
+  4. Export the distribution in the new format using the `bin/export-distribution` script.
+
+  @davisagli, @ericof #61
+
+
+### New features:
+
+- Default distribution: Allow users to upload a logo during site creation [@ericof] #66
+- Classic distribution: Allow users to upload a logo during site creation [@ericof] #67
+- Remove dependency on Plone package, add dependency on Products.CMFPlone [@ericof] #70
+
+
+### Bug fixes:
+
+- Get the name of the existing distribution from the report, not the answers [@ericof] #60
+- Fix issue with payload for new site creation breaking with certain plone.rest versions [@ericof] #71
+- Read profile.json by the pathlib.Path.read_text method to avoid the unclosed file exception [@folix-01] #75
+
+
+### Internal:
+
+- Update `plone/meta` configuration [@ericof] #73
+- Log traceback when creating a site fails [@pbauer] #82
+- Bump `plone.exportimport` to 1.0.0a5 [@ericof] #83
+
 ## 1.0.0b4 (2024-04-03)
 
 

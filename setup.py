@@ -10,7 +10,7 @@ long_description = f"""
 
 setup(
     name="plone.distribution",
-    version="2.0.0a1.dev0",
+    version="2.0.0a2.dev0",
     description="Plone distribution support",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -47,14 +47,15 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "Plone",
+        "Products.CMFPlone",
+        "Products.GenericSetup",
         "Zope",
         "setuptools",
         "jsonschema",
         "plone.api",
         "plone.base",
         "plone.dexterity",
-        "plone.exportimport",
+        "plone.exportimport>=1.0.0a5",
         "plone.i18n",
         "plone.protect",
         "plone.rest",
@@ -63,15 +64,17 @@ setup(
     ],
     extras_require={
         "test": [
+            "plone.app.iterate",
+            "plone.app.testing",
+            "plone.app.upgrade",
+            "plone.restapi[test]",
+            "plone.volto[test]",
+            "plone.testing",
+            "pytest-cov",
+            "pytest-plone>=0.5.0",
+            "pytest",
             "zest.releaser[recommended]",
             "zestreleaser.towncrier",
-            "plone.volto",
-            "plone.app.testing",
-            "plone.restapi[test]",
-            "plone.testing",
-            "pytest",
-            "pytest-cov",
-            "pytest-plone>=0.2.0",
         ]
     },
     entry_points={
