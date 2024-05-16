@@ -1,74 +1,217 @@
+html,
+body {
+  background-color: white;
+}
+
+.footer {
+  width: 100%;
+  background-color: #edf1f2;
+  padding: 4rem 4rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .footer-message {
+    font-size: 1.2rem;
+    width: fit-content;
+    text-align: center;
+  }
+
+  .links-list {
+    display: flex;
+    margin: 3rem 0;
+    padding: 0;
+
+    li.item {
+      &:not(:last-child) {
+        border-right: 1px solid dimgray;
+        margin-right: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      list-style-type: none;
+
+    }
+  }
+  .logo {
+    margin-bottom: 2.5rem;
+  }
+  a {
+    text-decoration: none !important;
+  }
+}
+
+#root.show-content {
+  .container.admin {
+    opacity: 1;
+  }
+}
+.container.admin {
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+}
+
+h2 {
+  font-size: 1.7rem;
+  padding: 1rem 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+
+  padding: 1rem 0;
+}
+
 .container-fluid.logo {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .distributions {
   padding: 1rem 0 1rem 0;
 }
 
-.distributionsList {
+.distributionsList,
+.sitesList {
   padding: 1rem 0 1rem 0;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
-.card {
-  border-radius: 10px;
-  width: 100%;
-  margin: 3px;
+/* Card for Sites */
+.sites {
+  .kard {
+    height: fit-content;
+
+    span.id {
+      color: dimgray;
+      font-size: 0rem;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    .distributionName {
+      background-color: #005221;
+    }
+
+    .hover-overlay {
+      height: 180px;
+      position: relative;
+      display: flex;
+      opacity: 1;
+      background: none;
+      margin-top: 0.5rem;
+
+      button.react-aria-Button {
+        background-color: #428d60;
+        &:hover {
+          background-color: #037430;
+        }
+      }
+    }
+    &:hover {
+      .main {
+        display: block;
+      }
+    }
+  }
 }
 
-.card .image-box {
+/* Card for distributions */
+.kard {
+  height: 380px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 0 0 1px rgb(0, 112, 162, 0.5);
+  padding: 1.5rem;
+
+  h2 {
+    font-size: 1.2rem;
+    padding: 0;
+    font-weight: 500;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 2px rgb(0, 112, 162, 1);
+
+    .image-box {
+      display: none;
+    }
+
+    .hover-overlay {
+      opacity: 1;
+    }
+  }
+
+  .image-box {
+    overflow: hidden;
+    margin: 1rem 0;
+    padding-bottom: 2rem;
+  }
+
+  .main {
+    height: 90%;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hover-overlay {
+    background: white;
+    position: relative;
+    opacity: 0;
+    transition: opacity 900ms;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 315px;
+    height: 100%;
+    max-height: 370px;
+    justify-content: space-around;
+  }
+
+  button.react-aria-Button {
+    background-color: #3a89ab;
+    color: white;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: #007bb1;
+    }
+  }
 }
 
 .distributionName {
-  position: absolute;
   top: 0.5rem;
   right: 0.5rem;
   z-index: 99;
+  max-width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: #00628e;
+  color: white;
+  font-size: 0.75rem;
 }
 
-.card .card-img {
+.kard .card-img {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   object-position: top center;
   opacity: 0.8;
-  -webkit-transition:all .9s ease;
-  -moz-transition:all .9s ease;
-  -o-transition:all .9s ease;
-  -ms-transition:all .9s ease;
-  transition:all .9s ease;
+  -webkit-transition: all 0.9s ease;
+  -moz-transition: all 0.9s ease;
+  -o-transition: all 0.9s ease;
+  -ms-transition: all 0.9s ease;
+  transition: all 0.9s ease;
   width: 100%;
 }
 
-.card:hover {
-  background: #fff;
-  box-shadow: 0px 5px 2px rgba(0, 0, 0, 0.50);
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  -ms-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  margin-bottom: 5px;
-}
-
-.distributionsList .card:hover .card-img {
-  opacity: 0.7;
-  -webkit-transform:scale(1.15);
-  -moz-transform:scale(1.15);
-  -ms-transform:scale(1.15);
-  -o-transform:scale(1.15);
-  transform:scale(1.15);
-}
-
-.card .card-body {
-  text-align: center;
-}
-
-.card .card-body .card-title {
-  color: #005b85;
-}
-
-#add-site-form.loading form.rjsf, #add-site-form.error form.rjsf {
+#add-site-form.loading form.rjsf,
+#add-site-form.error form.rjsf {
   opacity: 0.3;
 }
 
@@ -83,7 +226,8 @@
   transition: visibility 0s linear 0s, opacity 300ms;
 }
 
-#add-site-form.active .spinner-border, #add-site-form.error .spinner-border {
+#add-site-form.active .spinner-border,
+#add-site-form.error .spinner-border {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;

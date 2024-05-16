@@ -1,56 +1,86 @@
-import Badge from 'react-bootstrap/Badge';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import type { Site } from './queries';
+import { Button } from '@plone/components';
 
 const redirectSite = (href: string) => {
   window.location.href = href;
 };
 
 const SiteInfo = ({ site }: { site: Site }) => {
+  const CustomBadge = ({ name }: { name?: string }) => {
+    return <div className="distributionName">{name}</div>;
+  };
+
+  const CustomCard = ({
+    title,
+    description,
+    name,
+    image,
+    id,
+    buttonAction,
+    buttonText,
+    distribution,
+  }: {
+    title?: string;
+    description?: string;
+    name?: string;
+    image?: string;
+    buttonAction?: any;
+    id?: string;
+    buttonText?: string;
+    distribution?: string;
+  }) => {
+    return (
+      <div className="kard">
+        <div className="main">
+          <div className="card-header">
+            <div>
+              <h2>{title}</h2>
+              <span className="id">id: {name}</span>
+            </div>
+
+            <div className="badge-wrapper">
+              <CustomBadge name={distribution} />
+            </div>
+          </div>
+
+          {image && (
+            <div className={'image-box'}>
+              <img src={image} alt={title} />
+            </div>
+          )}
+        </div>
+
+        <div className="hover-overlay">
+          <p>{description}</p>
+          <Button onPress={buttonAction}>{buttonText}</Button>
+        </div>
+      </div>
+    );
+  };
+
   const needUpgrade = site.needs_upgrade;
   return (
-    <Card>
-      <Card.Header>
-        {site.id}
-        {site.distribution && (
-          <Badge pill bg={'success'} className={'float-end'}>
-            {site.distribution}
-          </Badge>
-        )}
-      </Card.Header>
-      <Card.Body>
-        <Card.Title>{site.title}</Card.Title>
-        <Card.Text>{site.description}</Card.Text>
-        <Button variant="primary" onClick={() => redirectSite(site['@id'])}>
-          Visit
-        </Button>
-        {needUpgrade && (
-          <button
-            type="button"
-            className="btn btn-warning"
-            onClick={() => redirectSite(site['@id'])}
-          >
-            Upgrade
-          </button>
-        )}
-      </Card.Body>
-    </Card>
+    <CustomCard
+      title={site.title}
+      description={site.description}
+      buttonAction={() => redirectSite(site['@id'])}
+      name={site.id}
+      buttonText={'Visit'}
+      distribution={site.distribution}
+    />
   );
 };
 
 const Sites = ({ sites }: { sites: Site[] }) => {
   return (
     sites && (
-      <Row xs={1} md={2} className="g-4 sitesList">
+      <div className="sitesList">
         {sites.map((site, idx) => (
-          <Col key={idx}>
+          <div key={idx}>
             <SiteInfo site={site} />
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     )
   );
 };

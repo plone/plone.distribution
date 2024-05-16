@@ -1,11 +1,48 @@
-import Badge from 'react-bootstrap/Badge';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import { Distribution } from './queries';
+import { Button } from '@plone/components';
 
 type Handler = (can_manage: boolean, name: string) => Promise<void>;
+
+const CustomBadge = ({ name }: { name?: string }) => {
+  return <div className="distributionName">{name}</div>;
+};
+
+const CustomCard = ({
+  title,
+  description,
+  name,
+  image,
+  buttonAction,
+}: {
+  title?: string;
+  description?: string;
+  name?: string;
+  image?: string;
+  buttonAction?: any;
+}) => {
+  return (
+    <div className="kard">
+      <div className="card-header">
+        <h2>{title}</h2>
+        <div className="badge-wrapper">
+          <CustomBadge name={name} />
+        </div>
+      </div>
+
+      <div className="main">
+        {image && (
+          <div className={'image-box'}>
+            <img src={image} alt={title} />
+          </div>
+        )}
+        <div className="hover-overlay">
+          <p>{description}</p>
+          <Button onPress={buttonAction}>Create</Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const DistributionCard = ({
   distribution,
@@ -17,24 +54,13 @@ const DistributionCard = ({
   handler: Handler;
 }) => {
   return (
-    <Card>
-      <div className={'image-box'}>
-        <Badge pill bg={'success'} className={'distributionName'}>
-          {distribution.name}
-        </Badge>
-        <Card.Img src={distribution.image} alt={distribution.title} />
-      </div>
-      <Card.Body>
-        <Card.Title>{distribution.title}</Card.Title>
-        <Card.Text>{distribution.description}</Card.Text>
-        <Button
-          variant="primary"
-          onClick={() => handler(can_manage, distribution.name)}
-        >
-          Create
-        </Button>
-      </Card.Body>
-    </Card>
+    <CustomCard
+      title={distribution.title}
+      description={distribution.description}
+      image={distribution.image}
+      buttonAction={() => handler(can_manage, distribution.name)}
+      name={distribution.name}
+    />
   );
 };
 
@@ -49,17 +75,17 @@ const Distributions = ({
 }) => {
   return (
     distributions && (
-      <Row xs={1} md={2} className="g-4 distributionsList">
+      <div className="distributionsList new">
         {distributions.map((distribution) => (
-          <Col key={distribution.name}>
+          <div key={distribution.name}>
             <DistributionCard
               distribution={distribution}
               handler={handler}
               can_manage={can_manage}
             />
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     )
   );
 };

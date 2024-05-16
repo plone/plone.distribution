@@ -6,6 +6,7 @@ import Distributions from './Distributions';
 import Sites from './Sites';
 import LoginModal from './LoginModal';
 import { Portal } from 'react-portal';
+import { Button } from '@plone/components';
 
 const SitesInfo = () => {
   const { isLoading, isError, data, error } = useQuery(getDistributionsQuery());
@@ -78,13 +79,13 @@ const SitesInfo = () => {
         ) : null}
         {!can_manage &&
           createPortal(
-            <button
+            <Button
               type="button"
               className="btn btn-primary"
-              onClick={() => checkBasicAuth()}
+              onPress={() => checkBasicAuth()}
             >
               Login
-            </button>,
+            </Button>,
             document.getElementById('topForm') as HTMLElement,
           )}
       </>
