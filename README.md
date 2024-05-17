@@ -8,6 +8,7 @@
 
 Package supporting the (easy) implementation of a Plone distribution.
 
+
 ## What is a Plone distribution
 
 A Plone distribution is a pre-packaged version of Plone that includes specific features, themes, modules, and configurations.
@@ -29,6 +30,14 @@ Examples of Plone distributions include:
 - **Joomla:** Joomla has a similar concept in the form of "Joomla Templates," which are pre-designed templates for Joomla websites.
 
 - **TYPO3:** TYPO3 has a similar concept in the form of "TYPO3 Distributions," which are pre-configured installations of TYPO3 for specific types of websites.
+
+## `plone.distribution` versions
+
+| Releases |Description | Status | Supported Plone Versions |
+| --- | --- | --- | --- |
+| 3.x | Core package of Plone | In development  | 6.1 |
+| 2.x | Add-on package, uses plone.exportimport for content creation. | Maintenance | 6.0 |
+| 1.x | Add-on package, uses collective.exportimport for content creation. | Deprecated | 6.0 |
 
 ## Creating a new distribution
 
