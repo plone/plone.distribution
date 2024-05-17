@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 2.0.0b1 (2024-05-17)
+
+
+### New features:
+
+- Redesign the site creation page [@danalvrz] #63
+
 ## 2.0.0a1 (2024-05-16)
 
 
