@@ -5,7 +5,8 @@ from plone.distribution.core import Distribution
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.CMFPlone.browser.admin import AddPloneSite as AddPloneSiteView
 from Products.CMFPlone.browser.admin import AppTraverser
-from zope.component import adapts
+from zExceptions import NotFound
+from zope.component import adapter
 from zope.component import queryMultiAdapter
 from zope.interface import alsoProvides
 from zope.publisher.browser import BrowserView
@@ -14,25 +15,34 @@ from zope.publisher.interfaces import IRequest
 import json
 
 
+@adapter(IApplication, IRequest)
 class RestTraverser(AppTraverser):
     """Traverser supporting REST calls in Zope Application root."""
-
-    adapts(IApplication, IRequest)
 
     def publishTraverse(self, request, name):
         if not name.startswith("@"):
             return super().publishTraverse(request, name)
 
+        # This will fail with an AttributeError unless the url has ++api++,
+        # otherwise the request has no _rest_service_id.
+        # Result is a NotFound error.
         service = queryMultiAdapter(
             (self.context, request), name=request._rest_service_id + name
         )
-        if service is None:
-            # No service, fallback to regular view
-            view = queryMultiAdapter((self.context, request), name=name)
-            if view is not None:
-                return view
-            raise
-        return service
+        if service is not None:
+            return service
+        # No service, fallback to regular view.
+        # But this is unlikely to happen, unless you visit a url like
+        # http://localhost:8082/++api++/@ok instead of
+        # http://localhost:8082/@@ok
+        # Note that a request for http://localhost:8082/++api++/@@ok
+        # does not even come in this traverser.
+        # Anyway, strip off the '@' sign.
+        name = name.lstrip("@")
+        view = queryMultiAdapter((self.context, request), name=name)
+        if view is not None:
+            return view
+        raise NotFound(self.context)
 
 
 class Overview(BrowserView):
