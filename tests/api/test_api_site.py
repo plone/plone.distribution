@@ -32,7 +32,7 @@ class TestApiSite:
     def test_get_sites(self, app, integration):
         sites = site_api.get_sites(app)
         # Integration test creates a Plone Site
-        assert len(sites) == 2
+        assert len(sites) == 1
         site = sites[0]
         assert isinstance(site, PloneSite)
 
@@ -40,7 +40,6 @@ class TestApiSite:
         "distribution_name",
         [
             "default",
-            "classic",
         ],
     )
     def test_create(self, app, integration, answers, distribution_name):

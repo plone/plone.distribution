@@ -37,7 +37,7 @@ class TestServicesSitesGET(TestServicesSite):
         data = response.json()
         distributions = data["distributions"]
         assert isinstance(distributions, list)
-        assert len(distributions) == 2
+        assert len(distributions) == 1
         assert distributions[0]["name"] == "default"
         assert distributions[0]["title"] == "Plone Site"
 
@@ -46,7 +46,7 @@ class TestServicesSitesGET(TestServicesSite):
         data = response.json()
         sites = data["sites"]
         assert isinstance(sites, list)
-        assert len(sites) == 2
+        assert len(sites) == 1
         assert sites[0]["id"] == "plone"
         assert sites[0]["needs_upgrade"] is False
 
@@ -67,7 +67,6 @@ class TestServicesSitesPOST(TestServicesSite):
         "distribution_name",
         [
             "default",
-            "classic",
         ],
     )
     def test_sites_create_success(self, app, distribution_name):
