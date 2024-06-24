@@ -13,7 +13,7 @@ def schema(valid_schema) -> dict:
 def valid_answers() -> dict:
     return {
         "site_id": "Plone",
-        "title": "Plone Site",
+        "title": "Testing Plone Site",
         "description": "A new Plone Site",
         "default_language": "en",
         "portal_timezone": "UTC",

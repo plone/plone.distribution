@@ -43,7 +43,7 @@ class TestServicesSystemGET:
     @pytest.mark.parametrize(
         "attr,expected",
         [
-            ("distribution", "Plone Site (default)"),
+            ("distribution", "Testing Plone Site (testing)"),
         ],
     )
     def test_system_get_distribution(self, portal, attr, expected):

@@ -34,7 +34,7 @@ ifeq ($(PYTHON_VERSION_OK),0)
 endif
 
 # Set distributions still in development
-DISTRIBUTIONS="default,classic"
+DISTRIBUTIONS=""
 
 all: build
 

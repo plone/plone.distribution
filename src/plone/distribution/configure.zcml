@@ -8,7 +8,6 @@
   <include package="plone.exportimport" />
 
   <include file="meta.zcml" />
-  <include file="distributions.zcml" />
 
   <include package=".browser" />
   <include package=".services" />
