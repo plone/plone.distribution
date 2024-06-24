@@ -18,11 +18,11 @@ class TestApiDistribution:
         assert len(distributions) >= 1
         # First distribution will be default
         dist = distributions[0]
-        assert dist.name == "default"
+        assert dist.name == "testing"
 
     @pytest.mark.parametrize(
         "name, title",
-        [("default", "Plone Site")],
+        [("testing", "Testing Plone Site")],
     )
     def test_get_success(self, integration, name, title):
         dist = dist_api.get(name=name)

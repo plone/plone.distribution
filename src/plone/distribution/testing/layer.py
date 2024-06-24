@@ -11,7 +11,7 @@ from plone.testing import zope
 from zope.globalrequest import setRequest
 
 
-DEFAULT_DISTRIBUTION = "default"
+DEFAULT_DISTRIBUTION = "testing"
 DEFAULT_ANSWERS = {
     "site_id": PLONE_SITE_ID,
     "title": "Plone Site",

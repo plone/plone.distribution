@@ -1,7 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 from Persistence import Persistent
-from plone.distribution import BASE_DISTRIBUTIONS_PATH
+from plone.distribution import DEFAULT_PATH
 from plone.distribution.utils import schema as schema_utils
 from typing import Callable
 from typing import List
@@ -10,8 +10,8 @@ from typing import Optional
 import json
 
 
-DEFAULT_SCHEMA = json.load(open(BASE_DISTRIBUTIONS_PATH / "default" / "schema.json"))
-DEFAULT_IMAGE = BASE_DISTRIBUTIONS_PATH / "default" / "image.png"
+DEFAULT_SCHEMA = json.load(open(DEFAULT_PATH / "schema.json"))
+DEFAULT_IMAGE = DEFAULT_PATH / "image.png"
 
 
 class Distribution:
