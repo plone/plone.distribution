@@ -37,16 +37,16 @@ class TestServicesSitesGET(TestServicesSite):
         data = response.json()
         distributions = data["distributions"]
         assert isinstance(distributions, list)
-        assert len(distributions) == 2
-        assert distributions[0]["name"] == "default"
-        assert distributions[0]["title"] == "Plone Site"
+        assert len(distributions) == 1
+        assert distributions[0]["name"] == "testing"
+        assert distributions[0]["title"] == "Testing Plone Site"
 
     def test_sites_get_sites(self, app):
         response = self.api_session.get("@sites")
         data = response.json()
         sites = data["sites"]
         assert isinstance(sites, list)
-        assert len(sites) == 2
+        assert len(sites) == 1
         assert sites[0]["id"] == "plone"
         assert sites[0]["needs_upgrade"] is False
 
@@ -66,8 +66,7 @@ class TestServicesSitesPOST(TestServicesSite):
     @pytest.mark.parametrize(
         "distribution_name",
         [
-            "default",
-            "classic",
+            "testing",
         ],
     )
     def test_sites_create_success(self, app, distribution_name):
@@ -96,7 +95,7 @@ class TestServicesSitesPOST(TestServicesSite):
         assert data["message"].startswith("Resource not found:")
 
     def test_sites_create_empty_site_id(self, app):
-        distribution_name = "default"
+        distribution_name = "testing"
         # Empty site_id
         answers = {"site_id": "", "title": "Site"}
 
@@ -106,7 +105,7 @@ class TestServicesSitesPOST(TestServicesSite):
         assert data["message"].startswith("Invalid data for site creation")
 
     def test_sites_create_empty_title(self, app):
-        distribution_name = "default"
+        distribution_name = "testing"
         # Empty title
         answers = {"site_id": "Site", "title": ""}
 
@@ -116,7 +115,7 @@ class TestServicesSitesPOST(TestServicesSite):
         assert data["message"].startswith("Invalid data for site creation")
 
     def test_sites_create_invalid_language(self, app):
-        distribution_name = "default"
+        distribution_name = "testing"
         answers = deepcopy(self.answers)
         answers["default_language"] = "klingon"
 
@@ -126,7 +125,7 @@ class TestServicesSitesPOST(TestServicesSite):
         assert data["message"].startswith("Invalid data for site creation")
 
     def test_sites_create_invalid_timezone(self, app):
-        distribution_name = "default"
+        distribution_name = "testing"
         answers = deepcopy(self.answers)
         answers["portal_timezone"] = "something"
 

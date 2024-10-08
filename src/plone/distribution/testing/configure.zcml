@@ -6,19 +6,11 @@
     >
 
   <plone:distribution
-      name="default"
-      title="Plone Site"
+      name="testing"
+      title="Testing Plone Site"
       description="Plone Site."
       directory="distributions/default"
-      post_handler=".handler.post_handler"
-      />
-
-  <plone:distribution
-      name="classic"
-      title="Plone Site (Classic UI)"
-      description="A Plone Site with Classic UI."
-      headless="false"
-      post_handler=".handler.post_handler"
+      post_handler="plone.distribution.handler.post_handler"
       />
 
 </configure>

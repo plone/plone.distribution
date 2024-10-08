@@ -1,6 +1,6 @@
 {
   "schema": {
-    "title": "Create a Plone site (Classic UI)",
+    "title": "Create a Plone site",
     "description": "Adds a new Plone content management system site to the underlying application server.",
     "type": "object",
     "required": [
@@ -24,6 +24,11 @@
         "type": "string",
         "title": "Site Description",
         "default": "A Plone Site"
+      },
+      "site_logo": {
+        "type": "string",
+        "format": "data-url",
+        "title": "Site logo"
       },
       "default_language": {"$ref": "#/definitions/languages"},
       "portal_timezone": {"$ref": "#/definitions/timezones"},

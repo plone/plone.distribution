@@ -12,10 +12,5 @@ def portal_default(functional):
 
 
 @pytest.fixture()
-def portal_classic(app):
-    return app["classic"]
-
-
-@pytest.fixture()
 def http_request(functional):
     return functional["request"]
