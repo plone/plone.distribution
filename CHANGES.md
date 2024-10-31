@@ -9,6 +9,24 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.0a1 (2024-10-31)
+
+
+### Breaking changes:
+
+- Move internal classic distribution to plone.classicui [@mauritsvanrees][@ericof] #79
+
+
+### New features:
+
+- Move internal default distribution to plone.volto [@mauritsvanrees][@ericof] #80
+
+
+### Internal:
+
+- Clarify RestTraverser code.
+  [maurits] 
+
 ## 2.0.0b1 (2024-05-17)
 
 
