@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SitesInfo from './SitesInfo';
 import AddSite from './AddSite';
@@ -9,9 +10,9 @@ function App() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
-  window.onload = () => {
+  useEffect(() => {
     document.getElementById('root')?.classList.add('show-content');
-  };
+  }, []);
 
   return (
     <>
