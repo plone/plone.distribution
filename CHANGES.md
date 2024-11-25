@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.0b1 (2024-11-25)
+
+
+### Bug fixes:
+
+- Fix bug where launch screen was blank in Chrome. @davisagli #101
+
 ## 3.0.0a1 (2024-10-31)
 
 
