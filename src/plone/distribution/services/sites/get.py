@@ -90,10 +90,18 @@ class SitesGet(Service):
         request = self.request
         # Sites with default id
         all_sites = self.get_sites()
-        sites = [site for site in all_sites if site["id"].startswith(DEFAULT_ID)]
-        server_defaults["site_id"] = (
-            f"{DEFAULT_ID}{len(sites)}" if sites else DEFAULT_ID
-        )
+        site_ids = [
+            site["id"] for site in all_sites if site["id"].startswith(DEFAULT_ID)
+        ]
+        if site_ids:
+            count = len(site_ids)
+            new_site_id = f"{DEFAULT_ID}{count}"
+            while new_site_id in site_ids:
+                count += 1
+                new_site_id = f"{DEFAULT_ID}{count}"
+        else:
+            new_site_id = DEFAULT_ID
+        server_defaults["site_id"] = new_site_id
         jsonschema = distribution.schema
         uischema = distribution.uischema
         if should_provide_default_language_default(uischema, jsonschema):
