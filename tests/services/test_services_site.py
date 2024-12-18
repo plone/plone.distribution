@@ -37,9 +37,13 @@ class TestServicesSitesGET(TestServicesSite):
         data = response.json()
         distributions = data["distributions"]
         assert isinstance(distributions, list)
-        assert len(distributions) == 1
-        assert distributions[0]["name"] == "testing"
-        assert distributions[0]["title"] == "Testing Plone Site"
+        # We expect our testing distribution, but there may be a volto
+        # distribution as well.
+        assert len(distributions) >= 1
+        assert "testing" in [distro["name"] for distro in distributions]
+        for distro in distributions:
+            if distro["name"] == "testing":
+                assert distro["title"] == "Testing Plone Site"
 
     def test_sites_get_sites(self, app):
         response = self.api_session.get("@sites")
