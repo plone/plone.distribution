@@ -1,0 +1,3 @@
+Fix logic for suggested id for new site.
+It could suggest an id that was already taken.
+@mauritsvanrees
