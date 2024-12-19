@@ -9,6 +9,21 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.0b2 (2024-12-19)
+
+
+### Bug fixes:
+
+- Fix logic for suggested id for new site.
+  It could suggest an id that was already taken.
+  @mauritsvanrees #97
+
+
+### Tests
+
+- Fix test that failed because an extra distribution was found.
+  @mauritsvanrees #104
+
 ## 3.0.0b1 (2024-11-25)
 
 
