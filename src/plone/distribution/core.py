@@ -10,8 +10,7 @@ from typing import Optional
 import json
 
 
-with (DEFAULT_PATH / "schema.json").open() as fp:
-    DEFAULT_SCHEMA = json.load(fp)
+DEFAULT_SCHEMA = json.loads((DEFAULT_PATH / "schema.json").read_bytes())
 DEFAULT_IMAGE = DEFAULT_PATH / "image.png"
 
 
