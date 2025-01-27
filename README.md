@@ -293,10 +293,13 @@ Folder containing JSON data representing this distribution's content.
 To export content from a site into this folder, use the `bin/export-distribution` script.
 
 ```shell
-bin/export-distribution path/to/zope.conf Plone
+bin/export-distribution [--include-revisions] path/to/zope.conf Plone
 ```
 
 > In the example above, "Plone" is the ID of the Plone site to export.
+
+By default, the revisions history (older versions of each content item) are not exported.
+If you do want them, add `--include-revisions` on the command line.
 
 ## Advanced Usage
 
