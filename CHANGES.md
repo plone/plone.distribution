@@ -9,6 +9,18 @@
 
 <!-- towncrier release notes start -->
 
+## 3.0.0 (2025-01-29)
+
+
+### New features:
+
+- Include revisions only when passing `--include-revisions`.  @mauritsvanrees #39
+
+
+### Bug fixes:
+
+- Fix warning for unclosed file at startup. #4090
+
 ## 3.0.0b2 (2024-12-19)
 
 
