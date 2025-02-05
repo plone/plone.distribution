@@ -1,0 +1,1 @@
+frontend: show id of Plone instance. @ksuess
