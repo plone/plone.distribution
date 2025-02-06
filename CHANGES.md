@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 3.1.0 (2025-02-06)
+
+
+### New features:
+
+- frontend: show id of Plone instance. @ksuess #109
+
 ## 3.0.0 (2025-01-29)
 
 
