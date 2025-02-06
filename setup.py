@@ -10,7 +10,7 @@ long_description = f"""
 
 setup(
     name="plone.distribution",
-    version="3.0.1.dev0",
+    version="3.1.0.dev0",
     description="Plone distribution support",
     long_description=long_description,
     long_description_content_type="text/markdown",
