@@ -23,7 +23,7 @@ function App() {
               <div className="container-fluid text-center logo">
                 <a className="navbar-brand" href="/">
                   <img
-                    src="/++resource++plone-logo.svg"
+                    src="./++resource++plone-logo.svg"
                     width="215"
                     height="56"
                     alt="Plone logo"
@@ -94,7 +94,7 @@ function App() {
         <div className="logo">
           <a title="Site" href="/">
             <img
-              src="/++resource++plone-logo.svg"
+              src="./++resource++plone-logo.svg"
               alt="Plone Site"
               title="Plone Site"
             />

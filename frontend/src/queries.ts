@@ -42,7 +42,7 @@ export type SitesEndpointDistributionDetail = {
 };
 
 const getDistributions = async (): Promise<SitesEndpoint> => {
-  const response = await axios.get('/@sites');
+  const response = await axios.get('./@sites');
   const data = await response.data;
   return data;
 };
@@ -55,7 +55,7 @@ export const getDistributionsQuery = () => ({
 const getDistribution = async (
   name: string,
 ): Promise<SitesEndpointDistributionDetail> => {
-  const response = await axios.get(`/@sites/${name}`);
+  const response = await axios.get(`./@sites/${name}`);
   const data = await response.data;
   return data;
 };
@@ -100,7 +100,7 @@ export const getDistributionQuery = (name: string) => ({
 });
 
 export const addSite = async (body: object): Promise<Site> => {
-  const response = await axios.post(`/@sites/`, body);
+  const response = await axios.post(`./@sites/`, body);
   const data = await response.data;
   return data;
 };
