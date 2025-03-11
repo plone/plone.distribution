@@ -9,6 +9,14 @@
 
 <!-- towncrier release notes start -->
 
+## 3.1.1 (2025-03-11)
+
+
+### Bug fixes:
+
+- frontend: relative backend requests @lyralemos #98
+- Replace `pkg_resources` with `importlib.metadata` @gforcada #4126
+
 ## 3.1.0 (2025-02-06)
 
 
