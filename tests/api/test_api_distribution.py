@@ -21,15 +21,16 @@ class TestApiDistribution:
         assert dist.name == "testing"
 
     @pytest.mark.parametrize(
-        "name, title",
-        [("testing", "Testing Plone Site")],
+        "name, title, package",
+        [("testing", "Testing Plone Site", "plone.distribution.testing")],
     )
-    def test_get_success(self, integration, name, title):
+    def test_get_success(self, integration, name: str, title: str, package: str):
         dist = dist_api.get(name=name)
         assert isinstance(dist, Distribution)
         assert repr(dist) == f"<Distribution name='{name}' title='{title}'>"
         assert dist.name == name
         assert dist.title == title
+        assert dist.package == package
         assert isinstance(dist.schema, dict)
         assert isinstance(dist.uischema, dict)
         assert isinstance(dist.image, Path)

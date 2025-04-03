@@ -32,6 +32,7 @@ class Distribution:
         title: str,
         description: str,
         directory: Path,
+        package: str = "",
         pre_handler: Optional[Callable] = None,
         handler: Optional[Callable] = None,
         post_handler: Optional[Callable] = None,
@@ -42,6 +43,7 @@ class Distribution:
         self.title = title
         self.description = description
         self.directory = directory
+        self.package = package
         self.pre_handler = pre_handler
         self.handler = handler
         self.post_handler = post_handler

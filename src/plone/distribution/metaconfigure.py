@@ -114,6 +114,7 @@ def register_distribution(
         title,
         description,
         directory,
+        product,
         pre_handler,
         handler,
         post_handler,
