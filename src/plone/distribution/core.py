@@ -19,6 +19,7 @@ class Distribution:
     title: str
     description: str
     directory: Path
+    package: str
     pre_handler: Optional[Callable]
     handler: Optional[Callable]
     post_handler: Optional[Callable]
