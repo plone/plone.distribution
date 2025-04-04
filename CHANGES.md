@@ -74,7 +74,7 @@
 ### Internal:
 
 - Clarify RestTraverser code.
-  [maurits] 
+  [maurits]
 
 ## 2.0.0b1 (2024-05-17)
 
