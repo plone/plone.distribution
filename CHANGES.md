@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 3.1.2 (2025-04-05)
+
+
+### New features:
+
+- Add attribute `package` to `plone.distribution.core.Distribution` to store which package registered a specific distribution. @ericof #114
+
 ## 3.1.1 (2025-03-11)
 
 
