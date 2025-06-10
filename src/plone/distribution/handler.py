@@ -27,6 +27,8 @@ def default_handler(
 
     # Add default content if needed
     if setup_content:
+        # If there is no savepoint most tests fail with a PosKeyError
+        transaction.savepoint(optimistic=True)
         contents = distribution.contents
         # First process any content profiles
         content_profiles = contents["profiles"]
@@ -35,13 +37,14 @@ def default_handler(
         # Process content import from json
         content_json_path = contents["json"]
         if content_json_path:
-            # If there is no savepoint most tests fail with a PosKeyError
-            transaction.savepoint(optimistic=True)
             # Invalidate the schema cache to make sure we get up to date behaviors.
             # Normally this happens on commit, but we didn't commit yet.
             SCHEMA_CACHE.clear()
             importer = get_importer(site)
             importer.import_site(content_json_path)
+            # Create a savepoint to ensure the import is atomic
+            transaction.savepoint(optimistic=True)
+            # Commit the transaction to finalize the import
             transaction.commit()
     return site
 
