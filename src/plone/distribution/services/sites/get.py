@@ -6,8 +6,10 @@ from plone.distribution.utils.request import extract_browser_language
 from plone.distribution.utils.schema import should_provide_default_language_default
 from plone.restapi.services import Service
 from Products.CMFCore.permissions import ManagePortal
+from Products.CMFPlone.Portal import PloneSite
 from typing import List
 from zExceptions import BadRequest
+from zope.component.hooks import site
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
@@ -17,10 +19,14 @@ import json
 DEFAULT_ID = "Plone"
 
 
-def _is_outdated(site) -> bool:
-    """Check if site needs an upgrade."""
-    mig = getattr(site, "portal_migration", None) or site.get("portal_migration", None)
-    return mig.needUpgrading() if mig else False
+def _is_outdated(plone_site: PloneSite) -> bool:
+    """Check if a Portal needs to be upgraded."""
+    with site(plone_site):
+        mig = getattr(plone_site, "portal_migration", None) or plone_site.get(
+            "portal_migration", None
+        )
+        is_outdated = mig.needUpgrading() if mig else False
+    return is_outdated
 
 
 _no_content_marker = object()
@@ -68,17 +74,17 @@ class SitesGet(Service):
         """Return a list of site information."""
         response = []
         sites = site_api.get_sites(self.context)
-        for site in sites:
-            dist_report = dist_api.get_creation_report(site)
+        for plone_site in sites:
+            dist_report = dist_api.get_creation_report(plone_site)
             distribution_name = dist_report.name if dist_report else ""
             response.append(
                 {
-                    "@id": site.absolute_url(),
-                    "id": site.id,
-                    "title": site.title,
-                    "description": site.description,
-                    "creation_date": site.CreationDate(),
-                    "needs_upgrade": _is_outdated(site),
+                    "@id": plone_site.absolute_url(),
+                    "id": plone_site.id,
+                    "title": plone_site.title,
+                    "description": plone_site.description,
+                    "creation_date": plone_site.CreationDate(),
+                    "needs_upgrade": _is_outdated(plone_site),
                     "distribution": distribution_name,
                 }
             )
