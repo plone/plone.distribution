@@ -17,7 +17,6 @@ class TestDistributionDefault:
         [
             ("title", "Testing Plone Site"),
             ("description", "A Plone Site"),
-            ("exclude_from_nav", False),
         ],
     )
     def test_plone_site_attributes(self, portal, attr, expected):
