@@ -3,6 +3,7 @@ from AccessControl.Permissions import view as View
 from datetime import datetime
 from datetime import timezone
 from plone.base.interfaces import IPloneSiteRoot
+from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.api import distribution as dist_api
 from plone.distribution.core import Distribution
 from plone.distribution.core import SiteCreationReport
@@ -25,7 +26,6 @@ import transaction
 
 
 _TOOL_ID = "portal_setup"
-_DEFAULT_PROFILE = "Products.CMFPlone:plone"
 
 
 def _handlers_for_distribution(distribution: Distribution):
@@ -91,11 +91,11 @@ def _create_site(
     context,
     distribution_name: str,
     answers: dict,
-    profile_id: str = _DEFAULT_PROFILE,
 ) -> PloneSite:
     """Create site"""
     distribution = dist_api.get(distribution_name)
     pre_handler, handler, post_handler = _handlers_for_distribution(distribution)
+    profile_id = distribution.profile_id
     # Process answers
     answers = pre_handler(answers)
     # Create base site
@@ -140,14 +140,14 @@ def create(
     context,
     distribution_name: str,
     answers: dict,
-    profile_id: str = _DEFAULT_PROFILE,
+    profile_id: str = DEFAULT_PROFILE,
 ) -> PloneSite:
     """Create a new Plone site using one of the distributions.
 
     :param context: Context where the site will be created.
     :param distribution_name: Name of distribution to be used.
     :param answers: Payload for site creation.
-    :param profile_id: Base profile to be used.
+    :param profile_id: (deprecated) Base profile to be used.
                        default: `Products.CMFPlone:plone`
     :raises:
         :class:`ValueError`,
@@ -162,6 +162,6 @@ def create(
     if not validate_answers(answers=answers, schema=schema):
         raise ValueError("Provided answers are not valid")
     with transaction.manager as tm:
-        site = _create_site(context, distribution_name, answers, profile_id)
+        site = _create_site(context, distribution_name, answers)
         tm.note(f"Plone site {site.getId()} created with {distribution_name}")
     return site
