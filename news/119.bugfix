@@ -1,0 +1,1 @@
+Fix POSKeyError in tests by adding a transaction.savepoint after importing default content with plone.exportimport. @ericof
