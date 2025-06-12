@@ -1,3 +1,4 @@
+from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.core import Distribution
 from plone.distribution.registry import _distribution_registry
 from types import FunctionType
@@ -66,6 +67,13 @@ class IRegisterDistributionDirective(Interface):
         required=False,
     )
 
+    profile_id = zope.schema.TextLine(
+        title="Profile",
+        description="Base profile to be used during site creation.",
+        required=False,
+        default=DEFAULT_PROFILE,
+    )
+
     headless = zope.schema.Bool(
         title="Headless",
         description="Check if distribution is headless (no server side templates)",
@@ -73,7 +81,9 @@ class IRegisterDistributionDirective(Interface):
     )
 
 
-def _check_function(name: str, product: str, func: FunctionType = None) -> FunctionType:
+def _check_function(
+    name: str, product: str, func: FunctionType | None = None
+) -> FunctionType | None:
     if func and not isinstance(func, FunctionType):
         # Probably a string, so resolve dotted name
         func = f"{product}{func}" if func.startswith(".") else func
@@ -92,6 +102,7 @@ def register_distribution(
     pre_handler=None,
     handler=None,
     post_handler=None,
+    profile_id=DEFAULT_PROFILE,
     headless=True,
 ):
     """Add a new distribution to the registry."""
@@ -118,6 +129,7 @@ def register_distribution(
         pre_handler,
         handler,
         post_handler,
+        profile_id,
         headless,
     )
 

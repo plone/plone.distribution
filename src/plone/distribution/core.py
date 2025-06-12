@@ -2,7 +2,9 @@ from datetime import datetime
 from pathlib import Path
 from Persistence import Persistent
 from plone.distribution import DEFAULT_PATH
+from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.utils import schema as schema_utils
+from typing import Any
 from typing import Callable
 from typing import List
 from typing import Optional
@@ -23,6 +25,7 @@ class Distribution:
     pre_handler: Optional[Callable]
     handler: Optional[Callable]
     post_handler: Optional[Callable]
+    profile_id: str
     headless: bool
     _schema: dict
     _profiles: dict
@@ -37,6 +40,7 @@ class Distribution:
         pre_handler: Optional[Callable] = None,
         handler: Optional[Callable] = None,
         post_handler: Optional[Callable] = None,
+        profile_id: str = DEFAULT_PROFILE,
         headless: bool = True,
     ):
         """Initialize a Plone Distribution."""
@@ -49,6 +53,7 @@ class Distribution:
         self.handler = handler
         self.post_handler = post_handler
         self.headless = headless
+        self.profile_id = profile_id
         schema_file = self.directory / "schema.json"
         raw_schema = DEFAULT_SCHEMA
         if schema_file.exists():
@@ -114,7 +119,7 @@ class Distribution:
 class SiteCreationReport(Persistent):
     name: str
     date: datetime
-    _answers: str
+    _answers: tuple[tuple[str, Any], ...]
 
     def __init__(self, name: str, date: datetime, answers: dict):
         """Initialize the report."""

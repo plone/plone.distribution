@@ -11,6 +11,7 @@
       description="Plone Site."
       directory="distributions/default"
       post_handler="plone.distribution.handler.post_handler"
+      profile_id="Products.CMFPlone:plone"
       />
 
 </configure>
