@@ -147,7 +147,7 @@ def create(
     :param context: Context where the site will be created.
     :param distribution_name: Name of distribution to be used.
     :param answers: Payload for site creation.
-    :param profile_id: (deprecated) Base profile to be used.
+    :param profile_id: (deprecated and ignored) Base profile to be used.
                        default: `Products.CMFPlone:plone`
     :raises:
         :class:`ValueError`,
