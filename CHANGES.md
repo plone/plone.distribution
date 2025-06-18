@@ -9,6 +9,26 @@
 
 <!-- towncrier release notes start -->
 
+## 3.2.0 (2025-06-18)
+
+
+### New features:
+
+- Support specifying a base GenericSetup profile during distribution registration. @ericof #116
+
+
+### Bug fixes:
+
+- Set the site hook when accessing the migration tool for a site. @ericof #117
+- Fix POSKeyError in tests by adding a transaction.savepoint after importing default content with plone.exportimport. @ericof #119
+
+
+### Internal:
+
+- Add configuration for ruff as code formatter. @ericof 
+- Update .vscode settings. @ericof 
+- Update config files using plone.meta @ericof 
+
 ## 3.1.2 (2025-04-05)
 
 
