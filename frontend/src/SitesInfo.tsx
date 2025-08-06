@@ -14,7 +14,7 @@ const SitesInfo = () => {
   const [cameFrom, setCameFrom] = useState('');
 
   const checkBasicAuth = async () => {
-    const response = await fetch('./@@ploneAddSite', {
+    const response = await fetch('@@ploneAddSite', {
       method: 'GET',
     });
     if (response.status === 401) {
@@ -26,8 +26,8 @@ const SitesInfo = () => {
 
   const handleClick = async (can_manage: boolean, name: string) => {
     const href = import.meta.env.PROD
-      ? `./@@ploneAddSite?distribution=${name}`
-      : `/?distribution=${name}`;
+      ? `@@ploneAddSite?distribution=${name}`
+      : `?distribution=${name}`;
     if (can_manage) {
       // Redirect
       window.location.href = href;
