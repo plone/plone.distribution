@@ -30,7 +30,7 @@ const LoginModal = ({
   const [extraErrors, setExtraErrors] = useState({});
 
   async function onSubmit(value: any) {
-    const response = await fetch('./@login', {
+    const response = await fetch('@login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
