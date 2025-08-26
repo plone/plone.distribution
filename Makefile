@@ -36,7 +36,7 @@ endif
 # Set distributions still in development
 DISTRIBUTIONS=""
 
-all: build
+all: install
 
 # Add the following 'help' target to your Makefile
 # And add help text after each target name starting with '\#\#'
