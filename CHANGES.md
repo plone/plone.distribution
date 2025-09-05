@@ -9,6 +9,13 @@
 
 <!-- towncrier release notes start -->
 
+## 3.2.1 (2025-09-05)
+
+
+### Bug fixes:
+
+- Fix frontend resource paths to work properly with VHM. @wesleybl #98
+
 ## 3.2.0 (2025-06-18)
 
 
