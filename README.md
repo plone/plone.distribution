@@ -144,11 +144,11 @@ A 1080x768 image of your distribution. It could be the default page of a new sit
 
 A `JSON` file with the GenericSetup profiles that are used by your distribution during installation.
 
-This file needs to contain two keys:
+This file needs to contain at least one key:
 
 - **base**: List of profiles installed in every new site using this distribution.
 
-- **content**: List of profiles installed when the user decides to create a site with example content.
+- **content**: **Deprecated** List of profiles installed when the user decides to create a site with example content. Content creation is now handled through JSON import files in the `content/` directory using `plone.exportimport`.
 
 The configuration for a new Volto site is:
 
@@ -159,12 +159,11 @@ The configuration for a new Volto site is:
     "plone.app.caching:default",
     "plonetheme.barceloneta:default",
     "plone.volto:default"
-  ],
-  "content": [
-    "plone.volto:default-homepage"
   ]
 }
 ```
+
+**Note:** The `content` key is deprecated. Content creation is now handled through JSON import files in the `content/` directory using `plone.exportimport`.
 
 #### How to add an add-on
 
