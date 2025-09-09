@@ -1,6 +1,7 @@
 graft src
 graft tests
 include *
+
 global-exclude *.pyc
 include pyproject.toml
 recursive-exclude news *
