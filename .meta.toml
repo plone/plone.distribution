@@ -3,7 +3,7 @@
 # See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "2.0.0"
+commit-id = "2.2.2"
 
 [pyproject]
 codespell_skip = "*.min.js,*lock.yaml"
@@ -68,6 +68,7 @@ test_runner = "pytest"
 test_path = "/tests"
 use_mxdev = true
 test_deps_additional = ""
+test_matrix = {"6.2" = ["*"]}
 
 [github]
 py_versions = "[\"3.11\", \"3.10\"]"
