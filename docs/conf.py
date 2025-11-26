@@ -1,13 +1,27 @@
-from pkg_resources import get_distribution
+from importlib.metadata import version
 
+import datetime
+import os
 import sys
 
 
+sys.path.insert(0, os.path.abspath("../src/"))
+
+
+# -- Project information -----------------------------------------------------
+
+# General information about the project.
 project = "plone.distribution"
-copyright = "2023, Plone Foundation"
+author = "Plone Community"
+trademark_name = "Plone"
+thisyear = datetime.datetime.now().year
+copyright = "2023-%s, Plone Foundation" % thisyear
+
+
+# -- General configuration ----------------------------------------------------
 
 # The full version, including alpha/beta/rc tags.
-release = get_distribution(project).version
+release = version(distribution_name=project)
 # The short X.Y version.
 version = ".".join(release.split(".")[0:2])
 
