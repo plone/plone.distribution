@@ -158,7 +158,7 @@ test-coverage: bin/tox ## run tests with coverage
 	DEVELOP_DISTRIBUTIONS=$(DISTRIBUTIONS) bin/tox -e coverage
 
 # Docs
-bin/sphinx-build: bin/pip
+bin/sphinx-build: bin/pip install
 	bin/pip install -r requirements-docs.txt
 
 .PHONY: build-docs
