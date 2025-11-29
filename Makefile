@@ -171,3 +171,4 @@ livehtml: bin/sphinx-build  ## Rebuild Sphinx documentation on changes, with liv
 	./bin/sphinx-autobuild \
 		--ignore "*.swp" \
 		-b html $(DOCS_DIR) "$(DOCS_DIR)/_build/html"
+
