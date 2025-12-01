@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # git checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Setup Deploy to GitHub Pages
       - name: Setup Pages
@@ -57,7 +57,7 @@ jobs:
 
       # Upload artifact to pages
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: 'docs/_build/html'
 
