@@ -148,7 +148,8 @@ This file needs to contain at least one key:
 
 - **base**: List of profiles installed in every new site using this distribution.
 
-- **content**: **Deprecated** List of profiles installed when the user decides to create a site with example content. Content creation is now handled through JSON import files in the `content/` directory using `plone.exportimport`.
+> [!WARNING]
+> - **content**: _Deprecated_. List of profiles installed when the user decides to create a site with example content. Content creation is now handled through JSON import files in the `content/` directory using `plone.exportimport`.
 
 The configuration for a new Volto site is:
 
@@ -163,7 +164,6 @@ The configuration for a new Volto site is:
 }
 ```
 
-**Note:** The `content` key is deprecated. Content creation is now handled through JSON import files in the `content/` directory using `plone.exportimport`.
 
 #### How to add an add-on
 
