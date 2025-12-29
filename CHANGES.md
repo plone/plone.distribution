@@ -9,6 +9,19 @@
 
 <!-- towncrier release notes start -->
 
+## 4.0.0a2 (2025-12-29)
+
+
+### Bug fixes:
+
+- Remove deprecated `plone.volto:default-homepage` profile from `README.md` recommendations. @Thanush-03 #99
+
+
+### Documentation:
+
+- Fix Sphinx build. @stevepiercy #133
+- Remove duplicate documentation from `README.md` and link to authoritative source. @stevepiercy #136
+
 ## 4.0.0a1 (2025-11-26)
 
 
