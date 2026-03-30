@@ -34,7 +34,7 @@ jobs:
 
       # Setup Deploy to GitHub Pages
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       # Setup Plone and Python
       - name: Setup Plone ${{ env.plone-version }} with Python ${{ env.python-version }}
