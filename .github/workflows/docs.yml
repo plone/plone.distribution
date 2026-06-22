@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # git checkout
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # Setup Deploy to GitHub Pages
       - name: Setup Pages
