@@ -6,8 +6,6 @@ from plone.distribution import DEFAULT_PATH
 from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.utils import schema as schema_utils
 from typing import Any
-from typing import List
-from typing import Optional
 
 import json
 

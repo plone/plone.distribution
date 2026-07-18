@@ -5,8 +5,6 @@ from plone.distribution.core import Distribution
 from plone.distribution.interfaces import IDistribution
 from plone.distribution.interfaces import IDistributionRegistry
 from typing import Any
-from typing import List
-from typing import Tuple
 from zope.component import getGlobalSiteManager
 from zope.interface import implementer
 from zope.interface import Interface

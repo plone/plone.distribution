@@ -5,9 +5,6 @@ from plone.distribution.core import SiteCreationReport
 from plone.distribution.registry import _distribution_registry
 from plone.distribution.registry import DistributionRegistry
 from Products.CMFPlone.Portal import PloneSite
-from typing import List
-from typing import Optional
-from typing import Union
 from zope.annotation.interfaces import IAnnotations
 
 import os

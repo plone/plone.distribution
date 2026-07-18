@@ -7,7 +7,6 @@ from plone.distribution.utils.schema import should_provide_default_language_defa
 from plone.restapi.services import Service
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFPlone.Portal import PloneSite
-from typing import List
 from zExceptions import BadRequest
 from zope.component.hooks import site
 from zope.interface import implementer
