@@ -5,7 +5,7 @@ from plone.distribution import DEFAULT_PATH
 from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.utils import schema as schema_utils
 from typing import Any
-from typing import Callable
+from collections.abc import Callable
 from typing import List
 from typing import Optional
 
@@ -22,9 +22,9 @@ class Distribution:
     description: str
     directory: Path
     package: str
-    pre_handler: Optional[Callable]
-    handler: Optional[Callable]
-    post_handler: Optional[Callable]
+    pre_handler: Callable | None
+    handler: Callable | None
+    post_handler: Callable | None
     profile_id: str
     headless: bool
     _schema: dict
@@ -37,9 +37,9 @@ class Distribution:
         description: str,
         directory: Path,
         package: str = "",
-        pre_handler: Optional[Callable] = None,
-        handler: Optional[Callable] = None,
-        post_handler: Optional[Callable] = None,
+        pre_handler: Callable | None = None,
+        handler: Callable | None = None,
+        post_handler: Callable | None = None,
         profile_id: str = DEFAULT_PROFILE,
         headless: bool = True,
     ):
@@ -100,7 +100,7 @@ class Distribution:
         return self._schema["uischema"]
 
     @property
-    def profiles(self) -> List[str]:
+    def profiles(self) -> list[str]:
         """Return a list of profiles to be applied."""
         main_profiles = self._profiles.get("base", [])
         return main_profiles
