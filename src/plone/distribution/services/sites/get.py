@@ -15,7 +15,6 @@ from zope.publisher.interfaces import IPublishTraverse
 
 import json
 
-
 DEFAULT_ID = "Plone"
 
 
