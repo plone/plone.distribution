@@ -14,7 +14,6 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.Portal import PloneSite
 from Products.GenericSetup.tool import SetupTool
-from typing import List
 from ZODB.broken import Broken
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
