@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
 from Persistence import Persistent
@@ -5,12 +6,10 @@ from plone.distribution import DEFAULT_PATH
 from plone.distribution import DEFAULT_PROFILE
 from plone.distribution.utils import schema as schema_utils
 from typing import Any
-from collections.abc import Callable
 from typing import List
 from typing import Optional
 
 import json
-
 
 DEFAULT_SCHEMA = json.loads((DEFAULT_PATH / "schema.json").read_bytes())
 DEFAULT_IMAGE = DEFAULT_PATH / "image.png"

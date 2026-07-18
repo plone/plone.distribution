@@ -11,7 +11,6 @@ from zope.component import getGlobalSiteManager
 from zope.interface import implementer
 from zope.interface import Interface
 
-
 ManagePortal = "Manage Site"
 
 

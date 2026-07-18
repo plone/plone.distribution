@@ -24,7 +24,6 @@ from zope.lifecycleevent import ObjectCreatedEvent
 
 import transaction
 
-
 _TOOL_ID = "portal_setup"
 
 

@@ -3,7 +3,6 @@ from importlib.metadata import version
 import datetime
 import sys
 
-
 # -- Project information -----------------------------------------------------
 
 # General information about the project.

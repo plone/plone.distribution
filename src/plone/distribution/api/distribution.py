@@ -12,7 +12,6 @@ from zope.annotation.interfaces import IAnnotations
 
 import os
 
-
 base_folder = Path(__file__).parent.parent / "distributions"
 SITE_REPORT_ANNO = "__plone_distribution_report__"
 
