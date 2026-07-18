@@ -7,14 +7,12 @@ from plone.distribution.utils.schema import should_provide_default_language_defa
 from plone.restapi.services import Service
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFPlone.Portal import PloneSite
-from typing import List
 from zExceptions import BadRequest
 from zope.component.hooks import site
 from zope.interface import implementer
 from zope.publisher.interfaces import IPublishTraverse
 
 import json
-
 
 DEFAULT_ID = "Plone"
 
@@ -54,7 +52,7 @@ class SitesGet(Service):
             self.request.response.setHeader("Content-Type", self.content_type)
             return json.dumps(content, indent=2, separators=(", ", ": "))
 
-    def get_distributions(self, base_url: str) -> List[dict]:
+    def get_distributions(self, base_url: str) -> list[dict]:
         """Return a list of available distributions."""
         response = []
         distributions = dist_api.get_distributions()
@@ -70,7 +68,7 @@ class SitesGet(Service):
             )
         return response
 
-    def get_sites(self) -> List[dict]:
+    def get_sites(self) -> list[dict]:
         """Return a list of site information."""
         response = []
         sites = site_api.get_sites(self.context)

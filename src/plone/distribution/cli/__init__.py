@@ -6,7 +6,6 @@ from plone.exportimport.utils import cli as cli_helpers
 import argparse
 import sys
 
-
 CLI_SPEC = {
     "exporter": {
         "description": "Export Plone Site content",

@@ -5,12 +5,9 @@ from plone.distribution.core import Distribution
 from plone.distribution.interfaces import IDistribution
 from plone.distribution.interfaces import IDistributionRegistry
 from typing import Any
-from typing import List
-from typing import Tuple
 from zope.component import getGlobalSiteManager
 from zope.interface import implementer
 from zope.interface import Interface
-
 
 ManagePortal = "Manage Site"
 
@@ -21,17 +18,17 @@ class GlobalRegistryStorage:
     def __init__(self, interfaceClass: Interface):
         self.interfaceClass = interfaceClass
 
-    def keys(self) -> List[str]:
+    def keys(self) -> list[str]:
         """Return a list of names of all registered utilities."""
         sm = getGlobalSiteManager()
         return [n for n, _i in sm.getUtilitiesFor(self.interfaceClass)]
 
-    def values(self) -> List[Any]:
+    def values(self) -> list[Any]:
         """Return a list with all registered utilities."""
         sm = getGlobalSiteManager()
         return [i for _n, i in sm.getUtilitiesFor(self.interfaceClass)]
 
-    def items(self) -> List[Tuple[str, Any]]:
+    def items(self) -> list[tuple[str, Any]]:
         """Return a list with all registered utilities as tuples.
 
         Each tuple contains name, utility.
@@ -98,7 +95,7 @@ class DistributionRegistry(Implicit):
         return self.lookup(name)
 
     @security.protected(ManagePortal)
-    def enumerate_distributions(self) -> List[Distribution]:
+    def enumerate_distributions(self) -> list[Distribution]:
         """Return all distributions registered in the Distribution Registry.
 
         This implementation returns the distributions sorted by name, but keep

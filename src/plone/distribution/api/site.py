@@ -14,7 +14,6 @@ from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.events import SiteManagerCreatedEvent
 from Products.CMFPlone.Portal import PloneSite
 from Products.GenericSetup.tool import SetupTool
-from typing import List
 from ZODB.broken import Broken
 from zope.annotation.interfaces import IAnnotations
 from zope.component import queryUtility
@@ -23,7 +22,6 @@ from zope.event import notify
 from zope.lifecycleevent import ObjectCreatedEvent
 
 import transaction
-
 
 _TOOL_ID = "portal_setup"
 
@@ -110,7 +108,7 @@ def _create_site(
     return site
 
 
-def get_sites(context=None) -> List[PloneSite]:
+def get_sites(context=None) -> list[PloneSite]:
     """Get all Plone sites.
 
     :param context: Base context to search for Plone Sites.
