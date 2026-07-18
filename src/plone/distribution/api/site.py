@@ -110,7 +110,7 @@ def _create_site(
     return site
 
 
-def get_sites(context=None) -> List[PloneSite]:
+def get_sites(context=None) -> list[PloneSite]:
     """Get all Plone sites.
 
     :param context: Base context to search for Plone Sites.
