@@ -2,7 +2,6 @@ from importlib.metadata import distribution
 from plone.distribution.api import distribution as dist_api
 from plone.restapi.services.system.get import SystemGet as BaseService
 
-
 plone_distribution_version = distribution("plone.distribution").version
 
 
