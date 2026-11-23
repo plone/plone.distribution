@@ -116,7 +116,7 @@ def enrich_uischema(uischema: dict, jsonschema: dict) -> dict:
     """Process a uischema and set default ordering (if not present)."""
     if "ui:order" not in uischema:
         # Set order to be the same as defined in the original schema creation.
-        properties = [k for k in jsonschema["properties"].keys()]
+        properties = [*jsonschema["properties"].keys()]
         uischema["ui:order"] = properties
     return uischema
 
@@ -133,6 +133,6 @@ def validate_jsonschema(schema: dict, strict: bool = False) -> bool:
     required_properties = ["site_id", "title", "setup_content"]
     if strict:
         required_properties.extend(["default_language", "portal_timezone"])
-    properties = [key for key in schema.get("properties")]
+    properties = [*schema.get("properties")]
     missing = [key for key in required_properties if key not in properties]
     return False if missing else True

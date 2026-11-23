@@ -5,19 +5,15 @@ from plone.distribution.core import SiteCreationReport
 from plone.distribution.registry import _distribution_registry
 from plone.distribution.registry import DistributionRegistry
 from Products.CMFPlone.Portal import PloneSite
-from typing import List
-from typing import Optional
-from typing import Union
 from zope.annotation.interfaces import IAnnotations
 
 import os
-
 
 base_folder = Path(__file__).parent.parent / "distributions"
 SITE_REPORT_ANNO = "__plone_distribution_report__"
 
 
-def _allow_list() -> List[str]:
+def _allow_list() -> list[str]:
     """Return a list of allowed distributions."""
     allowed_distributions = os.environ.get("ALLOWED_DISTRIBUTIONS", "")
     if allowed_distributions:
@@ -35,7 +31,7 @@ def get_registry() -> DistributionRegistry:
     return _distribution_registry
 
 
-def get_distributions(filter: bool = True) -> List[Distribution]:
+def get_distributions(filter: bool = True) -> list[Distribution]:
     """Get available Plone distributions.
 
     :param filter: Return only registered Distributions that
@@ -70,7 +66,7 @@ def get(name: str) -> Distribution:
     return distribution
 
 
-def get_creation_report(site: PloneSite) -> Union[SiteCreationReport, None]:
+def get_creation_report(site: PloneSite) -> SiteCreationReport | None:
     """Return a site creation report for a Plone site.
 
     :param site: Plone Site.
@@ -83,7 +79,7 @@ def get_creation_report(site: PloneSite) -> Union[SiteCreationReport, None]:
     return annotations.get(SITE_REPORT_ANNO, None)
 
 
-def get_current_distribution(site: PloneSite = None) -> Optional[Distribution]:
+def get_current_distribution(site: PloneSite = None) -> Distribution | None:
     """Get the distribution used to create the current site."""
     if site is None:
         site = api.portal.get()

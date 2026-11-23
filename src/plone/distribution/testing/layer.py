@@ -10,7 +10,6 @@ from plone.app.testing.layers import PloneFixture
 from plone.testing import zope
 from zope.globalrequest import setRequest
 
-
 DEFAULT_DISTRIBUTION = "testing"
 DEFAULT_ANSWERS = {
     "site_id": PLONE_SITE_ID,
@@ -43,8 +42,8 @@ class PloneDistributionFixture(PloneFixture):
     def products(self):
         """Merge products available on PloneFixture, with ones needed here."""
         products = []
-        products.extend([p for p in super().products])
-        products.extend([p for p in self._distribution_products])
+        products.extend([*super().products])
+        products.extend([*self._distribution_products])
         if self.PACKAGE_NAME:
             products.append((self.PACKAGE_NAME, {"loadZCML": True}))
         return tuple(products)
