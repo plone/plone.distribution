@@ -5,7 +5,6 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing.interfaces import PLONE_SITE_ID
 from plone.testing.zope import WSGI_SERVER_FIXTURE
 
-
 DISTRIBUTION = "testing"
 ANSWERS = {
     "site_id": PLONE_SITE_ID,
