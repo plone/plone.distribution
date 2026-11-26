@@ -7,6 +7,16 @@ import pytest
 
 
 @pytest.fixture
+def app(functional):
+    """Use the functional layer: site_api.create always commits.
+
+    Each functional test gets its own DemoStorage, so committed sites
+    are discarded afterwards and do not leak into other tests.
+    """
+    return functional["app"]
+
+
+@pytest.fixture
 def answers() -> dict:
     """Answers payload for new site creation."""
     return {
@@ -15,7 +25,7 @@ def answers() -> dict:
         "description": "A simple Plone Site",
         "default_language": "pt-br",
         "portal_timezone": "America/Sao_Paulo",
-        "setup_content": False,  # Avoid committing a transaction
+        "setup_content": False,
     }
 
 
@@ -29,9 +39,9 @@ def site(app, answers) -> PloneSite:
 
 
 class TestApiSite:
-    def test_get_sites(self, app, integration):
+    def test_get_sites(self, app):
         sites = site_api.get_sites(app)
-        # Integration test creates a Plone Site
+        # The testing layer creates a Plone Site
         assert len(sites) == 1
         site = sites[0]
         assert isinstance(site, PloneSite)
@@ -42,7 +52,7 @@ class TestApiSite:
             "testing",
         ],
     )
-    def test_create(self, app, integration, answers, distribution_name):
+    def test_create(self, app, answers, distribution_name):
         sites = site_api.get_sites(app)
         total_sites = len(sites)
         with api.env.adopt_roles(["Manager"]):

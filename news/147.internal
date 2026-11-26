@@ -1,0 +1,2 @@
+Fix test isolation with pytest-plone 1.1: run the site creation API tests on the functional layer, because creating a site commits the transaction.
+[maurits]
